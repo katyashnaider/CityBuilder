@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private Queue<T> _pool = new Queue<T>();
+    private readonly Queue<T> _pool = new Queue<T>();
 
     public T Get()
     {

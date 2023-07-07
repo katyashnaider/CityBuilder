@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: 1564488187387803092}
   - component: {fileID: -8162982343721040763}
   - component: {fileID: 6917573094359319869}
-  - component: {fileID: 2404190222262855240}
+  - component: {fileID: -5352884616827615089}
+  - component: {fileID: -8654979816517633113}
   m_Layer: 0
-  m_Name: Block
-  m_TagString: Untagged
+  m_Name: Stone
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +133,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &2404190222262855240
+--- !u!54 &-5352884616827615089
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,5 +147,17 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8654979816517633113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564488187387803083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0d52a4b07d40c8b2a4fefce1b16c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
