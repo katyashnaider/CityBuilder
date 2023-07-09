@@ -8,27 +8,28 @@ namespace Worker.StateMachines.States
     {
         private readonly Worker _worker;
         private Transform _target;
-        private Animator _animator;
+        private bool _isWalking;
 
         private const float POSSIBLE_ERROR = 0.5f;
 
-        public Walking(Worker worker /*, Animator animator*/)
+        public Walking(Worker worker)
         {
             _worker = worker;
-            //_animator = animator;
         }
 
         public void OnEnter()
         {
-            //_worker = GetComponent<Worker>();
+            _isWalking = true;
             GetTarget();
         }
 
         public void Tick()
         {
-            //включить анимацию ходьбы
+            if (!_isWalking)
+                return;
+            
             GetTarget();
-            //разобраться и возможно упростить
+            //возможно упростить
             Vector3 direction = _target.position - _worker.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             float duration = GetDistanceToTarget() / _worker.Speed;
@@ -40,6 +41,7 @@ namespace Worker.StateMachines.States
 
         public void OnExit()
         {
+            _isWalking = false;
         }
 
         private float GetDistanceToTarget()

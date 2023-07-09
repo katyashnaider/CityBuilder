@@ -9,16 +9,19 @@ namespace Worker.StateMachines.States
         //[SerializeField] private StoneStorage _stoneStorage;
         private Worker _worker;
         private Animator _animator;
+        private bool _isStoneVisible; //виден ли камень
 
-        public TakingStone(Worker worker)
+        public TakingStone(Worker worker, Animator animator)
         {
             _worker = worker;
-            //добавить аниматор
+            _animator = animator;
         }
 
         public void OnEnter()
         {
-            _worker.TakeStone();
+            _animator.SetBool(HashAnimator.IsStoneTaken, true);
+            _isStoneVisible = true;
+            _worker.TakeStone(_isStoneVisible);
         }
         
         public void Tick()
@@ -27,6 +30,8 @@ namespace Worker.StateMachines.States
 
         public void OnExit()
         {
+            //_isStoneVisible = false;
+            //_worker.TakeStone(_isStoneVisible);
         }
     }
 }

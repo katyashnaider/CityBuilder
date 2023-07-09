@@ -10,8 +10,9 @@ public class StoneStorage : MonoBehaviour
     [SerializeField] private StonePool _pool;
     [SerializeField] private float _movementDuration = 3f;
     [SerializeField] private int _maxStones = 3;
+    [SerializeField] private int _stoneSpawnTime = 5;
 
-    public List<Stone> _listStones;
+    private List<Stone> _listStones;
     private float _elapsedTime = 0;
     private Coroutine _coroutine;
 
@@ -23,6 +24,7 @@ public class StoneStorage : MonoBehaviour
         for (int i = 0; i < initialStoneCount; i++)
             _listStones.Add(new Stone());
         
+        SpawnOfStone();
         Debug.Log(_listStones.Count);
     }
 
@@ -30,7 +32,7 @@ public class StoneStorage : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
 
-        if (_elapsedTime >= 5 && _listStones.Count != _maxStones)
+        if (_elapsedTime >= _stoneSpawnTime && _listStones.Count != _maxStones)
         {
             SpawnOfStone();
             _elapsedTime = 0;
@@ -58,6 +60,7 @@ public class StoneStorage : MonoBehaviour
 
     private IEnumerator MoveStone(Transform stonePosition, float movementDuration)
     {
+        //попробовать поменять на передвжиение через дотвин
         float delay = 0.5f;
         yield return new WaitForSeconds(delay);
 

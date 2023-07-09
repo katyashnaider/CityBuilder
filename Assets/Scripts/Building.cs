@@ -9,6 +9,7 @@ public class Building : MonoBehaviour
     [SerializeField] private int _stonesNeededNumber = 5;
 
     private List<Stone> _stones;
+    private int _currentCountStones = 0;
     private int _currentIndex = 0;
 
     private void Awake()
@@ -18,10 +19,11 @@ public class Building : MonoBehaviour
 
     private void Update()
     {
-        if (_stones.Count >= _stonesNeededNumber && _currentIndex <= _stones.Count)
+        if (_stones.Count >= _stonesNeededNumber && _currentCountStones <= _stones.Count)
         {
-            _buildingsParts[0].gameObject.SetActive(true);
-            _currentIndex = 0;
+            _buildingsParts[_currentIndex].gameObject.SetActive(true);
+            _currentIndex++;
+            _currentCountStones = 0;
             _stones.Clear();
         }
     }
@@ -29,7 +31,6 @@ public class Building : MonoBehaviour
     public void GetStone()
     {
         _stones.Add(new Stone());
-        _currentIndex++;
-        Debug.Log("количество камней " + _stones.Count);
+        _currentCountStones++;
     }
 }
