@@ -12,6 +12,8 @@ public class Building : MonoBehaviour
     private int _currentCountStones = 0;
     private int _currentIndex = 0;
 
+    public event Action DeliveredStone;
+
     private void Awake()
     {
         _stones = new List<Stone>();
@@ -22,6 +24,7 @@ public class Building : MonoBehaviour
         if (_stones.Count >= _stonesNeededNumber && _currentCountStones <= _stones.Count)
         {
             _buildingsParts[_currentIndex].gameObject.SetActive(true);
+            
             _currentIndex++;
             _currentCountStones = 0;
             _stones.Clear();
@@ -32,5 +35,6 @@ public class Building : MonoBehaviour
     {
         _stones.Add(new Stone());
         _currentCountStones++;
+        DeliveredStone?.Invoke();
     }
 }

@@ -18,14 +18,19 @@ public class StoneStorage : MonoBehaviour
 
     private void Awake()
     {
-        int initialStoneCount = 3;
+        int initialStoneCount = 5;
         _listStones = new List<Stone>();
-        
+
         for (int i = 0; i < initialStoneCount; i++)
-            _listStones.Add(new Stone());
+        {
+            Stone stone = _pool.Get();
+            float stonePositionX = 0;
+            stone.transform.position = new Vector3(stonePositionX, stone.transform.position.y, stone.transform.position.z);
+            stonePositionX += 0.5f;
+            _listStones.Add(stone);
+        }
         
         SpawnOfStone();
-        Debug.Log(_listStones.Count);
     }
 
     private void Update()
@@ -40,14 +45,23 @@ public class StoneStorage : MonoBehaviour
             if (_listStones.Count == _maxStones)
                 StopCoroutine(_coroutine);
         }
+        
+        Debug.Log(_listStones.Count);
     }
 
     public void RemoveStone()
     {
         if (_listStones.Count > 0)
+        {
+            Stone removedStone = _listStones[0];
+            _pool.Put(removedStone);
+
             _listStones.RemoveAt(0);
+        }
         else
+        {
             Debug.LogError("No stones left in the storage!");
+        }
     }
 
     private void SpawnOfStone()

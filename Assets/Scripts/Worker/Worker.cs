@@ -19,6 +19,7 @@ namespace Worker
         private Animator _animator;
         
         private int _currentTargetIndex = 0;
+        private int _wallet = 0;
         private bool _isStoneTaken = false;
         private bool _isStoneTaken1;
 
@@ -44,6 +45,16 @@ namespace Worker
 
             _target = _targets[_currentTargetIndex];
             _stateMachine.SetState(walking);
+        }
+
+        private void OnEnable()
+        {
+            _building.DeliveredStone += OnDeliveredStone;
+        }
+
+        private void OnDisable()
+        {
+            _building.DeliveredStone -= OnDeliveredStone;
         }
 
         private void Update()
@@ -74,7 +85,7 @@ namespace Worker
             _heldStone.gameObject.SetActive(isStoneVisible);
             _stoneStorage.RemoveStone();
             _isStoneTaken = true;
-            //Debug.Log("После " + _stoneStorage._listStones.Count);
+            Debug.Log("метод TakeStone");
         }
 
         public void PutStone(bool isStoneVisible) //виден ли камень
@@ -88,6 +99,11 @@ namespace Worker
         {
             //Debug.Log("работает класс Worker метод ResetTargetIndex");
             _currentTargetIndex = 0;
+        }
+
+        private void OnDeliveredStone()
+        {
+            _wallet += 5;
         }
 
         /*private bool ReachedPoint(Vector3 point, bool isStoneTaken)
