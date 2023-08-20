@@ -18,6 +18,7 @@ namespace Worker
         //переделать управление камерой (см класс камеры)
 
         [SerializeField] private SpeedUpgrade _speedUpgrade;
+        [SerializeField] private IncomeUpgrade _incomeUpgrade;
        // [SerializeField] private BuildingPart _buildingPart;
         [SerializeField] private Transform[] _targets;
        // [SerializeField] private StoneStorage _stoneStorage;
@@ -25,7 +26,7 @@ namespace Worker
         [SerializeField] private Building _building;
         [SerializeField] private Stone _heldStone;
         [SerializeField] private float _speed = 0.4f;
-        [SerializeField] private int _currentPrice = 5;
+        [SerializeField] private int _price = 5;
 
         private Transform _target;
         private StateMachine _stateMachine;
@@ -39,6 +40,7 @@ namespace Worker
         private bool _isStoneTaken1;
         private Vector3[] _pathTargets;
         private float _currentSpeed;
+        private int _currentPrice;
 
         public float Speed => _speed;
 
@@ -46,6 +48,7 @@ namespace Worker
         {
             Screen.SetResolution(1080, 1920, true);
             _currentSpeed = _speed;
+            _currentPrice = _price;
 
             _animator = GetComponent<Animator>();
             _wallet = GetComponent<Wallet>();
@@ -70,12 +73,14 @@ namespace Worker
         {
             _building.DeliveredStone += OnDeliveredStone;
             _speedUpgrade.ChangedSpeed += OnChangedSpeed;
+            _incomeUpgrade.ChangedIncome += OnChangedIncome;
         }
 
         private void OnDisable()
         {
             _building.DeliveredStone -= OnDeliveredStone;
             _speedUpgrade.ChangedSpeed -= OnChangedSpeed;
+            _incomeUpgrade.ChangedIncome -= OnChangedIncome;
         }
 
         private void Update() => _stateMachine.Tick();
@@ -130,10 +135,15 @@ namespace Worker
             _building.SetCurrentPrice(_currentPrice);
         }
 
-        private void OnChangedSpeed(float upgrateAmount)
+        private void OnChangedSpeed(float upgradeAmount)
         {
-            if (_speed - upgrateAmount > 0)
-                _speed -= upgrateAmount;
+            if (_currentSpeed - upgradeAmount > 0)
+                _currentSpeed -= upgradeAmount;
+        }
+
+        private void OnChangedIncome(int upgradeAmount)
+        {
+            _currentPrice += upgradeAmount;
         }
 
         private void ConvertTargetsToPath()

@@ -40,7 +40,6 @@ namespace Upgrades
             {
                 base.ApplyUpgrade();
                 ChangedSpeed?.Invoke(_upgradeAmount);
-                //UpdateUpgradeInfoUI();
             }
         }
 

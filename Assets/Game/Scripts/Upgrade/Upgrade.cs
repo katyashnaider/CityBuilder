@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Worker;
 
 namespace Upgrades
@@ -8,7 +7,7 @@ namespace Upgrades
     {
         [SerializeField] private UpgradeView _upgradeView;
         [SerializeField] protected Wallet _wallet;
-        [SerializeField] protected float _upgradeAmount = 1f;
+        [SerializeField] protected int _upgradeAmount = 1;
         [SerializeField] protected int _price = 10;
         [SerializeField] private int _multiplierPrice = 2;
 
@@ -21,7 +20,6 @@ namespace Upgrades
         private void Start()
         {
             CurrentPrice = _price;
-            print(CurrentPrice);
             UpgradeInfo();
         }
 
