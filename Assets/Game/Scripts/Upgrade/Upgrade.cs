@@ -31,7 +31,6 @@ namespace Upgrades
             IncreaseLevel();
             _wallet.SubtractCoins(CurrentPrice);
             IncreasePrice();
-            SaveProgress();
             UpgradeInfo();
         }
 
@@ -43,32 +42,54 @@ namespace Upgrades
                 _upgradeView.SetMaxLevel();
         }
 
-        protected void LoadProgress()
+        protected void SaveProgress(string key)
         {
-            var json = PlayerPrefs.GetString("01");
-            var upgradeSave = JsonUtility.FromJson<Save>(json);
+            var progressHandler = new ProgressHandler();
 
-            _currentLevel = upgradeSave.CurrentLevel;
-            CurrentPrice = upgradeSave.CurrentPrice;
+            var saveData = new ProgressHandler.Save
+            {
+                Level = _currentLevel,
+                Price = CurrentPrice
+            };
+
+            progressHandler.SaveProgress(key, saveData);
         }
+
+        protected void LoadProgress(string key)
+        {
+            var progressHandler = new ProgressHandler();
+            var loadedData = progressHandler.LoadProgress(key);
+
+            _currentLevel = loadedData.Level;
+            CurrentPrice = loadedData.Price;
+        }
+
+        //protected void LoadProgress(string key)
+        //{
+        //    var json = PlayerPrefs.GetString(key);
+        //    var upgradeSave = JsonUtility.FromJson<Save>(json);
+
+        //    _currentLevel = upgradeSave.CurrentLevel;
+        //    CurrentPrice = upgradeSave.CurrentPrice;
+        //}
+
+        //protected void SaveProgress(string key)
+        //{
+        //    var upgradeSave = new Save();
+
+        //    upgradeSave.CurrentLevel = _currentLevel;
+        //    upgradeSave.CurrentPrice = CurrentPrice;
+
+        //    var json = JsonUtility.ToJson(upgradeSave);
+
+        //    PlayerPrefs.SetString(key, json);
+        //}
 
         protected bool CanIncreaseLevel() => _currentLevel < MaxLevel;
 
         private void IncreaseLevel() => _currentLevel++;
 
         private void IncreasePrice() => CurrentPrice += _multiplierPrice;
-
-        private void SaveProgress()
-        {
-            var upgradeSave = new Save();
-
-            upgradeSave.CurrentLevel = _currentLevel;
-            upgradeSave.CurrentPrice = CurrentPrice;
-
-            var json = JsonUtility.ToJson(upgradeSave);
-
-            PlayerPrefs.SetString("01", json);
-        }
 
     }
 }

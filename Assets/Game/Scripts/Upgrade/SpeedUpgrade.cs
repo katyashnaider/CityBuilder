@@ -21,8 +21,8 @@ namespace Upgrades
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("01"))
-                LoadProgress();
+            if (PlayerPrefs.HasKey("SpeedUpgrade"))
+                LoadProgress("SpeedUpgrade");
             else
                 CurrentPrice = _price;
 
@@ -39,6 +39,7 @@ namespace Upgrades
             if (_wallet.HasEnoughCoins(CurrentPrice))
             {
                 base.ApplyUpgrade();
+                SaveProgress("SpeedUpgrade");
                 ChangedSpeed?.Invoke(_upgradeAmount);
             }
         }

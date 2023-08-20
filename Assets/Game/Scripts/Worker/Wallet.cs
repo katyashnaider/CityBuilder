@@ -13,7 +13,7 @@ namespace Worker
         private void Start()
         {
             if (PlayerPrefs.HasKey("Wallet"))
-                _coins = PlayerPrefs.GetInt("Wallet", _coins);
+                LoadProgress();
 
             _viewWallet.UpdatePrice(_coins);
         }
@@ -21,14 +21,35 @@ namespace Worker
         public void AddCoins(int price)
         {
             _coins += price;
-            PlayerPrefs.SetInt("Wallet", _coins);
+            SaveProgress();
             _viewWallet.UpdatePrice(_coins);
         }
 
         public void SubtractCoins(int price)
         {
             _coins -= price;
+            SaveProgress();
             _viewWallet.UpdatePrice(_coins);
+        }
+
+        private void SaveProgress()
+        {
+            var progressHandler = new ProgressHandler();
+
+            var saveData = new ProgressHandler.Save
+            {
+                Wallet = _coins
+            };
+
+            progressHandler.SaveProgress("Wallet", saveData);
+        }
+
+        private void LoadProgress()
+        {
+            var progressHandler = new ProgressHandler();
+            var loadedData = progressHandler.LoadProgress("Wallet");
+
+            _coins = loadedData.Wallet;
         }
     }
 }
