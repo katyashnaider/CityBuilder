@@ -76,8 +76,5 @@ public class StoneSpawner : MonoBehaviour
         }
     }
 
-    private int UpdateActiveStoneCount()
-    {
-        return _activeStone = _stones.Count(stone => stone.gameObject.activeSelf);
-    }
+    private int UpdateActiveStoneCount() => _activeStone = _stones.Count(stone => stone.gameObject.activeSelf);
 }

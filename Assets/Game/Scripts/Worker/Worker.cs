@@ -1,36 +1,55 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Upgrades;
 using Worker.StateMachines;
 using Worker.StateMachines.States;
 
 namespace Worker
 {
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Wallet))]
     public class Worker : MonoBehaviour
     {
+        //создать класс Кошелек и там хранить деньги и проверять хватает ли денег +
+        //создать класс Игрок и перенсти логику с Рабочего -
+        //визуализировать то, когда камушки кладутся
+        // сделать отдельно каждые колонки и стенки. создать класс который будет показывать количество монет (типо анимация через дотвин)+
+        //переделать управление камерой (см класс камеры)
+
+        [SerializeField] private SpeedUpgrade _speedUpgrade;
+       // [SerializeField] private BuildingPart _buildingPart;
         [SerializeField] private Transform[] _targets;
-        [SerializeField] private StoneStorage _stoneStorage;
+       // [SerializeField] private StoneStorage _stoneStorage;
         [SerializeField] private StoneSpawner _stoneSpawner;
         [SerializeField] private Building _building;
         [SerializeField] private Stone _heldStone;
         [SerializeField] private float _speed = 0.4f;
+        [SerializeField] private int _currentPrice = 5;
 
         private Transform _target;
         private StateMachine _stateMachine;
+        private Wallet _wallet;
         private Animator _animator;
 
         private int _currentTargetIndex = 0;
-        private int _wallet = 0;
+
+        //private int _wallet = 0;
         private bool _isStoneTaken = false;
         private bool _isStoneTaken1;
         private Vector3[] _pathTargets;
+        private float _currentSpeed;
 
         public float Speed => _speed;
 
         private void Awake()
         {
+            Screen.SetResolution(1080, 1920, true);
+            _currentSpeed = _speed;
+
             _animator = GetComponent<Animator>();
+            _wallet = GetComponent<Wallet>();
+
             _stateMachine = new StateMachine();
 
             var walking = new Walking(this);
@@ -38,9 +57,6 @@ namespace Worker
             var putsStone = new PutsStone(this, _animator);
 
             ConvertTargetsToPath();
-            //из Walking в TakingStone
-            //из TakingStone в PutsStone
-            //из PutsStone в Walking
 
             _stateMachine.AddTransition(walking, takingStone, ReachedPointA);
             _stateMachine.AddTransition(walking, putsStone, ReachedPointB);
@@ -53,17 +69,16 @@ namespace Worker
         private void OnEnable()
         {
             _building.DeliveredStone += OnDeliveredStone;
+            _speedUpgrade.ChangedSpeed += OnChangedSpeed;
         }
 
         private void OnDisable()
         {
             _building.DeliveredStone -= OnDeliveredStone;
+            _speedUpgrade.ChangedSpeed -= OnChangedSpeed;
         }
 
-        private void Update()
-        {
-            _stateMachine.Tick();
-        }
+        private void Update() => _stateMachine.Tick();
 
         /*public void SetTarget(Vector3[] pathTargets)
         {
@@ -111,7 +126,14 @@ namespace Worker
 
         private void OnDeliveredStone()
         {
-            _wallet += 5;
+            _wallet.AddCoins(_currentPrice);
+            _building.SetCurrentPrice(_currentPrice);
+        }
+
+        private void OnChangedSpeed(float upgrateAmount)
+        {
+            if (_speed - upgrateAmount > 0)
+                _speed -= upgrateAmount;
         }
 
         private void ConvertTargetsToPath()

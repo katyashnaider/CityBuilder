@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Camera
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private float _rotationSpeed = 3.0f;
+        //изменить, сделать движение вокруг здания
+        /* [SerializeField] private float _rotationSpeed = 3.0f;
         [SerializeField] private float _maxHorizontalAngle = 80.0f;
         [SerializeField] private float _minHorizontalAngle = -80.0f;
 
@@ -20,10 +22,10 @@ namespace Camera
         private void HandleRotationInput() //обработка ввода поворота
         {
             if (Input.GetMouseButtonDown(0))
-                SetRotationState(true, CursorLockMode.Locked, false);
+                SetRotationState(true);
 
             if (Input.GetMouseButtonUp(0))
-                SetRotationState(false, CursorLockMode.None, true);
+                SetRotationState(false);
 
             if (_isRotating)
                 RotateHorizontally();
@@ -40,11 +42,27 @@ namespace Camera
             transform.eulerAngles = eulerAngles;
         }
 
-        private void SetRotationState(bool isRotating, CursorLockMode lockMode, bool cursorVisible)
+        private void SetRotationState(bool isRotating)
         {
             _isRotating = isRotating;
-            Cursor.lockState = lockMode;
-            Cursor.visible = cursorVisible;
+           // Cursor.lockState = lockMode;
+           // Cursor.visible = cursorVisible;
+        }*/
+
+        private CinemachineFreeLook _freeLookCamera;
+
+        private void Awake()
+        {
+            _freeLookCamera = GetComponent<CinemachineFreeLook>();
+            _freeLookCamera.enabled = false;
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButton(0))
+                _freeLookCamera.enabled = true;
+            else
+                _freeLookCamera.enabled = false;
         }
     }
 }

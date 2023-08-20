@@ -43,7 +43,7 @@ namespace Worker.StateMachines.States
             if (_pathTweener != null) return;
             
             _isWalking = true;
-
+            
             _pathTweener = _worker.transform.DOPath(_pathTargets, _worker.Speed, PathType.Linear, PathMode.Full3D).SetLookAt(0.01f)
                 .SetEase(Ease.Linear).OnKill(OnPathKill);
         }

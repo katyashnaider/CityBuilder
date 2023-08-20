@@ -48,6 +48,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6391249164849372330}
+  - component: {fileID: 7927750668331700674}
   m_Layer: 0
   m_Name: Walls2
   m_TagString: Untagged
@@ -74,6 +75,21 @@ Transform:
   m_Father: {fileID: 3586826449428490750}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7927750668331700674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299652613048766193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool: {fileID: 0}
+  _countTexts: 1
+  _duration: 1
 --- !u!1 &6952822734581976549
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 770443384105359510}
+  - component: {fileID: 5551785697885860573}
   m_Layer: 0
   m_Name: Walls3
   m_TagString: Untagged
@@ -114,6 +131,21 @@ Transform:
   m_Father: {fileID: 3586826449428490750}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5551785697885860573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952822734581976549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool: {fileID: 0}
+  _countTexts: 1
+  _duration: 1
 --- !u!1 &7933819595648169710
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3586826449428490750}
+  - component: {fileID: 3609224133323895548}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -150,6 +183,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3609224133323895548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933819595648169710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d32bdd221eec54299928ac555650ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingsParts:
+  - {fileID: 7046733604990402035}
+  - {fileID: 7927750668331700674}
+  - {fileID: 5551785697885860573}
+  - {fileID: 3220373569816372485}
+  _stonesNeededNumber: 1
 --- !u!1 &8534662918173222213
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299742167920975730}
+  - component: {fileID: 3220373569816372485}
   m_Layer: 0
   m_Name: Walls4
   m_TagString: Untagged
@@ -189,6 +241,21 @@ Transform:
   m_Father: {fileID: 3586826449428490750}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3220373569816372485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534662918173222213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool: {fileID: 0}
+  _countTexts: 1
+  _duration: 1
 --- !u!1 &8848819977607726963
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8643879184439305136}
+  - component: {fileID: 7046733604990402035}
   m_Layer: 0
   m_Name: Walls1
   m_TagString: Untagged
@@ -224,6 +292,21 @@ Transform:
   m_Father: {fileID: 3586826449428490750}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7046733604990402035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8848819977607726963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool: {fileID: 0}
+  _countTexts: 1
+  _duration: 1
 --- !u!1001 &6703752302642262251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1825,7 +1908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 457790, guid: 56e3c741d680c6948adde1a3f33e3e47, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.96585816
+      value: 0.9658577
       objectReference: {fileID: 0}
     - target: {fileID: 457790, guid: 56e3c741d680c6948adde1a3f33e3e47, type: 3}
       propertyPath: m_LocalScale.y
@@ -1833,7 +1916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 457790, guid: 56e3c741d680c6948adde1a3f33e3e47, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.96585804
+      value: 0.9658576
       objectReference: {fileID: 0}
     - target: {fileID: 457790, guid: 56e3c741d680c6948adde1a3f33e3e47, type: 3}
       propertyPath: m_LocalPosition.x
