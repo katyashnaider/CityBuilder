@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Worker.StateMachines.States
+namespace Workers.StateMachines.States
 {
     public class PutsStone : IState
     {

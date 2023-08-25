@@ -2,13 +2,12 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 using Upgrades;
-using Worker.StateMachines;
-using Worker.StateMachines.States;
+using Workers.StateMachines;
+using Workers.StateMachines.States;
 
-namespace Worker
+namespace Workers
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(Wallet))]
     public class Worker : MonoBehaviour
     {
         //создать класс Кошелек и там хранить деньги и проверять хватает ли денег +
@@ -16,17 +15,15 @@ namespace Worker
         //визуализировать то, когда камушки кладутся
         // сделать отдельно каждые колонки и стенки. создать класс который будет показывать количество монет (типо анимация через дотвин)+
         //переделать управление камерой (см класс камеры)
-
-        [SerializeField] private SpeedUpgrade _speedUpgrade;
-        [SerializeField] private IncomeUpgrade _incomeUpgrade;
-       // [SerializeField] private BuildingPart _buildingPart;
-        [SerializeField] private Transform[] _targets;
-       // [SerializeField] private StoneStorage _stoneStorage;
-        [SerializeField] private StoneSpawner _stoneSpawner;
-        [SerializeField] private Building _building;
         [SerializeField] private Stone _heldStone;
-        [SerializeField] private float _speed = 0.4f;
-        [SerializeField] private int _price = 5;
+
+        private SpeedUpgrade _speedUpgrade;
+        private IncomeUpgrade _incomeUpgrade;
+        private Transform[] _targets;
+        private StoneSpawner _stoneSpawner;
+        private Building _building;
+        // [SerializeField] private float _speed = 0.4f;
+        //[SerializeField] private int _price = 5;
 
         private Transform _target;
         private StateMachine _stateMachine;
@@ -36,44 +33,44 @@ namespace Worker
         private int _currentTargetIndex = 0;
 
         //private int _wallet = 0;
-        private bool _isStoneTaken = false;
-        private bool _isStoneTaken1;
+        [SerializeField] private bool _isStoneTaken = false;
         private Vector3[] _pathTargets;
         private float _currentSpeed;
         private int _currentPrice;
 
-        public float Speed => _speed;
+        public Vector3 StartPosition { get; private set; }
+        public float Speed => _currentSpeed;
+        public StateMachine StateMachine => _stateMachine;
+        public Animator Animator => _animator;
+        public bool IsStoneTaken => _isStoneTaken;
 
-        private void Awake()
+        public void Init(StateMachine stateMachine, SpeedUpgrade speedUpgrade, IncomeUpgrade incomeUpgrade, Transform[] targets, StoneSpawner stoneSpawner, Building building, Wallet wallet)
         {
-            Screen.SetResolution(1080, 1920, true);
-            _currentSpeed = _speed;
-            _currentPrice = _price;
+            // Screen.SetResolution(1080, 1920, true);
+            _speedUpgrade = speedUpgrade;
+            _incomeUpgrade = incomeUpgrade;
+            _targets = targets;
+            _target = targets[0];
+            _stoneSpawner = stoneSpawner;
+            _building = building;
+
+            _stateMachine = stateMachine;
+
+            StartPosition = transform.position;
 
             _animator = GetComponent<Animator>();
-            _wallet = GetComponent<Wallet>();
+            _wallet = wallet;
 
-            _stateMachine = new StateMachine();
-
-            var walking = new Walking(this);
-            var takingStone = new TakingStone(this, _animator);
-            var putsStone = new PutsStone(this, _animator);
+            _building.DeliveredStone += OnDeliveredStone;
+            _speedUpgrade.ChangedSpeed += OnChangedSpeed;
+            _incomeUpgrade.ChangedIncome += OnChangedIncome;
 
             ConvertTargetsToPath();
-
-            _stateMachine.AddTransition(walking, takingStone, ReachedPointA);
-            _stateMachine.AddTransition(walking, putsStone, ReachedPointB);
-            _stateMachine.AddTransition(takingStone, walking, () => _isStoneTaken);
-            _stateMachine.AddTransition(putsStone, walking, () => !_isStoneTaken);
-
-            _stateMachine.SetState(walking);
         }
 
         private void OnEnable()
         {
-            _building.DeliveredStone += OnDeliveredStone;
-            _speedUpgrade.ChangedSpeed += OnChangedSpeed;
-            _incomeUpgrade.ChangedIncome += OnChangedIncome;
+
         }
 
         private void OnDisable()
@@ -85,15 +82,21 @@ namespace Worker
 
         private void Update() => _stateMachine.Tick();
 
-        /*public void SetTarget(Vector3[] pathTargets)
+        public void GetTarget(Vector3[] pathTargets)
         {
-            //Debug.Log("работает класс Worker метод SetTarget");
+            //Debug.Log("работает класс Worker метод GetTarget");
             _pathTargets = pathTargets;
-        }*/
+        }
 
-        public Vector3[] SetTarget()
+        public void SetStats(float speed, int price)
         {
-            return _pathTargets;
+            _currentSpeed = speed;
+            _currentPrice = price;
+        }
+
+        public Vector3 GetTarget()
+        {
+            return _target.position;
         }
 
         public void SwitchTarget()
@@ -114,6 +117,7 @@ namespace Worker
             // _stoneStorage.RemoveStone();
             _stoneSpawner.InActiveStone();
             _isStoneTaken = true;
+            print(_isStoneTaken);
         }
 
         public void PutStone(bool isStoneVisible) //виден ли камень
@@ -137,8 +141,7 @@ namespace Worker
 
         private void OnChangedSpeed(float upgradeAmount)
         {
-            if (_currentSpeed - upgradeAmount > 0)
-                _currentSpeed -= upgradeAmount;
+            _currentSpeed += upgradeAmount;
         }
 
         private void OnChangedIncome(int upgradeAmount)
@@ -156,41 +159,14 @@ namespace Worker
             }
         }
 
-        /*private bool ReachedPoint(Vector3 point, bool isStoneTaken)
-        {
-            float distance = Vector3.Distance(transform.position, point);
-
-            if (distance <= 1f)
-            {
-                return true;
-            }
-
-            return false;
-        }*/
-
-        private bool ReachedPointA()
+        public bool ReachedPoint()
         {
             //return ReachedPoint(targetPointA);
-            float distance = Vector3.Distance(transform.position, _targets[0].position);
+            float distance = Vector3.Distance(transform.position, _targets[_currentTargetIndex].position);
 
-            if (distance <= 0.2f && !_isStoneTaken)
+            if (distance <= 0.5f)
             {
-                _isStoneTaken1 = true;
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool ReachedPointB()
-        {
-            //return ReachedPoint(targetPointB);
-
-            float distance = Vector3.Distance(transform.position, _targets[1].position);
-
-            if (distance <= 0.2f && _isStoneTaken1)
-            {
-                _isStoneTaken1 = false;
+                print("+");
                 return true;
             }
 

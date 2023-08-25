@@ -11,8 +11,6 @@ namespace Upgrades
         {
             if (PlayerPrefs.HasKey("IncomeUpgrade"))
                 LoadProgress("IncomeUpgrade");
-            else
-                CurrentPrice = _price;
 
             UpgradeInfo();
         }

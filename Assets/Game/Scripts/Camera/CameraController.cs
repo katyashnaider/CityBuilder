@@ -48,7 +48,6 @@ namespace Camera
            // Cursor.lockState = lockMode;
            // Cursor.visible = cursorVisible;
         }*/
-
         private CinemachineFreeLook _freeLookCamera;
 
         private void Awake()
@@ -57,12 +56,6 @@ namespace Camera
             _freeLookCamera.enabled = false;
         }
 
-        private void Update()
-        {
-            if (Input.GetMouseButton(0))
-                _freeLookCamera.enabled = true;
-            else
-                _freeLookCamera.enabled = false;
-        }
+        private void Update() => _freeLookCamera.enabled = Input.GetMouseButton(0);
     }
 }

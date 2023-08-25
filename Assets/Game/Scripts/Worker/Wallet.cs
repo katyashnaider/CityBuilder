@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Worker
+namespace Workers
 {
     public class Wallet : MonoBehaviour
     {

@@ -105,35 +105,6 @@ public class StoneStorage : MonoBehaviour
     {
         Stone newStone = _pool.Get();
         _listStones.Add(newStone);
-
-        //MoveToTarget(newStone);
-        /*DOTween.Sequence()
-            .Append(newStone.transform.DOMove(_target.position, _movementDuration).SetEase(Ease.Linear)
-                .OnComplete(OnMovementComplete))
-            .Append(newStone.transform.DORotate(
-                new Vector3(newStone.transform.rotation.x, newStone.transform.rotation.y, 360f),
-                rotationDuration, RotateMode.LocalAxisAdd).SetEase(Ease.Linear))
-            .SetLoops(-1);*/
-
-        /* if (!_reachedTarget)
-         {
-             if (Vector3.Distance(newStone.transform.position, _target.position) >= _errorDistance)
-             {
-                 if (_rotationTween == null)
-                 {
-                     _rotationTween = newStone.transform.DORotate(new Vector3(newStone.transform.rotation.x, newStone.transform.rotation.y, 360f),
-                             rotationDuration, RotateMode.LocalAxisAdd).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
-                     Debug.Log("SpawnOfStone его if");
-                 }
-             }
-             else
-             {
-                 Debug.Log("SpawnOfStone его else");
-                 StopRotation();
-             }
-         }*/
-
-        //_coroutine = StartCoroutine(MoveStone(newStone.transform, _movementDuration));
     }
 
     private IEnumerator MoveStoneToTarget()
@@ -165,12 +136,6 @@ public class StoneStorage : MonoBehaviour
             _currentStoneIndex = 0;
         }
     }
-
-    /* private void MoveToTarget(Stone stone)
-     {
-         Debug.Log("MoveToTarget");
-         stone.transform.DOMove(_target.position, _movementDuration).SetEase(Ease.Linear).OnComplete(OnMovementKill);
-     }*/
 
     private void OnMovementComplete(Stone stone)
     {

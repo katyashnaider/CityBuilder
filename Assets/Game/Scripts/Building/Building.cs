@@ -22,35 +22,38 @@ public class Building : MonoBehaviour
 
     private void Awake()
     {
+        if (PlayerPrefs.HasKey("CurrentIndex"))
+            _currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
+
+        for (int i = 0; i < _currentIndex; i++)
+        {
+            _buildingsParts[i].gameObject.SetActive(true);
+        }
+        
         _createdCanvasCoins = Instantiate(_canvasCoins, transform);
 
         foreach (var part in _buildingsParts)
         {
-            //part.InActive();
             part.Construct(_partSettings, _createdCanvasCoins, _createdCanvasCoins.GetComponent<CanvasGroup>(), 
                 _createdCanvasCoins.GetComponent<ViewCoins>(), _particleSystem);
         }
     }
-
-    private void Update()
-    {
-        if (_stones.Count >= _stonesNeededNumber && _currentCountStones <= _stones.Count)
-        {
-           // _currentStoneTransform = _buildingsParts[_currentIndex].transform;
-           // _buildingsParts[_currentIndex].gameObject.SetActive(true);
-           
-           _buildingsParts[_currentIndex].Active();
-            _currentIndex++;
-            _currentCountStones = 0;
-            _stones.Clear();
-        }
-    }
-
+    
     public void GetStone()
     {
-        _stones.Add(new Stone());
+        if (_currentIndex == _buildingsParts.Length) return;
+
         _currentCountStones++;
         DeliveredStone?.Invoke();
+        
+        if (_currentCountStones == _stonesNeededNumber)
+        {
+            _buildingsParts[_currentIndex].Active();
+            _currentIndex++;
+            _currentCountStones = 0;
+        }
+        
+        PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
     }
 
     public Transform GetCurrentPosition() => _currentStoneTransform;

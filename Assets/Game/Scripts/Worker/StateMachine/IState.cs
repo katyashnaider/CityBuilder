@@ -1,4 +1,4 @@
-﻿namespace Worker.StateMachines
+﻿namespace Workers.StateMachines
 {
     public interface IState
     {

@@ -23,8 +23,6 @@ namespace Upgrades
         {
             if (PlayerPrefs.HasKey("SpeedUpgrade"))
                 LoadProgress("SpeedUpgrade");
-            else
-                CurrentPrice = _price;
 
             UpgradeInfo();
 
@@ -69,7 +67,7 @@ namespace Upgrades
         //    var upgrade = new UpgradeSave();
 
         //    upgrade.CurrentLevel = _currentLevel;
-        //    upgrade.CurrentPrice = _currentPrice;
+        //    upgrade._currentPrice = _currentPrice;
 
         //    var json = JsonUtility.ToJson(upgrade);
 
@@ -81,7 +79,7 @@ namespace Upgrades
         //    if (CanIncreaseLevel())
         //    {
         //        _levelText.text = _currentLevel.ToString();
-        //        _priceText.text = CurrentPrice.ToString();
+        //        _priceText.text = _currentPrice.ToString();
         //    }
         //    else
         //    {
@@ -95,10 +93,10 @@ namespace Upgrades
         //    var ugrade = JsonUtility.FromJson<UpgradeSave>(json);
 
         //    _currentLevel = ugrade.CurrentLevel;
-        //    _currentPrice = ugrade.CurrentPrice;
+        //    _currentPrice = ugrade._currentPrice;
 
         //    print(ugrade.CurrentLevel);
-        //    print(ugrade.CurrentPrice);
+        //    print(ugrade._currentPrice);
 
         //}
 
@@ -118,7 +116,7 @@ namespace Upgrades
         //public struct UpgradeSave
         //{
         //    public int CurrentLevel;
-        //    public int CurrentPrice;
+        //    public int _currentPrice;
         //}
     }
 }

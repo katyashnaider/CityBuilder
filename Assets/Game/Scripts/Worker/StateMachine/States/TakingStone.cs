@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Worker.StateMachines.States
+namespace Workers.StateMachines.States
 {
     public class TakingStone : IState
     {

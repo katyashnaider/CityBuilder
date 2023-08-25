@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Worker.StateMachines
+namespace Workers.StateMachines
 {
     public class StateMachine
     {
@@ -12,6 +12,7 @@ namespace Worker.StateMachines
         private List<Transition> _anyTransitions = new List<Transition>();
    
         private static List<Transition> EmptyTransitions = new List<Transition>(0);
+        private Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
 
         public void Tick()
         {
@@ -31,6 +32,20 @@ namespace Worker.StateMachines
             _currentState = state;
       
             _transitions.TryGetValue(_currentState.GetType(), out _currentTransitions);
+            
+            if (_currentTransitions == null)
+                _currentTransitions = EmptyTransitions;
+      
+            _currentState.OnEnter();
+        }
+
+        public void SetState<T>() where T : IState
+        {
+            _currentState?.OnExit();
+            _currentState = _states[typeof(T)];
+            
+            _transitions.TryGetValue(_currentState.GetType(), out _currentTransitions);
+            
             if (_currentTransitions == null)
                 _currentTransitions = EmptyTransitions;
       
@@ -43,6 +58,11 @@ namespace Worker.StateMachines
             {
                 transitions = new List<Transition>();
                 _transitions[from.GetType()] = transitions;
+            }
+            
+            if (!_states.TryGetValue(from.GetType(), out var _))
+            {
+                _states.Add(from.GetType(), from);
             }
       
             transitions.Add(new Transition(to, predicate));

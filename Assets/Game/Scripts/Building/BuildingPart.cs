@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class BuildingPart : MonoBehaviour
 {
+    //сделать вьюшку для этого класса
     private BuildingPartSettings _settings;
     private Transform _createdCanvasCoins;
     private CanvasGroup _canvasGroup;
@@ -13,6 +14,7 @@ public class BuildingPart : MonoBehaviour
     private ParticleSystem _particleSystemInstance;
 
     private int _price;
+    private const float AnimationDelay = 2f;
 
     public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup, ViewCoins viewCoins,
         ParticleSystem particleSystem)
@@ -72,12 +74,11 @@ public class BuildingPart : MonoBehaviour
         {
             Destroy(_particleSystemInstance.gameObject);
         }
-
     }
 
     private IEnumerator LaunchAnimationParts()
     {
-        WaitForSeconds launchAnimationParts = new WaitForSeconds(2f);
+        WaitForSeconds launchAnimationParts = new WaitForSeconds(AnimationDelay);
 
         _viewCoins.UpdatePrice(_price);
         //gameObject.SetActive(true);

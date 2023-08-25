@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Worker;
+using Workers;
 
 namespace Upgrades
 {
@@ -11,15 +11,18 @@ namespace Upgrades
         [SerializeField] protected int _price = 10;
         [SerializeField] private int _multiplierPrice = 2;
 
-        protected int CurrentPrice = 0;
+        private int _currentPrice = 0;
 
-        private int _currentLevel = 1;
+        private int _currentLevel = 0;
 
         private const int MaxLevel = 5;
 
-        private void Start()
+        public int CurrentLevel => _currentLevel;
+        public int CurrentPrice => _currentPrice;
+
+        private void Awake()
         {
-            CurrentPrice = _price;
+            _currentPrice = _price;
             UpgradeInfo();
         }
 
@@ -29,15 +32,20 @@ namespace Upgrades
                 return;
 
             IncreaseLevel();
-            _wallet.SubtractCoins(CurrentPrice);
+            _wallet.SubtractCoins(_currentPrice);
             IncreasePrice();
             UpgradeInfo();
         }
 
-        public void UpgradeInfo()
+        public int GetValue()
+        {
+            return _upgradeAmount * _currentLevel;
+        }
+        
+        protected void UpgradeInfo()
         {
             if (CanIncreaseLevel())
-                _upgradeView.UpgradeDisplay(_currentLevel, CurrentPrice);
+                _upgradeView.UpgradeDisplay(_currentLevel, _currentPrice);
             else
                 _upgradeView.SetMaxLevel();
         }
@@ -49,7 +57,7 @@ namespace Upgrades
             var saveData = new ProgressHandler.Save
             {
                 Level = _currentLevel,
-                Price = CurrentPrice
+                Price = _currentPrice
             };
 
             progressHandler.SaveProgress(key, saveData);
@@ -61,35 +69,14 @@ namespace Upgrades
             var loadedData = progressHandler.LoadProgress(key);
 
             _currentLevel = loadedData.Level;
-            CurrentPrice = loadedData.Price;
+            _currentPrice = loadedData.Price;
         }
-
-        //protected void LoadProgress(string key)
-        //{
-        //    var json = PlayerPrefs.GetString(key);
-        //    var upgradeSave = JsonUtility.FromJson<Save>(json);
-
-        //    _currentLevel = upgradeSave.CurrentLevel;
-        //    CurrentPrice = upgradeSave.CurrentPrice;
-        //}
-
-        //protected void SaveProgress(string key)
-        //{
-        //    var upgradeSave = new Save();
-
-        //    upgradeSave.CurrentLevel = _currentLevel;
-        //    upgradeSave.CurrentPrice = CurrentPrice;
-
-        //    var json = JsonUtility.ToJson(upgradeSave);
-
-        //    PlayerPrefs.SetString(key, json);
-        //}
 
         protected bool CanIncreaseLevel() => _currentLevel < MaxLevel;
 
         private void IncreaseLevel() => _currentLevel++;
 
-        private void IncreasePrice() => CurrentPrice += _multiplierPrice;
+        private void IncreasePrice() => _currentPrice += _multiplierPrice;
 
     }
 }

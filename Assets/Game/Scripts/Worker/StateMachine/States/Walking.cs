@@ -1,14 +1,13 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Worker.StateMachines.States
+namespace Workers.StateMachines.States
 {
     public class Walking : IState
     {
         private readonly Worker _worker;
-        private Vector3[] _pathTargets;
+        private Vector3 _point;
         private bool _isWalking = false;
-        private Tweener _pathTweener;
 
         public Walking(Worker worker)
         {
@@ -17,41 +16,36 @@ namespace Worker.StateMachines.States
 
         public void OnEnter()
         {
-            GetTarget();
+            SetTarget();
+            _isWalking = true;
         }
 
         public void Tick()
         {
-            if (!_isWalking)
+            if (_isWalking)
             {
-                MoveOnPath();
+                MoveOnPoint();
             }
         }
 
         public void OnExit()
         {
             _isWalking = false;
+            _worker.SwitchTarget();
         }
 
-        private void GetTarget()
+        private void SetTarget()
         {
-            _pathTargets = _worker.SetTarget();
+            _point = _worker.GetTarget();
         }
 
-        private void MoveOnPath()
+        private void MoveOnPoint()
         {
-            if (_pathTweener != null) return;
-            
-            _isWalking = true;
-            
-            _pathTweener = _worker.transform.DOPath(_pathTargets, _worker.Speed, PathType.Linear, PathMode.Full3D).SetLookAt(0.01f)
-                .SetEase(Ease.Linear).OnKill(OnPathKill);
-        }
-
-        private void OnPathKill()
-        {
-            _isWalking = false;
-            _pathTweener = null;
+            _worker.transform.position = Vector3.MoveTowards(_worker.transform.position, _point, _worker.Speed * Time.deltaTime);
+            _worker.transform.LookAt(_point);
+            _worker.ReachedPoint();
+            //_pathTweener = _worker.transform.DOPath(_point, _worker.Speed, PathType.Linear, PathMode.Full3D).SetLookAt(0.01f)
+            //.SetEase(Ease.Linear).OnKill(OnPathKill);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Upgrades
 
         public void UpgradeDisplay(int currentLevel, int currentPrice)
         {
-            _levelText.text = currentLevel.ToString();
+            _levelText.text = currentLevel + 1.ToString();
             _priceText.text = currentPrice.ToString();
         }
 
