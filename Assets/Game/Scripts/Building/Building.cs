@@ -17,7 +17,7 @@ public class Building : MonoBehaviour
     private Transform _currentStoneTransform;
     private Transform _createdCanvasCoins;
     private int _currentPrice;
-
+    
     public event Action DeliveredStone;
 
     private void Awake()
@@ -52,8 +52,11 @@ public class Building : MonoBehaviour
             _currentIndex++;
             _currentCountStones = 0;
         }
-        
+
         PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
+
+        if (_currentIndex == _buildingsParts.Length)
+            Time.timeScale = 0;
     }
 
     public Transform GetCurrentPosition() => _currentStoneTransform;

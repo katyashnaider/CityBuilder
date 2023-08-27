@@ -39,6 +39,7 @@ namespace Workers
                 print("ReachedPoint = " + worker.ReachedPoint());
                 return worker.ReachedPoint() && !worker.IsStoneTaken;
             });
+            
             worker.StateMachine.AddTransition(walking, putsStone, () => worker.ReachedPoint() && worker.IsStoneTaken);
             worker.StateMachine.AddTransition(takingStone, walking, () => worker.IsStoneTaken);
             worker.StateMachine.AddTransition(putsStone, walking, () => !worker.IsStoneTaken);
