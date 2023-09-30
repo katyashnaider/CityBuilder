@@ -29,17 +29,11 @@ namespace Workers
 
             worker.SetStats(_speed + _speedUpgrade.GetValue(), _price +_incomeUpgrade.GetValue());
 
-            var walking = new Walking(worker);
-            var takingStone = new TakingStone(worker, worker.Animator);
-            var putsStone = new PutsStone(worker, worker.Animator);
+            var walking = new Walking(worker, worker.Animator);
+            var takingStone = new TakingStone(worker);
+            var putsStone = new PutsStone(worker);
             
-            worker.StateMachine.AddTransition(walking, takingStone, () => 
-            {
-                print("IsStoneTaken = " + worker.IsStoneTaken);
-                print("ReachedPoint = " + worker.ReachedPoint());
-                return worker.ReachedPoint() && !worker.IsStoneTaken;
-            });
-            
+            worker.StateMachine.AddTransition(walking, takingStone, () => worker.ReachedPoint() && !worker.IsStoneTaken);
             worker.StateMachine.AddTransition(walking, putsStone, () => worker.ReachedPoint() && worker.IsStoneTaken);
             worker.StateMachine.AddTransition(takingStone, walking, () => worker.IsStoneTaken);
             worker.StateMachine.AddTransition(putsStone, walking, () => !worker.IsStoneTaken);

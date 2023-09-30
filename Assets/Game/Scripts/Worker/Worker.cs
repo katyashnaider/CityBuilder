@@ -117,7 +117,6 @@ namespace Workers
             // _stoneStorage.RemoveStone();
             _stoneSpawner.InActiveStone();
             _isStoneTaken = true;
-            print(_isStoneTaken);
         }
 
         public void PutStone(bool isStoneVisible) //виден ли камень
@@ -166,7 +165,6 @@ namespace Workers
 
             if (distance <= 0.5f)
             {
-                print("+");
                 return true;
             }
 

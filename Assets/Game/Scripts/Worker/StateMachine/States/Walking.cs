@@ -6,12 +6,15 @@ namespace Workers.StateMachines.States
     public class Walking : IState
     {
         private readonly Worker _worker;
+        private readonly Animator _animator;
+        
         private Vector3 _point;
         private bool _isWalking = false;
 
-        public Walking(Worker worker)
+        public Walking(Worker worker, Animator animator)
         {
             _worker = worker;
+            _animator = animator;
         }
 
         public void OnEnter()
@@ -42,10 +45,9 @@ namespace Workers.StateMachines.States
         private void MoveOnPoint()
         {
             _worker.transform.position = Vector3.MoveTowards(_worker.transform.position, _point, _worker.Speed * Time.deltaTime);
+            //_animator.SetTrigger("Turn");
             _worker.transform.LookAt(_point);
             _worker.ReachedPoint();
-            //_pathTweener = _worker.transform.DOPath(_point, _worker.Speed, PathType.Linear, PathMode.Full3D).SetLookAt(0.01f)
-            //.SetEase(Ease.Linear).OnKill(OnPathKill);
         }
     }
 }

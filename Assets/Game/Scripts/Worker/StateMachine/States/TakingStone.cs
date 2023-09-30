@@ -5,31 +5,19 @@ namespace Workers.StateMachines.States
 {
     public class TakingStone : IState
     {
-        private Worker _worker;
-        private Animator _animator;
-        private bool _isStoneVisible; //виден ли камень
+        private readonly Worker _worker;
+        private bool _isStoneVisible;
 
-        public TakingStone(Worker worker, Animator animator)
-        {
-            _worker = worker;
-            _animator = animator;
-        }
+        public TakingStone(Worker worker) => _worker = worker;
 
         public void OnEnter()
         {
-            _animator.SetBool(HashAnimator.IsStoneTaken, true);
             _isStoneVisible = true;
             _worker.TakeStone(_isStoneVisible);
         }
-        
-        public void Tick()
-        {
-        }
 
-        public void OnExit()
-        {
-            //_isStoneVisible = false;
-            //_worker.TakeStone(_isStoneVisible);
-        }
+        public void Tick() { }
+
+        public void OnExit() { }
     }
 }
