@@ -20,6 +20,7 @@ public class Building : MonoBehaviour
     private int _currentPrice;
 
     public event Action DeliveredStone;
+    public event Action ConstructedBuilding;
 
     private void Awake()
     {
@@ -42,7 +43,12 @@ public class Building : MonoBehaviour
 
     public void GetStone()
     {
-        if (_currentIndex == _buildingsParts.Length) return;
+        //if (_currentIndex == _buildingsParts.Length) return;
+        if (_currentIndex == _buildingsParts.Length)
+        {
+            Time.timeScale = 0;
+            ConstructedBuilding?.Invoke();
+        }
 
         _currentCountStones++;
         DeliveredStone?.Invoke();
@@ -56,26 +62,19 @@ public class Building : MonoBehaviour
 
         PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
 
-        if (_currentIndex == _buildingsParts.Length)
-            Time.timeScale = 0;
     }
-
-    public Transform GetCurrentPosition() => _currentStoneTransform;
 
     public void SetCurrentPrice(int price)
     {
         foreach (var part in _buildingsParts)
-        {
             part.InjectPrice(price);
-        }
     }
 
     [ContextMenu("Order")]
-    private void OrderParts()
-    {
-        _buildingsParts = GetComponentsInChildren<BuildingPart>(true).OrderBy(x => x.transform.position.x).OrderBy(z => z.transform.position.z).OrderBy(y => y.transform.position.y).ToArray();
-
-    }
+    private void OrderParts() =>
+        _buildingsParts = GetComponentsInChildren<BuildingPart>(true)
+            .OrderBy(x => x.transform.position.x).OrderBy(z => z.transform.position.z)
+            .OrderBy(y => y.transform.position.y).ToArray();
 
     [ContextMenu("RemoveDuplicate")]
     private void RemoveParts()
@@ -105,9 +104,7 @@ public class Building : MonoBehaviour
     {
         var parts = GetComponentsInChildren<BuildingPart>(true);
 
-        foreach (var part in parts)
-        {
+        foreach (var part in parts) 
             part.gameObject.SetActive(!part.gameObject.activeSelf);
-        }
     }
 }

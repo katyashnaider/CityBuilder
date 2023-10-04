@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Workers;
 
 namespace Upgrades
@@ -25,6 +26,9 @@ namespace Upgrades
             _currentPrice = _price;
             UpgradeInfo();
         }
+
+        private void Update() => 
+            UpdateButtonAvailability();
 
         public virtual void ApplyUpgrade()
         {
@@ -72,8 +76,16 @@ namespace Upgrades
             _currentPrice = loadedData.Price;
         }
 
-        protected bool CanIncreaseLevel() => _currentLevel < MaxLevel;
+        private bool CanIncreaseLevel() => _currentLevel < MaxLevel;
 
+        private void UpdateButtonAvailability()
+        {
+            if (_wallet.HasEnoughCoins(CurrentPrice))
+                _upgradeView.EnableOfButton();
+            else
+                _upgradeView.DisableOfButton();
+        }
+        
         private void IncreaseLevel() => _currentLevel++;
 
         private void IncreasePrice() => _currentPrice += _multiplierPrice;

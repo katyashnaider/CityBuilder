@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -16,6 +17,12 @@ public class BuildingPart : MonoBehaviour
     private int _price;
     private const float AnimationDelay = 2f;
 
+    private Coroutine _coroutine;
+    
+    private void Start()
+    {
+    }
+
     public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup, ViewCoins viewCoins,
         ParticleSystem particleSystem)
     {
@@ -23,6 +30,7 @@ public class BuildingPart : MonoBehaviour
         _particleSystem = particleSystem;
         _viewCoins = viewCoins;
         _canvasGroup = canvasGroup;
+        _canvasGroup.alpha = 0;
         _createdCanvasCoins = createdCanvasCoins;
     }
 
@@ -38,7 +46,11 @@ public class BuildingPart : MonoBehaviour
         gameObject.SetActive(true);
 
         PlayParticleSystemEffect();
-        StartCoroutine(LaunchAnimationParts());
+        
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+        
+        _coroutine = StartCoroutine(LaunchAnimationParts());
     }
     private void PlayParticleSystemEffect()
     {
