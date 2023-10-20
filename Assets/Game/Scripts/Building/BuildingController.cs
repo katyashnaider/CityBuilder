@@ -7,9 +7,6 @@ namespace Scripts.Building
 {
     public sealed class BuildingController : MonoBehaviour
     {
-        [Header("Properties")]
-        [SerializeField] private int _stonesNeededNumber = 5;
-
         [Header("References")]
         [SerializeField] private BuildingPartSettings _partSettings;
         [SerializeField] private ParticleSystem _particleSystem;
@@ -25,13 +22,16 @@ namespace Scripts.Building
         private Transform _createdCanvasCoins;
         private int _currentPrice;
 
+        private const int StonesNeededNumber = 1;
+        
         public event Action DeliveredStone;
         public event Action ConstructedBuilding;
 
         private void Awake()
         {
             if (PlayerPrefs.HasKey("CurrentIndex"))
-                _currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
+                LoadProgress("CurrentIndex");
+                //_currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
 
             for (int i = 0; i < _currentIndex; i++)
                 _buildingsParts[i].gameObject.SetActive(true);
@@ -45,24 +45,21 @@ namespace Scripts.Building
 
         public void GetStone()
         {
-            //if (_currentIndex == _buildingsParts.Length) return;
-            if (_currentIndex >= _buildingsParts.Length) // заменить число на _buildingsParts.Length
-            {
-                //Time.timeScale = 0;
+            if (_currentIndex >= 5) // заменить число на _buildingsParts.Length
                 ConstructedBuilding?.Invoke();
-            }
 
             _currentCountStones++;
             DeliveredStone?.Invoke();
 
-            if (_currentCountStones == _stonesNeededNumber)
+            if (_currentCountStones == StonesNeededNumber)
             {
                 _buildingsParts[_currentIndex].Active();
                 _currentIndex++;
                 _currentCountStones = 0;
             }
 
-            PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
+            //PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
+            SaveProgress("CurrentIndex");
         }
 
         public void SetCurrentPrice(int price)
@@ -71,6 +68,26 @@ namespace Scripts.Building
                 part.InjectPrice(price);
         }
 
+        private void SaveProgress(string key)
+        {
+            var progressHandler = new ProgressHandler();
+
+            var saveData = new ProgressHandler.Save
+            {
+                CurrentIndex = _currentIndex
+            };
+
+            progressHandler.SaveProgress(key, saveData);
+        }
+        
+        private void LoadProgress(string key)
+        {
+            var progressHandler = new ProgressHandler();
+            var loadedData = progressHandler.LoadProgress(key);
+
+            _currentIndex = loadedData.CurrentIndex;
+        }
+        
         [ContextMenu("Order")]
         private void OrderParts() =>
             _buildingsParts = GetComponentsInChildren<BuildingPart>(true)

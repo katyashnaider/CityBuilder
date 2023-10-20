@@ -42,10 +42,8 @@ namespace Upgrades
             UpgradeInfo();
         }
 
-        public int GetValue()
-        {
-            return _upgradeAmount * _currentLevel;
-        }
+        public int GetValue() => 
+            _upgradeAmount * _currentLevel;
 
         protected void UpgradeInfo()
         {

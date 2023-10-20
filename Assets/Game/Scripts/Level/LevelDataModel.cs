@@ -6,10 +6,10 @@ namespace Scripts.Level
     {
         //private LevelDataView _levelDataView;
         private int _levelNumber;
-        
+
         private const int MaxLevel = 10;
-        
-        public LevelDataModel(int levelNumber ) => 
+
+        public LevelDataModel(int levelNumber) =>
             _levelNumber = levelNumber;
 
         public void AdvanceNextLevel()

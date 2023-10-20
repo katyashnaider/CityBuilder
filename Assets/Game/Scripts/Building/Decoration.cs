@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Scripts.Building
 {
+    [RequireComponent(typeof(BuildingController))]
     public class Decoration : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _smokeEffect;
-        [SerializeField] private BuildingController _buildingController;
         [SerializeField] private GameObject _decoration;
-    
+
+        private BuildingController _buildingController;
+        
+        private void Awake() => 
+            _buildingController = GetComponent<BuildingController>();
+
         private const float Delay = 1f;
 
         private void OnEnable() => 

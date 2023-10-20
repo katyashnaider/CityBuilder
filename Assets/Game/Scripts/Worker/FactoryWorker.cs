@@ -1,7 +1,6 @@
 ﻿using Scripts.Building;
 using Pool;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Upgrades;
 using Workers.StateMachines;
 using Workers.StateMachines.States;
@@ -16,8 +15,6 @@ namespace Workers
         [SerializeField] private Transform[] _targets;
         [SerializeField] private Transform[] _pathPointsA;
         [SerializeField] private Transform[] _pathPointsB;
-        [FormerlySerializedAs("_buildingManager")]
-        [FormerlySerializedAs("_building")]
         [SerializeField] private BuildingController _buildingController;
         [SerializeField] private Wallet _wallet;
         [SerializeField] private float _speed = 0.4f;
