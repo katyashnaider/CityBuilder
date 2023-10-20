@@ -13,7 +13,7 @@ namespace Scripts.Camera
             _isbuildingNull = building == null;
 
             if (_isbuildingNull)
-                Debug.LogWarning("Building reference is not set for CameraRotationAroundBuilding script.");
+                Debug.LogWarning("BuildingController reference is not set for CameraRotationAroundBuilding script.");
         }
         
         void Update()

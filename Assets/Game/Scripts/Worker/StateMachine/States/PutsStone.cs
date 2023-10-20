@@ -9,10 +9,7 @@ namespace Workers.StateMachines.States
         private readonly Worker _worker;
         private bool _isStoneVisible;
         
-        public PutsStone(Worker worker)
-        {
-            _worker = worker;
-        }
+        public PutsStone(Worker worker) => _worker = worker;
 
         public void OnEnter()
         {

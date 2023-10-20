@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Scripts.Building;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Upgrades;
 using Workers.StateMachines;
-using Workers.StateMachines.States;
 
 namespace Workers
 {
@@ -20,8 +19,9 @@ namespace Workers
         private SpeedUpgrade _speedUpgrade;
         private IncomeUpgrade _incomeUpgrade;
         private Transform[] _targets;
-        private StoneSpawner _stoneSpawner;
-        private Building _building;
+        private Transform[] _pathPointsA;
+        private Transform[] _pathPointsB;
+        private BuildingController _buildingController;
         // [SerializeField] private float _speed = 0.4f;
         //[SerializeField] private int _price = 5;
 
@@ -31,6 +31,7 @@ namespace Workers
         private Animator _animator;
 
         private int _currentTargetIndex = 0;
+        private int _currentPath = 0;
 
         //private int _wallet = 0;
         [SerializeField] private bool _isStoneTaken = false;
@@ -44,15 +45,16 @@ namespace Workers
         public Animator Animator => _animator;
         public bool IsStoneTaken => _isStoneTaken;
 
-        public void Init(StateMachine stateMachine, SpeedUpgrade speedUpgrade, IncomeUpgrade incomeUpgrade, Transform[] targets, StoneSpawner stoneSpawner, Building building, Wallet wallet)
+        public void Init(StateMachine stateMachine, SpeedUpgrade speedUpgrade, IncomeUpgrade incomeUpgrade, Transform[] targets, [CanBeNull] Transform[] pathPointsA, Transform[] pathPointsB, BuildingController buildingController, Wallet wallet)
         {
             // Screen.SetResolution(1080, 1920, true);
             _speedUpgrade = speedUpgrade;
             _incomeUpgrade = incomeUpgrade;
             _targets = targets;
+            _pathPointsA = pathPointsA;
+            _pathPointsB = pathPointsB;
             _target = targets[0];
-            _stoneSpawner = stoneSpawner;
-            _building = building;
+            _buildingController = buildingController;
 
             _stateMachine = stateMachine;
 
@@ -61,21 +63,16 @@ namespace Workers
             _animator = GetComponent<Animator>();
             _wallet = wallet;
 
-            _building.DeliveredStone += OnDeliveredStone;
+            _buildingController.DeliveredStone += OnDeliveredStone;
             _speedUpgrade.ChangedSpeed += OnChangedSpeed;
             _incomeUpgrade.ChangedIncome += OnChangedIncome;
 
-            ConvertTargetsToPath();
-        }
-
-        private void OnEnable()
-        {
-
+            //ConvertTargetsToPath();
         }
 
         private void OnDisable()
         {
-            _building.DeliveredStone -= OnDeliveredStone;
+            _buildingController.DeliveredStone -= OnDeliveredStone;
             _speedUpgrade.ChangedSpeed -= OnChangedSpeed;
             _incomeUpgrade.ChangedIncome -= OnChangedIncome;
         }
@@ -103,26 +100,31 @@ namespace Workers
         {
             //Debug.Log("работает класс Worker метод SwitchTarget");
             //Debug.Log(_currentTargetIndex);
-            _currentTargetIndex++;
+            _currentPath++;
+            // _currentTargetIndex++;
+            // if (_currentTargetIndex >= _targets.Length)
+            //     ResetTargetIndex();
+            if (_currentPath > 1)
+                _currentPath = 0;
 
-            if (_currentTargetIndex >= _targets.Length)
-                ResetTargetIndex();
-
-            _target = _targets[_currentTargetIndex];
+            if (_currentPath % 2 == 0)
+                _target = _pathPointsA[Random.Range(0, _pathPointsA.Length)];
+            else
+                _target = _pathPointsB[Random.Range(0, _pathPointsB.Length)];
         }
 
         public void TakeStone(bool isStoneVisible) //виден ли камень
         {
             _heldStone.gameObject.SetActive(isStoneVisible);
             // _stoneStorage.RemoveStone();
-            _stoneSpawner.InActiveStone();
+            //_stoneSpawner.InActiveStone();
             _isStoneTaken = true;
         }
 
         public void PutStone(bool isStoneVisible) //виден ли камень
         {
             _heldStone.gameObject.SetActive(isStoneVisible);
-            _building.GetStone();
+            _buildingController.GetStone();
             _isStoneTaken = false;
         }
 
@@ -135,7 +137,7 @@ namespace Workers
         private void OnDeliveredStone()
         {
             _wallet.AddCoins(_currentPrice);
-            _building.SetCurrentPrice(_currentPrice);
+            _buildingController.SetCurrentPrice(_currentPrice);
         }
 
         private void OnChangedSpeed(float upgradeAmount)
@@ -161,14 +163,10 @@ namespace Workers
         public bool ReachedPoint()
         {
             //return ReachedPoint(targetPointA);
-            float distance = Vector3.Distance(transform.position, _targets[_currentTargetIndex].position);
+            //float distance = Vector3.Distance(transform.position, _targets[_currentTargetIndex].position);
+            float distance = Vector3.Distance(transform.position, _target.position);
 
-            if (distance <= 0.5f)
-            {
-                return true;
-            }
-
-            return false;
+            return distance <= 0.5f;
         }
     }
 }

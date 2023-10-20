@@ -3,7 +3,7 @@ using UnityEngine;
 using Workers;
 using Workers.StateMachines.States;
 
-namespace Game.Scripts
+namespace Scripts
 {
     public class SpawnWorker : MonoBehaviour
     {

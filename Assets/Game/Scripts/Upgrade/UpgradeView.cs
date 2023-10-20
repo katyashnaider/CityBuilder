@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,8 @@ namespace Upgrades
 
         public void EnableOfButton()
         {
+            _button.animator.SetTrigger("Enabled");
+            
             _image.sprite = _enabledIcon;
             _imageIconCoin.sprite = _enabledIconCoin;
             _button.interactable = true;

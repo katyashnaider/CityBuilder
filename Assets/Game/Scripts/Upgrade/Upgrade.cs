@@ -13,8 +13,8 @@ namespace Upgrades
         [SerializeField] private int _multiplierPrice = 2;
 
         private int _currentPrice = 0;
-
         private int _currentLevel = 0;
+        private int _counter = 0;
 
         private const int MaxLevel = 5;
 
@@ -25,9 +25,10 @@ namespace Upgrades
         {
             _currentPrice = _price;
             UpgradeInfo();
+            UpdateButtonAvailability();
         }
 
-        private void Update() => 
+        private void Update() =>
             UpdateButtonAvailability();
 
         public virtual void ApplyUpgrade()
@@ -45,7 +46,7 @@ namespace Upgrades
         {
             return _upgradeAmount * _currentLevel;
         }
-        
+
         protected void UpgradeInfo()
         {
             if (CanIncreaseLevel())
@@ -81,11 +82,19 @@ namespace Upgrades
         private void UpdateButtonAvailability()
         {
             if (_wallet.HasEnoughCoins(CurrentPrice))
-                _upgradeView.EnableOfButton();
+            {
+                _counter++;
+
+                if (_counter == 1)
+                    _upgradeView.EnableOfButton();
+            }
             else
+            {
+                _counter = 0;
                 _upgradeView.DisableOfButton();
+            }
         }
-        
+
         private void IncreaseLevel() => _currentLevel++;
 
         private void IncreasePrice() => _currentPrice += _multiplierPrice;

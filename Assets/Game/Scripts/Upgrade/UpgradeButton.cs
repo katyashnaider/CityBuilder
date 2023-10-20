@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts.Upgrade
+namespace Scripts.Upgrade
 {
     public class UpgradeButton : MonoBehaviour
     {

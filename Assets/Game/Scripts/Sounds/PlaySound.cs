@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Scripts.Sounds
 {
@@ -8,7 +6,9 @@ namespace Scripts.Sounds
     {
         [SerializeField] private AudioClip _clip;
 
-        private void Start() => 
-            SoundManager.Instance.PlaySound(_clip);
+        public void Play()
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
+        }
     }
 }
