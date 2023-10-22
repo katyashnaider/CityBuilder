@@ -6,9 +6,7 @@ namespace Scripts.Sounds
     {
         [SerializeField] private AudioClip _clip;
 
-        public void Play()
-        {
+        public void Play() => 
             SoundManager.Instance.PlaySoundEffect(_clip);
-        }
     }
 }

@@ -4,24 +4,25 @@ namespace Scripts.Camera
 {
     internal sealed class CameraRotation : MonoBehaviour
     {
-        public Transform building; // Ссылка на объект здания, вокруг которого нужно вращать камеру
-        public float rotationSpeed = 1.0f; // Скорость вращения камеры
-        private bool _isbuildingNull;
+        [SerializeField] private Transform _building;
+        [SerializeField] private float _rotationSpeed = 1.0f;
+        
+        private bool _isBuildingNull;
 
         private void Start()
         {
-            _isbuildingNull = building == null;
+            _isBuildingNull = _building == null;
 
-            if (_isbuildingNull)
+            if (_isBuildingNull)
                 Debug.LogWarning("BuildingController reference is not set for CameraRotationAroundBuilding script.");
         }
         
-        void Update()
+        private void Update()
         {
-            if (_isbuildingNull)
+            if (_isBuildingNull)
                 return;
 
-            transform.RotateAround(building.position, Vector3.up, rotationSpeed * Time.deltaTime);
+            transform.RotateAround(_building.position, Vector3.up, _rotationSpeed * Time.deltaTime);
         }
     }
 }

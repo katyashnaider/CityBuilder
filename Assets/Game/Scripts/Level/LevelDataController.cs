@@ -1,13 +1,15 @@
-﻿using Scripts.Building;
+﻿using Cinemachine;
+using Scripts.Building;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Workers;
 
 namespace Scripts.Level
 {
     public class LevelDataController : MonoBehaviour
     {
-        [SerializeField] private BuildingController _buildingController;
+        [SerializeField] private BuildingController _building;
         [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private GameObject _buttons;
         [SerializeField] private FactoryWorker _factoryWorker;
@@ -26,14 +28,15 @@ namespace Scripts.Level
         }
 
         private void OnEnable() =>
-            _buildingController.ConstructedBuilding += OnConstructedBuildingController;
+            _building.ConstructedBuilding += OnConstructedBuilding;
 
         private void OnDisable() =>
-            _buildingController.ConstructedBuilding -= OnConstructedBuildingController;
+            _building.ConstructedBuilding -= OnConstructedBuilding;
 
         public void OnClickNextLevel()
         {
-            _levelNumber = PlayerPrefs.GetInt("LevelNumber", _levelNumber);
+            _levelDataVModel.LoadProgress("LevelNumber");
+            //_levelNumber = PlayerPrefs.GetInt("LevelNumber", _levelNumber);
           //  _currentIndex = 0;
           //  PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
             //_currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
@@ -41,10 +44,10 @@ namespace Scripts.Level
             SceneManager.LoadScene(_levelNumber);
         }
 
-        private void OnConstructedBuildingController()
+        private void OnConstructedBuilding()
         {
             _levelDataVModel.AdvanceNextLevel();
-            StartCoroutine(_levelDataView.ShowLevelCompletedScreen(true, _soundEffect));
+            _levelDataView.StartCoroutine(true, _soundEffect);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Scripts.Building
 
         public void GetStone()
         {
-            if (_currentIndex >= 5) // заменить число на _buildingsParts.Length
+            if (_currentIndex >= 3) // заменить число на _buildingsParts.Length
                 ConstructedBuilding?.Invoke();
 
             _currentCountStones++;

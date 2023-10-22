@@ -19,7 +19,8 @@ public class ProgressHandler
     [Serializable]
     public struct Save
     {
-        public int Level;
+        public int LevelUpgrade;
+        public int LevelNumber;
         public int Price;
         public int Wallet;
         public int CurrentIndex;

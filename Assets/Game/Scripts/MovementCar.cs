@@ -23,7 +23,7 @@ public class MovementCar : MonoBehaviour
             _pathMove[_currentIndex].position
         };
 
-        transform.DOPath(pathPositions, _duration, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear)
+        transform.DOPath(pathPositions, _duration).SetEase(Ease.Linear)
             .OnComplete(() => {
                 if (_currentIndex == _pathMove.Length - 1)
                 {

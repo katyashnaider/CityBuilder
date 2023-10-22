@@ -59,7 +59,7 @@ namespace Upgrades
 
             var saveData = new ProgressHandler.Save
             {
-                Level = _currentLevel,
+                LevelUpgrade = _currentLevel,
                 Price = _currentPrice
             };
 
@@ -71,7 +71,7 @@ namespace Upgrades
             var progressHandler = new ProgressHandler();
             var loadedData = progressHandler.LoadProgress(key);
 
-            _currentLevel = loadedData.Level;
+            _currentLevel = loadedData.LevelUpgrade;
             _currentPrice = loadedData.Price;
         }
 
