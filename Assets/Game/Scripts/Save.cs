@@ -1,9 +1,13 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ProgressHandler
 {
+    // public ProgressHandler()
+    // {
+    //     LoadProgress("LevelNumber");
+    // }
+
     public void SaveProgress(string key, Save saveData)
     {
         var json = JsonUtility.ToJson(saveData);
@@ -13,7 +17,17 @@ public class ProgressHandler
     public Save LoadProgress(string key)
     {
         var json = PlayerPrefs.GetString(key);
-        return JsonUtility.FromJson<Save>(json);
+        
+        if (PlayerPrefs.HasKey(key))
+        {
+            return JsonUtility.FromJson<Save>(json);
+        }
+        else
+        {
+            Save save = new Save();
+            SaveProgress(key, save);
+            return save;
+        }
     }
 
     [Serializable]
@@ -26,4 +40,3 @@ public class ProgressHandler
         public int CurrentIndex;
     }
 }
-

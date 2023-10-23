@@ -1,13 +1,11 @@
 ﻿using System.Collections;
-using Cinemachine;
-using DG.Tweening;
 using Scripts.Sounds;
 using UnityEngine;
 using Workers;
 
 namespace Scripts.Level
 {
-    internal sealed class LevelDataView
+    public sealed class LevelDataView
     {
         private readonly GameObject _levelCompletedScreen;
         private readonly GameObject _buttons;
@@ -38,13 +36,13 @@ namespace Scripts.Level
         //
         //     _camera.transform.DORotate(new Vector3((cameraTransform = _camera.transform).position.x, RotationAngle, cameraTransform.position.z),
         //             rotationDuration, RotateMode.FastBeyond360)
-        //         .OnComplete(() => StartCoroutine(isShown, soundEffect));
+        //         .OnComplete(() => LevelStartCoroutine(isShown, soundEffect));
         // }
         
-        public void StartCoroutine(bool isShown, AudioClip soundEffect) =>
+        public void LevelStartCoroutine(bool isShown, AudioClip soundEffect) =>
             _component.StartCoroutine(ShowLevelCompletedScreen(isShown, soundEffect));
 
-        private IEnumerator ShowLevelCompletedScreen(bool isShown, AudioClip soundEffect)
+        public IEnumerator ShowLevelCompletedScreen(bool isShown, AudioClip soundEffect)
         {
             _factoryWorker.gameObject.SetActive(!isShown);
 

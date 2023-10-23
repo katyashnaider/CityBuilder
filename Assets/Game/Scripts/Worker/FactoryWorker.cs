@@ -1,5 +1,6 @@
 ﻿using Scripts.Building;
 using Pool;
+using Scripts;
 using UnityEngine;
 using Upgrades;
 using Workers.StateMachines;
@@ -20,6 +21,15 @@ namespace Workers
         [SerializeField] private float _speed = 0.4f;
         [SerializeField] private int _price = 5;
 
+        private float _currentSpeed;
+        private int _currentPrice;
+
+        private void Awake()
+        {
+            _currentSpeed = _speed;
+            _currentPrice = _price;
+        }
+
         public Worker CreateWorker(Vector3 position, Quaternion quaternion)
         {
             var worker = _pool.Get();
@@ -29,9 +39,9 @@ namespace Workers
 
             worker.Init(new StateMachine(), _speedUpgrade, _incomeUpgrade, _targets, _pathPointsA, _pathPointsB, _buildingController, _wallet);
 
-            worker.SetStats(_speed + _speedUpgrade.GetValue(), _price +_incomeUpgrade.GetValue());
+            worker.SetStats(_currentSpeed + _speedUpgrade.GetValue(), _currentPrice +_incomeUpgrade.GetValue());
 
-            var walking = new Walking(worker, worker.Animator);
+            var walking = new Walking(worker);
             var takingStone = new TakingStone(worker);
             var putsStone = new PutsStone(worker);
             
@@ -42,5 +52,17 @@ namespace Workers
             
             return worker;
         }
+        
+        // public void SetPosition(Vector3 position, Quaternion quaternion)
+        // {
+        //     _worker.transform.position = position;
+        //     _worker.transform.rotation = quaternion;
+        // }
+
+        // public override void Restart()
+        // {
+        //     _currentSpeed = _speed;
+        //     _currentPrice = _price;
+        // }
     }
 }

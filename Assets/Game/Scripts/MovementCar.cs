@@ -1,17 +1,28 @@
 using DG.Tweening;
+using Scripts;
 using UnityEngine;
 
-public class MovementCar : MonoBehaviour
+public class MovementCar : RestartEntity
 {
     [SerializeField] private Transform[] _pathMove;
     [SerializeField] private float _duration = 10f;
 
+    private Vector3 _startPosition;
     private int _currentIndex = 0;
     private Animator _animator;
 
     private void Awake() => _animator = GetComponent<Animator>();
+    private Tweener _pathTween;
+    private void Start()
+    {
+        _startPosition = transform.position;
+        StartUnloadAnimation();
+    }
 
-    private void Start() => StartUnloadAnimation();
+    public override void Restart()
+    {
+        _pathTween.Kill();
+    }
 
     private void MoveToNextPoint()
     {
@@ -23,7 +34,7 @@ public class MovementCar : MonoBehaviour
             _pathMove[_currentIndex].position
         };
 
-        transform.DOPath(pathPositions, _duration).SetEase(Ease.Linear)
+        _pathTween = transform.DOPath(pathPositions, _duration).SetEase(Ease.Linear)
             .OnComplete(() => {
                 if (_currentIndex == _pathMove.Length - 1)
                 {
@@ -41,7 +52,6 @@ public class MovementCar : MonoBehaviour
     private void StartUnloadAnimation()
     {
         _animator.SetTrigger(HashAnimator.Unloading);
-
         float unloadAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).length;
         Invoke(nameof(MoveToNextPoint), unloadAnimationDuration);
     }

@@ -6,16 +6,12 @@ namespace Workers.StateMachines.States
     public class Walking : IState
     {
         private readonly Worker _worker;
-        private readonly Animator _animator;
         
         private Vector3 _point;
         private bool _isWalking = false;
 
-        public Walking(Worker worker, Animator animator)
-        {
+        public Walking(Worker worker) => 
             _worker = worker;
-            _animator = animator;
-        }
 
         public void OnEnter()
         {
@@ -25,10 +21,8 @@ namespace Workers.StateMachines.States
 
         public void Tick()
         {
-            if (_isWalking)
-            {
+            if (_isWalking) 
                 MoveOnPoint();
-            }
         }
 
         public void OnExit()
@@ -37,10 +31,8 @@ namespace Workers.StateMachines.States
             _worker.SwitchTarget();
         }
 
-        private void SetTarget()
-        {
+        private void SetTarget() => 
             _point = _worker.GetTarget();
-        }
 
         private void MoveOnPoint()
         {

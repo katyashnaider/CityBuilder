@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Scripts.Building
 {
-    public sealed class BuildingController : MonoBehaviour
+    public sealed class BuildingController : RestartEntity
     {
         [Header("References")]
         [SerializeField] private BuildingPartSettings _partSettings;
@@ -15,23 +15,16 @@ namespace Scripts.Building
 
         [Header("Building Parts")]
         [SerializeField] private BuildingPart[] _buildingsParts;
-        
-        private int _currentCountStones = 0;
-        private int _currentIndex = 0;
-        private Transform _currentStoneTransform;
-        private Transform _createdCanvasCoins;
-        private int _currentPrice;
 
-        private const int StonesNeededNumber = 1;
-        
+        private int _currentIndex = 0;
+        private Transform _createdCanvasCoins;
         public event Action DeliveredStone;
         public event Action ConstructedBuilding;
 
         private void Awake()
         {
             if (PlayerPrefs.HasKey("CurrentIndex"))
-                LoadProgress("CurrentIndex");
-                //_currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
+                _currentIndex = LoadProgress("CurrentIndex");
 
             for (int i = 0; i < _currentIndex; i++)
                 _buildingsParts[i].gameObject.SetActive(true);
@@ -45,20 +38,14 @@ namespace Scripts.Building
 
         public void GetStone()
         {
-            if (_currentIndex >= 3) // заменить число на _buildingsParts.Length
+            if (_currentIndex >= _buildingsParts.Length) // заменить число на _buildingsParts.Length
                 ConstructedBuilding?.Invoke();
 
-            _currentCountStones++;
             DeliveredStone?.Invoke();
+            
+            _buildingsParts[_currentIndex].Active();
+            _currentIndex++;
 
-            if (_currentCountStones == StonesNeededNumber)
-            {
-                _buildingsParts[_currentIndex].Active();
-                _currentIndex++;
-                _currentCountStones = 0;
-            }
-
-            //PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
             SaveProgress("CurrentIndex");
         }
 
@@ -66,6 +53,15 @@ namespace Scripts.Building
         {
             foreach (BuildingPart part in _buildingsParts)
                 part.InjectPrice(price);
+        }
+
+        public override void Restart()
+        {
+            _currentIndex = 0;
+            SaveProgress("CurrentIndex");
+
+            foreach (var part in _buildingsParts) 
+                part.gameObject.SetActive(false);
         }
 
         private void SaveProgress(string key)
@@ -79,36 +75,36 @@ namespace Scripts.Building
 
             progressHandler.SaveProgress(key, saveData);
         }
-        
-        private void LoadProgress(string key)
+
+        private int LoadProgress(string key)
         {
             var progressHandler = new ProgressHandler();
             var loadedData = progressHandler.LoadProgress(key);
 
-            _currentIndex = loadedData.CurrentIndex;
+            return _currentIndex = loadedData.CurrentIndex;
         }
-        
+
         [ContextMenu("Order")]
         private void OrderParts() =>
             _buildingsParts = GetComponentsInChildren<BuildingPart>(true)
                 .OrderBy(x => x.transform.position.x).OrderBy(z => z.transform.position.z)
                 .OrderBy(y => y.transform.position.y).ToArray();
-        
+
         [ContextMenu("RemoveDuplicate")]
         private void RemoveParts()
         {
             var buildingsParts = GetComponentsInChildren<BuildingPart>().OrderBy(x => x.transform.position.y).ToArray();
-        
+
             for (int i = 0; i < buildingsParts.Length; i++)
             {
                 if (buildingsParts[i] == null) continue;
-        
+
                 for (int j = 0; j < buildingsParts.Length; j++)
                 {
                     if (i == j) continue;
-        
+
                     if (buildingsParts[j] == null) continue;
-        
+
                     if (buildingsParts[i].transform.position == buildingsParts[j].transform.position)
                     {
                         DestroyImmediate(buildingsParts[j].gameObject);
@@ -116,12 +112,12 @@ namespace Scripts.Building
                 }
             }
         }
-        
+
         [ContextMenu("OnObject")]
         private void OnObject()
         {
             var parts = GetComponentsInChildren<BuildingPart>(true);
-        
+
             foreach (var part in parts)
                 part.gameObject.SetActive(!part.gameObject.activeSelf);
         }

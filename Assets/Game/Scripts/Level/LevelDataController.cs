@@ -1,14 +1,13 @@
-﻿using Cinemachine;
-using Scripts.Building;
+﻿using Scripts.Building;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Workers;
 
 namespace Scripts.Level
 {
     public class LevelDataController : MonoBehaviour
     {
+        [SerializeField] private GameManager _gameManager;
         [SerializeField] private BuildingController _building;
         [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private GameObject _buttons;
@@ -20,11 +19,14 @@ namespace Scripts.Level
 
         private int _levelNumber = 1;
         private int _currentIndex;
+        private Coroutine _coroutine;
 
         private void Awake()
         {
             _levelDataVModel = new LevelDataModel(_levelNumber);
             _levelDataView = new LevelDataView(_levelCompletedScreen, _buttons, _factoryWorker);
+
+            _levelNumber = PlayerPrefs.HasKey("LevelNumber") ? _levelDataVModel.LoadProgress("LevelNumber") : 1;
         }
 
         private void OnEnable() =>
@@ -35,19 +37,18 @@ namespace Scripts.Level
 
         public void OnClickNextLevel()
         {
-            _levelDataVModel.LoadProgress("LevelNumber");
-            //_levelNumber = PlayerPrefs.GetInt("LevelNumber", _levelNumber);
-          //  _currentIndex = 0;
-          //  PlayerPrefs.SetInt("CurrentIndex", _currentIndex);
-            //_currentIndex = PlayerPrefs.GetInt("CurrentIndex", _currentIndex);
-          //  print(_levelNumber);
+            _gameManager.RestartGame();
             SceneManager.LoadScene(_levelNumber);
         }
 
         private void OnConstructedBuilding()
         {
-            _levelDataVModel.AdvanceNextLevel();
-            _levelDataView.StartCoroutine(true, _soundEffect);
+            _levelNumber = _levelDataVModel.AdvanceNextLevel();
+
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _coroutine = StartCoroutine(_levelDataView.ShowLevelCompletedScreen(true, _soundEffect));
         }
     }
 }

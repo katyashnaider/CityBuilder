@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Scripts.Sounds;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(numberScene);
         SoundManager.Instance.StopSoundGame();
+        DOTween.KillAll(); 
+       // StopAllCoroutines();
         //SoundManager.Instance.PlaySoundMainMenu(_clipGame);
     }
 

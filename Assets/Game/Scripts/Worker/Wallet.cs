@@ -6,15 +6,15 @@ namespace Workers
     public class Wallet : MonoBehaviour
     {
         [SerializeField] private ViewWallet _viewWallet;
-        
+
         private int _coins = 0;
-        
+
         public bool HasEnoughCoins(int amount) => _coins >= amount;
 
         private void Start()
         {
             if (PlayerPrefs.HasKey("Wallet"))
-                LoadProgress();
+                _coins = LoadProgress();
 
             _viewWallet.UpdatePrice(_coins);
         }
@@ -45,12 +45,12 @@ namespace Workers
             progressHandler.SaveProgress("Wallet", saveData);
         }
 
-        private void LoadProgress()
+        private int LoadProgress()
         {
             var progressHandler = new ProgressHandler();
             var loadedData = progressHandler.LoadProgress("Wallet");
 
-            _coins = loadedData.Wallet;
+            return _coins = loadedData.Wallet;
         }
     }
 }

@@ -45,6 +45,15 @@ namespace Upgrades
         public int GetValue() => 
             _upgradeAmount * _currentLevel;
 
+        public void RestartLevel()
+        {
+            _currentPrice = _price;
+            _currentLevel = 0;
+            
+           // _upgradeView.DisableOfButton();
+            _upgradeView.UpgradeDisplay(_currentLevel, _currentPrice);
+        }
+        
         protected void UpgradeInfo()
         {
             if (CanIncreaseLevel())

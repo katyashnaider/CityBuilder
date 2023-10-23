@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Scripts.Building
 {
-    public class BuildingPart : MonoBehaviour
+    public class BuildingPart : RestartEntity
     {
         //сделать вьюшку для этого класса
         private BuildingPartSettings _settings;
@@ -21,6 +21,9 @@ namespace Scripts.Building
         private Coroutine _coroutine;
         private AudioClip _clip;
 
+        private Tweener _moveAnimation;
+        private Tweener _fadeOutAnimation;
+
         public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup, ViewCoins viewCoins,
             ParticleSystem particleSystem, AudioClip clip)
         {
@@ -32,8 +35,8 @@ namespace Scripts.Building
             _createdCanvasCoins = createdCanvasCoins;
             _clip = clip;
         }
-        
-        public void InjectPrice(int price) => 
+
+        public void InjectPrice(int price) =>
             _price = price;
 
         public void Active()
@@ -47,7 +50,7 @@ namespace Scripts.Building
 
             _coroutine = StartCoroutine(LaunchAnimationParts());
         }
-        
+
         private void PlayParticleSystemEffect()
         {
             Vector3 position = transform.position;
@@ -70,8 +73,8 @@ namespace Scripts.Building
 
         private void CycleText(CanvasGroup canvas)
         {
-            canvas.transform.DOMoveY(canvas.transform.position.y + _settings.OffsetPosition, _settings.Duration).SetEase(Ease.OutQuad);
-            canvas.DOFade(0f, _settings.Duration).SetEase(Ease.Linear).OnComplete(OffAnimation);
+            _moveAnimation = canvas.transform.DOMoveY(canvas.transform.position.y + _settings.OffsetPosition, _settings.Duration).SetEase(Ease.OutQuad);
+            _fadeOutAnimation = canvas.DOFade(0f, _settings.Duration).SetEase(Ease.Linear).OnComplete(OffAnimation);
         }
 
         private void OffAnimation()
@@ -88,12 +91,18 @@ namespace Scripts.Building
             WaitForSeconds launchAnimationParts = new WaitForSeconds(AnimationDelay);
 
             _viewCoins.UpdatePrice(_price);
-            //gameObject.SetActive(true);
             _createdCanvasCoins.gameObject.SetActive(true);
 
             SetPosition(transform);
             CycleText(_canvasGroup);
             yield return launchAnimationParts;
+        }
+        public override void Restart()
+        {
+            _moveAnimation.Kill();
+            _fadeOutAnimation.Kill();
+            
+           //StopCoroutine(_coroutine);
         }
     }
 }
