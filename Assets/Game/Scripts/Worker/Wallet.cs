@@ -1,13 +1,15 @@
-﻿using UnityEngine;
-using Upgrades;
+﻿using Scripts.Building;
+using UnityEngine;
 
 namespace Workers
 {
     public class Wallet : MonoBehaviour
     {
+        [SerializeField] private BuildingController _building;
         [SerializeField] private ViewWallet _viewWallet;
 
         private int _coins = 0;
+        private int _bonus = 1000;
 
         public bool HasEnoughCoins(int amount) => _coins >= amount;
 
@@ -18,6 +20,12 @@ namespace Workers
 
             _viewWallet.UpdatePrice(_coins);
         }
+
+        private void OnEnable() => 
+            _building.ConstructedBuilding += OnConstructedBuilding;
+
+        private void OnDisable() => 
+            _building.ConstructedBuilding -= OnConstructedBuilding;
 
         public void AddCoins(int price)
         {
@@ -33,6 +41,12 @@ namespace Workers
             _viewWallet.UpdatePrice(_coins);
         }
 
+        private void OnConstructedBuilding()
+        {
+            _coins += _bonus;
+            SaveProgress();
+        }
+        
         private void SaveProgress()
         {
             var progressHandler = new ProgressHandler();

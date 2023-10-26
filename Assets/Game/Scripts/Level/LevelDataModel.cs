@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-
-namespace Scripts.Level
+﻿namespace Scripts.Level
 {
     internal sealed class LevelDataModel
     {
         private int _levelNumber;
 
-        private const int MaxLevel = 10;
+        private const int MaxLevel = 2;
 
         public LevelDataModel(int levelNumber) =>
             _levelNumber = levelNumber;
@@ -23,15 +21,16 @@ namespace Scripts.Level
 
             progressHandler.SaveProgress(key, saveData);
         }
+        
         public int AdvanceNextLevel()
         {
             _levelNumber++;
+            // PlayerPrefs.SetInt("LevelNumber", _levelNumber);
+            if (_levelNumber > MaxLevel)
+                _levelNumber = 1;
+
             SaveProgress("LevelNumber");
             
-            // PlayerPrefs.SetInt("LevelNumber", _levelNumber);
-            if (_levelNumber == MaxLevel)
-                _levelNumber = 0;
-
             return _levelNumber;
         }
 

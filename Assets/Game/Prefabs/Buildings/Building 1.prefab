@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partSettings:
-    _duration: 1
+    _duration: 2
     _offsetPosition: 3
   _particleSystem: {fileID: 19855650, guid: fe394d041df1a0547990f49cf653249f, type: 3}
   _canvasCoins: {fileID: 7650156698651356438, guid: ea72b8d3a4679274db53cfb2f20facb6, type: 3}

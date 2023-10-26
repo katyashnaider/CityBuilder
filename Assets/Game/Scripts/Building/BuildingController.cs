@@ -39,14 +39,18 @@ namespace Scripts.Building
         public void GetStone()
         {
             if (_currentIndex >= _buildingsParts.Length) // заменить число на _buildingsParts.Length
+            {
                 ConstructedBuilding?.Invoke();
-
-            DeliveredStone?.Invoke();
+            }
+            else
+            {
+                DeliveredStone?.Invoke();
             
-            _buildingsParts[_currentIndex].Active();
-            _currentIndex++;
+                _buildingsParts[_currentIndex].Active();
+                _currentIndex++;
 
-            SaveProgress("CurrentIndex");
+                SaveProgress("CurrentIndex");
+            }
         }
 
         public void SetCurrentPrice(int price)

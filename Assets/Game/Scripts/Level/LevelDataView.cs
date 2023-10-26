@@ -10,9 +10,7 @@ namespace Scripts.Level
         private readonly GameObject _levelCompletedScreen;
         private readonly GameObject _buttons;
         private readonly FactoryWorker _factoryWorker;
-
-        private MonoBehaviour _component;
-
+        
         private const float AnimationDelay = 5f;
         private const float ActionDelay = 0.4f;
 
@@ -22,25 +20,6 @@ namespace Scripts.Level
             _buttons = buttons;
             _factoryWorker = factoryWorker;
         }
-
-        // public void RotateCamera(Transform target, float rotationDuration, bool isShown, AudioClip soundEffect)
-        // {
-        //     Debug.Log("+++++++++");
-        //     if (target == null) return;
-        //     // isRotating = true;
-        //     Debug.Log("-------");
-        //
-        //     Transform cameraTransform;
-        //
-        //     const float RotationAngle = 360.0f;
-        //
-        //     _camera.transform.DORotate(new Vector3((cameraTransform = _camera.transform).position.x, RotationAngle, cameraTransform.position.z),
-        //             rotationDuration, RotateMode.FastBeyond360)
-        //         .OnComplete(() => LevelStartCoroutine(isShown, soundEffect));
-        // }
-        
-        public void LevelStartCoroutine(bool isShown, AudioClip soundEffect) =>
-            _component.StartCoroutine(ShowLevelCompletedScreen(isShown, soundEffect));
 
         public IEnumerator ShowLevelCompletedScreen(bool isShown, AudioClip soundEffect)
         {

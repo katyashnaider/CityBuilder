@@ -5,12 +5,12 @@ namespace Scripts.UI
 {
     internal sealed class MainMenu : MonoBehaviour
     {
+        [SerializeField] private Canvas _fps;
         [SerializeField] private GameObject[] _buildings;
         [SerializeField] private Loading _loading;
-        [SerializeField] private AudioClip _clipMainMenu;
-        [SerializeField] private AudioClip _clipGame;
 
         private int _levelNumber = 0;
+        private bool _isOpen;
 
         private void Start()
         {
@@ -21,7 +21,7 @@ namespace Scripts.UI
             else
                 Debug.LogError("_levelNumber " + "(" + _levelNumber + ")" + " is outside the array index _buildings" + "(" + _buildings.Length + ")");
 
-            SoundManager.Instance.PlaySoundMainMenu(_clipMainMenu);
+            SoundManager.Instance.PlaySoundMainMenu();
         }
 
         public void PlayGame()
@@ -29,9 +29,12 @@ namespace Scripts.UI
             _loading.LoadScene(_levelNumber);
 
             SoundManager.Instance.StopSoundMainMenu();
-            SoundManager.Instance.PlaySoundGame(_clipGame);
+            SoundManager.Instance.PlaySoundGame();
         }
-        
+
+        public void OnClickButtonFps() => 
+            _fps.gameObject.SetActive(_isOpen = !_isOpen);
+
         private int LoadProgress(string key)
         {
             var progressHandler = new ProgressHandler();

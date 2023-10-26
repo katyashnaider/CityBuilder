@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Workers;
 using Workers.StateMachines.States;
 using Random = UnityEngine.Random;
@@ -11,7 +10,7 @@ namespace Upgrades
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private FactoryWorker _factoryWorker;
         [SerializeField] private float _offsetPosition = 5f;
-
+        
         private void Start()
         {
             if (PlayerPrefs.HasKey("AddWorkerUpgrade"))
@@ -21,6 +20,7 @@ namespace Upgrades
             {
                 var position = _spawnPoint.position;
                 position.z = Random.Range(position.z - _offsetPosition, position.z + _offsetPosition);
+                
                 var worker = _factoryWorker.CreateWorker(position, _spawnPoint.rotation);
                 worker.StateMachine.SetState<Walking>();
             }

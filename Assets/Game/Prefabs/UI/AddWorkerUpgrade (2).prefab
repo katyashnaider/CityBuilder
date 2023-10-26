@@ -403,7 +403,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 79.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5838771122515783117
 CanvasRenderer:
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 270
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -694,7 +694,7 @@ MonoBehaviour:
   _wallet: {fileID: 0}
   _upgradeAmount: 1
   _price: 3
-  _multiplierPrice: 2
+  _maxLevel: 5
   _spawnPoint: {fileID: 0}
   _factoryWorker: {fileID: 0}
   _offsetPosition: 10

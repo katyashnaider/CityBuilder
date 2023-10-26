@@ -6,7 +6,7 @@ namespace Scripts
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Upgrades.Upgrade[] _upgrades;
-        
+
         private RestartEntity[] _restartEntities;
 
         private void Awake() => _restartEntities = FindObjectsOfType<RestartEntity>(true);
@@ -20,16 +20,14 @@ namespace Scripts
                 Debug.LogError("Components Restart Entity and Upgrades is null!");
                 return;
             }
-            
+
             foreach (var restartEntity in _restartEntities)
                 restartEntity.Restart();
 
-            foreach (var upgrade in _upgrades) 
+            foreach (var upgrade in _upgrades)
                 upgrade.RestartLevel();
-            
-            DOTween.KillAll(); 
-           // StopAllCoroutines();
-            Debug.Log("рестарт");
+
+            DOTween.KillAll();
         }
     }
 }

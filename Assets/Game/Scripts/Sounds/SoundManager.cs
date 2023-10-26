@@ -23,11 +23,11 @@ namespace Scripts.Sounds
             }
         }
 
-        public void PlaySoundMainMenu(AudioClip clip) => 
-            _musicSoundMainMenu.PlayOneShot(clip);
+        public void PlaySoundMainMenu() =>
+            _musicSoundMainMenu.Play();
         
-        public void PlaySoundGame(AudioClip clip) => 
-            _musicSoundGame.PlayOneShot(clip);
+        public void PlaySoundGame() => 
+            _musicSoundGame.Play();
         
         public void StopSoundMainMenu() => 
             _musicSoundMainMenu.Stop();

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Workers;
 
 namespace Upgrades
@@ -10,14 +9,14 @@ namespace Upgrades
         [SerializeField] protected Wallet _wallet;
         [SerializeField] protected int _upgradeAmount = 1;
         [SerializeField] protected int _price = 10;
-        [SerializeField] private int _multiplierPrice = 2;
+        [SerializeField] private int _maxLevel = 5;
 
+        private const int MultiplierPrice = 10;
+        
         private int _currentPrice = 0;
         private int _currentLevel = 0;
         private int _counter = 0;
-
-        private const int MaxLevel = 5;
-
+        
         public int CurrentLevel => _currentLevel;
         public int CurrentPrice => _currentPrice;
 
@@ -40,6 +39,9 @@ namespace Upgrades
             _wallet.SubtractCoins(_currentPrice);
             IncreasePrice();
             UpgradeInfo();
+
+            if (!CanIncreaseLevel())
+                _currentPrice = int.MaxValue;
         }
 
         public int GetValue() => 
@@ -49,9 +51,10 @@ namespace Upgrades
         {
             _currentPrice = _price;
             _currentLevel = 0;
-            
-           // _upgradeView.DisableOfButton();
-            _upgradeView.UpgradeDisplay(_currentLevel, _currentPrice);
+
+           SaveProgress("AddWorkerUpgrade");
+           SaveProgress("SpeedUpgrade");
+           SaveProgress("IncomeUpgrade");
         }
         
         protected void UpgradeInfo()
@@ -84,7 +87,7 @@ namespace Upgrades
             _currentPrice = loadedData.Price;
         }
 
-        private bool CanIncreaseLevel() => _currentLevel < MaxLevel;
+        private bool CanIncreaseLevel() => _currentLevel < _maxLevel;
 
         private void UpdateButtonAvailability()
         {
@@ -104,7 +107,7 @@ namespace Upgrades
 
         private void IncreaseLevel() => _currentLevel++;
 
-        private void IncreasePrice() => _currentPrice += _multiplierPrice;
+        private void IncreasePrice() => _currentPrice += _currentPrice;
 
     }
 }

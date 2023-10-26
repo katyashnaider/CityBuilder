@@ -1,6 +1,5 @@
 ﻿using Scripts.Building;
 using Pool;
-using Scripts;
 using UnityEngine;
 using Upgrades;
 using Workers.StateMachines;
@@ -52,17 +51,5 @@ namespace Workers
             
             return worker;
         }
-        
-        // public void SetPosition(Vector3 position, Quaternion quaternion)
-        // {
-        //     _worker.transform.position = position;
-        //     _worker.transform.rotation = quaternion;
-        // }
-
-        // public override void Restart()
-        // {
-        //     _currentSpeed = _speed;
-        //     _currentPrice = _price;
-        // }
     }
 }
