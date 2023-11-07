@@ -38,7 +38,7 @@ namespace Scripts.Building
 
         public void GetStone()
         {
-            if (_currentIndex >= _buildingsParts.Length) // заменить число на _buildingsParts.Length
+            if (_currentIndex >= 3) // заменить число на _buildingsParts.Length
             {
                 ConstructedBuilding?.Invoke();
             }

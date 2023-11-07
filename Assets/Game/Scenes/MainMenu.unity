@@ -3665,6 +3665,7 @@ MonoBehaviour:
   - {fileID: 1321966172}
   - {fileID: 1357489785}
   - {fileID: 1121803125}
+  - {fileID: 3954036448340297419, guid: b86360bdc3f4934488a99f305670fea3, type: 3}
   _loading: {fileID: 615452120}
 --- !u!4 &215388736 stripped
 Transform:

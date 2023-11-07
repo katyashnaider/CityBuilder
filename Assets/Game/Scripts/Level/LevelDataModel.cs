@@ -4,7 +4,7 @@
     {
         private int _levelNumber;
 
-        private const int MaxLevel = 2;
+        private const int MaxLevel = 3;
 
         public LevelDataModel(int levelNumber) =>
             _levelNumber = levelNumber;
