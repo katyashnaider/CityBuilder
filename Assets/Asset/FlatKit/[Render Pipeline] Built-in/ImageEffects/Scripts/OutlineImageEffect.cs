@@ -1,58 +1,52 @@
 ﻿using UnityEngine;
 
-namespace FlatKit {
-    [ExecuteInEditMode, ImageEffectAllowedInSceneView, RequireComponent(typeof(UnityEngine.Camera))]
-    public class OutlineImageEffect : MonoBehaviour {
-        public Color edgeColor = Color.white;
+namespace FlatKit
+{
+    [ExecuteInEditMode] [ImageEffectAllowedInSceneView] [RequireComponent(typeof(Camera))]
+    public class OutlineImageEffect : MonoBehaviour
+    {
 
-        [Range(0, 5)] public int thickness = 1;
-
-        [Space] public bool useDepth = true;
-        public bool useNormals = false;
-
-        [Header("Advanced settings")] [Space] public float minDepthThreshold = 0f;
-        public float maxDepthThreshold = 0.25f;
-        [Space] public float minNormalsThreshold = 0f;
-        public float maxNormalsThreshold = 0.25f;
-
-        [HideInInspector]
-        public Material material;
-
-        private UnityEngine.Camera _camera;
-        
         private static readonly string ShaderName = "Hidden/OutlinePlus";
         private static readonly int EdgeColorProperty = Shader.PropertyToID("_EdgeColor");
         private static readonly int ThicknessProperty = Shader.PropertyToID("_Thickness");
         private static readonly int DepthThresholdsProperty = Shader.PropertyToID("_DepthThresholds");
         private static readonly int NormalsThresholdsProperty = Shader.PropertyToID("_NormalsThresholds");
+        public Color edgeColor = Color.white;
 
-        private void Start() {
+        [Range(0, 5)] public int thickness = 1;
+
+        [Space] public bool useDepth = true;
+        public bool useNormals;
+
+        [Header("Advanced settings")] [Space] public float minDepthThreshold;
+        public float maxDepthThreshold = 0.25f;
+        [Space] public float minNormalsThreshold;
+        public float maxNormalsThreshold = 0.25f;
+
+        [HideInInspector]
+        public Material material;
+
+        private Camera _camera;
+
+        private void Start()
+        {
             material = new Material(Shader.Find(ShaderName));
-            _camera = GetComponent<UnityEngine.Camera>();
-            UpdateShader();
-        }
-
-        void OnValidate() {
-            if (material == null) {
-                material = new Material(Shader.Find(ShaderName));
-            }
-
-            if (_camera == null) {
-                _camera = GetComponent<UnityEngine.Camera>();
-            }
-
+            _camera = GetComponent<Camera>();
             UpdateShader();
         }
 
         [ImageEffectOpaque]
-        void OnRenderImage(RenderTexture source, RenderTexture destination) {
-            if (material == null) {
+        private void OnRenderImage(RenderTexture source, RenderTexture destination)
+        {
+            if (material == null)
+            {
                 material = new Material(Shader.Find(ShaderName));
                 UpdateShader();
             }
 
-            if (_camera == null) {
-                _camera = GetComponent<UnityEngine.Camera>();
+            if (_camera == null)
+            {
+                _camera = GetComponent<Camera>();
             }
 
 #if UNITY_EDITOR
@@ -66,22 +60,42 @@ namespace FlatKit {
             Graphics.Blit(source, destination, material);
         }
 
-        private void UpdateShader() {
+        private void OnValidate()
+        {
+            if (material == null)
+            {
+                material = new Material(Shader.Find(ShaderName));
+            }
+
+            if (_camera == null)
+            {
+                _camera = GetComponent<Camera>();
+            }
+
+            UpdateShader();
+        }
+
+        private void UpdateShader()
+        {
             const string depthKeyword = "OUTLINE_USE_DEPTH";
-            if (useDepth) {
+            if (useDepth)
+            {
                 material.EnableKeyword(depthKeyword);
                 _camera.depthTextureMode = DepthTextureMode.Depth;
             }
-            else {
+            else
+            {
                 material.DisableKeyword(depthKeyword);
             }
 
             const string normalsKeyword = "OUTLINE_USE_NORMALS";
-            if (useNormals) {
+            if (useNormals)
+            {
                 material.EnableKeyword(normalsKeyword);
                 _camera.depthTextureMode = DepthTextureMode.DepthNormals;
             }
-            else {
+            else
+            {
                 material.DisableKeyword(normalsKeyword);
             }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Scripts.UI
+namespace CityBuilder.UI
 {
     internal sealed class Loading : MonoBehaviour
     {
@@ -11,9 +11,9 @@ namespace Scripts.UI
         [SerializeField] private GameObject _mainMenu;
         [SerializeField] private Slider _scale;
         [SerializeField] private float _delay = 1f;
-
-        private const float CompletionThreshold = 0.9f; 
         
+        private const float CompletionThreshold = 0.9f;
+
         public void LoadScene(int levelNumber)
         {
             _loadScreen.gameObject.SetActive(true);
@@ -26,7 +26,7 @@ namespace Scripts.UI
         {
             WaitForSeconds time = new WaitForSeconds(_delay);
             AsyncOperation loadAsync = SceneManager.LoadSceneAsync(levelNumber);
-            
+
             loadAsync.allowSceneActivation = false;
 
             while (!loadAsync.isDone)

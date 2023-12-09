@@ -1,11 +1,10 @@
-﻿using Scripts.Building;
-using Pool;
+﻿using CityBuilder.Building;
+using CityBuilder.Pool;
+using CityBuilder.Upgrade;
+using CityBuilder.Worker.StateMachine.States;
 using UnityEngine;
-using Upgrades;
-using Workers.StateMachines;
-using Workers.StateMachines.States;
 
-namespace Workers
+namespace CityBuilder.Worker
 {
     public class FactoryWorker : MonoBehaviour
     {
@@ -19,9 +18,9 @@ namespace Workers
         [SerializeField] private Wallet _wallet;
         [SerializeField] private float _speed = 0.4f;
         [SerializeField] private int _price = 5;
-
-        private float _currentSpeed;
+        
         private int _currentPrice;
+        private float _currentSpeed;
 
         private void Awake()
         {
@@ -31,24 +30,24 @@ namespace Workers
 
         public Worker CreateWorker(Vector3 position, Quaternion quaternion)
         {
-            var worker = _pool.Get();
+            Worker worker = _pool.Get();
 
             worker.transform.position = position;
             worker.transform.rotation = quaternion;
 
-            worker.Init(new StateMachine(), _speedUpgrade, _incomeUpgrade, _targets, _pathPointsA, _pathPointsB, _buildingController, _wallet);
+            worker.Init(new StateMachine.StateMachine(), _speedUpgrade, _incomeUpgrade, _targets, _pathPointsA, _pathPointsB, _buildingController, _wallet);
 
-            worker.SetStats(_currentSpeed + _speedUpgrade.GetValue(), _currentPrice +_incomeUpgrade.GetValue());
+            worker.SetStats(_currentSpeed + _speedUpgrade.GetValue(), _currentPrice + _incomeUpgrade.GetValue());
 
-            var walking = new Walking(worker);
-            var takingStone = new TakingStone(worker);
-            var putsStone = new PutsStone(worker);
-            
+            Walking walking = new Walking(worker);
+            TakingStone takingStone = new TakingStone(worker);
+            PutsStone putsStone = new PutsStone(worker);
+
             worker.StateMachine.AddTransition(walking, takingStone, () => worker.ReachedPoint() && !worker.IsStoneTaken);
             worker.StateMachine.AddTransition(walking, putsStone, () => worker.ReachedPoint() && worker.IsStoneTaken);
             worker.StateMachine.AddTransition(takingStone, walking, () => worker.IsStoneTaken);
             worker.StateMachine.AddTransition(putsStone, walking, () => !worker.IsStoneTaken);
-            
+
             return worker;
         }
     }

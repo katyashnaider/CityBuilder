@@ -1,33 +1,29 @@
-﻿using System;
-using Scripts;
-using Scripts.Building;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Workers
+namespace CityBuilder.Worker
 {
     public class Wallet : RestartEntity
     {
-        [SerializeField] private BuildingController _building;
         [SerializeField] private ViewWallet _viewWallet;
 
-        private int _coins = 0;
-        private readonly int _bonus = 1000;
+        private const int Bonus = 1000;
 
-        public bool HasEnoughCoins(int amount) => _coins >= amount;
+        private int _coins;
 
         private void Start()
         {
             if (PlayerPrefs.HasKey("Wallet"))
+            {
                 _coins = LoadProgress();
+            }
 
             _viewWallet.UpdatePrice(_coins);
         }
 
-        // private void OnEnable() => 
-        //     _building.ConstructedBuilding += OnConstructedBuilding;
-        //
-        // private void OnDisable() => 
-        //     _building.ConstructedBuilding -= OnConstructedBuilding;
+        public bool HasEnoughCoins(int amount)
+        {
+            return _coins >= amount;
+        }
 
         public void AddCoins(int price)
         {
@@ -45,27 +41,16 @@ namespace Workers
         public override void Restart()
         {
             _coins = 0;
-            _coins += _bonus;
+            _coins += Bonus;
 
             SaveProgress();
         }
 
-
-        // private void OnConstructedBuilding()
-        // {
-        //     print("в OnConstructedBuilding до coins = " + _coins);
-        //
-        //     _coins += _bonus;
-        //     SaveProgress();
-        //     print("в OnConstructedBuilding после coins = " + _coins);
-        //
-        // }
-
         private void SaveProgress()
         {
-            var progressHandler = new ProgressHandler();
+            ProgressHandler progressHandler = new ProgressHandler();
 
-            var saveData = new ProgressHandler.Save
+            ProgressHandler.Save saveData = new ProgressHandler.Save
             {
                 Wallet = _coins
             };
@@ -75,8 +60,8 @@ namespace Workers
 
         private int LoadProgress()
         {
-            var progressHandler = new ProgressHandler();
-            var loadedData = progressHandler.LoadProgress("Wallet");
+            ProgressHandler progressHandler = new ProgressHandler();
+            ProgressHandler.Save loadedData = progressHandler.LoadProgress("Wallet");
 
             return _coins = loadedData.Wallet;
         }

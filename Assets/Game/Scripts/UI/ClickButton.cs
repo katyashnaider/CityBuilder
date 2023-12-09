@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Scripts.UI
+namespace CityBuilder.UI
 {
     public class ClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
@@ -10,10 +10,14 @@ namespace Scripts.UI
         [SerializeField] private Sprite _default;
         [SerializeField] private Sprite _pressed;
 
-        public void OnPointerDown(PointerEventData eventData) => 
+        public void OnPointerDown(PointerEventData eventData)
+        {
             _image.sprite = _pressed;
+        }
 
-        public void OnPointerUp(PointerEventData eventData) => 
+        public void OnPointerUp(PointerEventData eventData)
+        {
             _image.sprite = _default;
+        }
     }
 }

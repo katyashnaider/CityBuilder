@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Building
+namespace CityBuilder.Building
 {
     [RequireComponent(typeof(BuildingController))]
     public class Decoration : MonoBehaviour
@@ -9,21 +9,29 @@ namespace Scripts.Building
         [SerializeField] private ParticleSystem _smokeEffect;
         [SerializeField] private GameObject _decoration;
 
-        private BuildingController _buildingController;
-        
-        private void Awake() => 
-            _buildingController = GetComponent<BuildingController>();
-
         private const float Delay = 1f;
 
-        private void OnEnable() => 
+        private BuildingController _buildingController;
+
+        private void Awake()
+        {
+            _buildingController = GetComponent<BuildingController>();
+        }
+
+        private void OnEnable()
+        {
             _buildingController.ConstructedBuilding += OnConstructedBuildingController;
+        }
 
-        private void OnDisable() => 
+        private void OnDisable()
+        {
             _buildingController.ConstructedBuilding -= OnConstructedBuildingController;
+        }
 
-        private void OnConstructedBuildingController() => 
+        private void OnConstructedBuildingController()
+        {
             StartCoroutine(PlayEffect());
+        }
 
         private IEnumerator PlayEffect()
         {

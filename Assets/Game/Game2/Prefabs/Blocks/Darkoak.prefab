@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6268916955360974697}
-  - component: {fileID: 6759453022876756252}
   - component: {fileID: 623384221617494330}
   m_Layer: 0
   m_Name: Darkoak
@@ -34,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6759453022876756252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724373499015576326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b96befe3e834a649d5ef18f498a85c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 915da56a32953c44e9628e760cacc6c0, type: 3}
 --- !u!114 &623384221617494330
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6027277009918828752}
   - component: {fileID: 5643122741062269955}
-  - component: {fileID: 9127359539559095169}
   m_Layer: 0
   m_Name: HalfOreAzure
   m_TagString: Untagged
@@ -46,19 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9127359539559095169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688087780903288861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b96befe3e834a649d5ef18f498a85c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 915da56a32953c44e9628e760cacc6c0, type: 3}
 --- !u!1001 &2216310273083649504
 PrefabInstance:
   m_ObjectHideFlags: 0

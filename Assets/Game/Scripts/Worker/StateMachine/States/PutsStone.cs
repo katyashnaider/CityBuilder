@@ -1,15 +1,14 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-
-namespace Workers.StateMachines.States
+﻿namespace CityBuilder.Worker.StateMachine.States
 {
     public class PutsStone : IState
     {
         private readonly Worker _worker;
         private bool _isStoneVisible;
-        
-        public PutsStone(Worker worker) => _worker = worker;
+
+        public PutsStone(Worker worker)
+        {
+            _worker = worker;
+        }
 
         public void OnEnter()
         {

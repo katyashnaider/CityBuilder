@@ -16,52 +16,52 @@ using UnityEngine.UI;
 
 namespace Tayx.Graphy.CustomizationScene
 {
-	public class ForceSliderToPowerOf2 : MonoBehaviour
-	{
+    public class ForceSliderToPowerOf2 : MonoBehaviour
+    {
         #region Variables -> Serialized Private
 
-        [SerializeField] private Slider m_slider = null;
-
-        #endregion
-
-        #region Variables -> Private
-
-        private int[] m_powerOf2Values =
-		{
-			128,
-			256,
-			512,
-			1024,
-			2048,
-			4096,
-			8192
-		};
-		
-		private Text m_text;
+        [SerializeField] private Slider m_slider;
 
         #endregion
 
         #region Methods -> Unity Callbacks
 
-        void Update()
+        private void Update()
         {
             int closestSpectrumIndex = 0;
             int minDistanceToSpectrumValue = 100000;
 
             //TODO: Put the int cast outside of the loop.
-            for ( int i = 0; i < m_powerOf2Values.Length; i++ )
+            for (int i = 0; i < m_powerOf2Values.Length; i++)
             {
-                int newDistance = Mathf.Abs( (int)m_slider.value - m_powerOf2Values[ i ] );
-                if ( newDistance < minDistanceToSpectrumValue )
+                int newDistance = Mathf.Abs((int)m_slider.value - m_powerOf2Values[i]);
+                if (newDistance < minDistanceToSpectrumValue)
                 {
                     minDistanceToSpectrumValue = newDistance;
                     closestSpectrumIndex = i;
                 }
             }
 
-            m_slider.value = m_powerOf2Values[ closestSpectrumIndex ];
+            m_slider.value = m_powerOf2Values[closestSpectrumIndex];
         }
 
 		#endregion
+
+        #region Variables -> Private
+
+        private readonly int[] m_powerOf2Values =
+        {
+            128,
+            256,
+            512,
+            1024,
+            2048,
+            4096,
+            8192
+        };
+
+        private Text m_text;
+
+        #endregion
     }
 }

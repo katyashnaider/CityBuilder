@@ -1,17 +1,17 @@
+using CityBuilder.Sounds;
 using DG.Tweening;
-using Scripts.Sounds;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+namespace CityBuilder.UI
 {
-    public void OpenMenu(int numberScene)
+    public class PauseMenu : MonoBehaviour
     {
-        SceneManager.LoadSceneAsync(numberScene);
-        SoundManager.Instance.StopSoundGame();
-        DOTween.KillAll(); 
-        //LoadProgress("LevelNumber");
-       // StopAllCoroutines();
-        //SoundManager.Instance.PlaySoundMainMenu(_clipGame);
+        public void OpenMenu(int numberScene)
+        {
+            SceneManager.LoadSceneAsync(numberScene);
+            SoundManager.Instance.StopSoundGame();
+            DOTween.KillAll();
+        }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Upgrades
+namespace CityBuilder.Upgrade
 {
     public class SpeedUpgrade : Upgrade
     {
@@ -10,7 +10,9 @@ namespace Upgrades
         private void Start()
         {
             if (PlayerPrefs.HasKey("SpeedUpgrade"))
+            {
                 LoadProgress("SpeedUpgrade");
+            }
 
             UpgradeInfo();
         }

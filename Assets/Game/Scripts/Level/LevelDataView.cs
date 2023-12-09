@@ -1,18 +1,17 @@
 ﻿using System.Collections;
-using Scripts.Sounds;
+using CityBuilder.Sounds;
+using CityBuilder.Worker;
 using UnityEngine;
-using Workers;
 
-namespace Scripts.Level
+namespace CityBuilder.Level
 {
     public sealed class LevelDataView
     {
-        private readonly GameObject _levelCompletedScreen;
-        private readonly GameObject _buttons;
-        private readonly FactoryWorker _factoryWorker;
-        
         private const float AnimationDelay = 5f;
         private const float ActionDelay = 0.4f;
+        private readonly GameObject _buttons;
+        private readonly FactoryWorker _factoryWorker;
+        private readonly GameObject _levelCompletedScreen;
 
         public LevelDataView(GameObject levelCompletedScreen, GameObject buttons, FactoryWorker factoryWorker)
         {

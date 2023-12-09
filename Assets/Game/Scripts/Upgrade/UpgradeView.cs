@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Upgrades
+namespace CityBuilder.Upgrade
 {
     internal class UpgradeView : MonoBehaviour
     {
@@ -31,12 +31,12 @@ namespace Upgrades
         public void EnableOfButton()
         {
             _button.animator.SetTrigger("Enabled");
-            
+
             _image.sprite = _enabledIcon;
             _imageIconCoin.sprite = _enabledIconCoin;
             _button.interactable = true;
         }
-        
+
         public void DisableOfButton()
         {
             _image.sprite = _disabledIcon;

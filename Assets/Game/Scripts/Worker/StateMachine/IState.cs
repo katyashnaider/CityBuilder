@@ -1,4 +1,4 @@
-﻿namespace Workers.StateMachines
+﻿namespace CityBuilder.Worker.StateMachine
 {
     public interface IState
     {

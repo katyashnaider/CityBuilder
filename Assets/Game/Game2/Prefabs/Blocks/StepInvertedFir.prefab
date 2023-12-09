@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 33979898803782324}
   - component: {fileID: 3290096860424009016}
-  - component: {fileID: 8595734547562111736}
   m_Layer: 0
   m_Name: StepInvertedFir
   m_TagString: Untagged
@@ -46,19 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dac4cbf520c02b4d837f7dc12b1eb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8595734547562111736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5020288723729258901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b96befe3e834a649d5ef18f498a85c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 915da56a32953c44e9628e760cacc6c0, type: 3}
 --- !u!1001 &7856291630533925150
 PrefabInstance:
   m_ObjectHideFlags: 0

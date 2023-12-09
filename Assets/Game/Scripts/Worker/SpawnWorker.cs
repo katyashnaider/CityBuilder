@@ -1,24 +1,16 @@
-﻿using System;
+﻿using CityBuilder.Worker.StateMachine.States;
 using UnityEngine;
-using Workers;
-using Workers.StateMachines.States;
 
-namespace Scripts
+namespace CityBuilder.Worker
 {
     public class SpawnWorker : MonoBehaviour
     {
         [SerializeField] private FactoryWorker _factoryWorker;
-        
+
         private void Start()
         {
-            var worker = _factoryWorker.CreateWorker(transform.position, transform.rotation);
+            Worker worker = _factoryWorker.CreateWorker(transform.position, transform.rotation);
             worker.StateMachine.SetState<Walking>();
         }
-        
-        // public override void Restart()
-        // {
-        //     _worker.transform.position = transform.position;
-        //     _worker.transform.rotation = transform.rotation;
-        // }
     }
 }

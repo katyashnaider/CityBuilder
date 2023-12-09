@@ -1202,7 +1202,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 562bb49c540b2f441a25ba4be04c5f38, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1377,7 +1377,6 @@ GameObject:
   - component: {fileID: 93701826}
   - component: {fileID: 93701825}
   - component: {fileID: 93701824}
-  - component: {fileID: 93701827}
   m_Layer: 5
   m_Name: ButtonPlay
   m_TagString: Untagged
@@ -1425,7 +1424,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1435,10 +1434,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 713f41d9cad8a8b439a8a5b180ce31bb, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: f60e6fc8669803f4e8bdbd38dbb3cfad, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 713f41d9cad8a8b439a8a5b180ce31bb, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 713f41d9cad8a8b439a8a5b180ce31bb, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1500,21 +1499,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93701822}
   m_CullTransparentMesh: 1
---- !u!114 &93701827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93701822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0907711c6c5254f44af0874f5ef52d04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _image: {fileID: 93701825}
-  _default: {fileID: 21300000, guid: 713f41d9cad8a8b439a8a5b180ce31bb, type: 3}
-  _pressed: {fileID: 21300000, guid: f60e6fc8669803f4e8bdbd38dbb3cfad, type: 3}
 --- !u!1001 &100874493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3666,6 +3650,8 @@ MonoBehaviour:
   - {fileID: 1357489785}
   - {fileID: 1121803125}
   - {fileID: 3954036448340297419, guid: b86360bdc3f4934488a99f305670fea3, type: 3}
+  - {fileID: 5672853632275591695, guid: cfa14913ab51f25469d378e4b6841bc4, type: 3}
+  - {fileID: 5525651902411341324, guid: 9cff6e3fee3e85342bda856a74537a4e, type: 3}
   _loading: {fileID: 615452120}
 --- !u!4 &215388736 stripped
 Transform:
@@ -11125,7 +11111,7 @@ GameObject:
   - component: {fileID: 694559527}
   - component: {fileID: 694559526}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonFps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16051,7 +16037,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 797fb27607afcc44ca38e0391b76069a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

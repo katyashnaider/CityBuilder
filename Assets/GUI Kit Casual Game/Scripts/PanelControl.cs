@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace LayerLab
 {
     public class PanelControl : MonoBehaviour
     {
-        private int page = 0;
-        private bool isReady = false;
         [SerializeField] private List<GameObject> panels = new List<GameObject>();
-        private TextMeshProUGUI textTitle;
         [SerializeField] private Transform panelTransform;
         [SerializeField] private Button buttonPrev;
         [SerializeField] private Button buttonNext;
+        private bool isReady;
+        private int page;
+        private TextMeshProUGUI textTitle;
 
         private void Start()
         {
@@ -36,20 +33,30 @@ namespace LayerLab
             CheckControl();
         }
 
-        void Update()
+        private void Update()
         {
-            if (panels.Count <= 0 || !isReady) return;
+            if (panels.Count <= 0 || !isReady)
+            {
+                return;
+            }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
                 Click_Prev();
+            }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 Click_Next();
+            }
         }
 
         //Click_Prev
         public void Click_Prev()
         {
-            if (page <= 0 || !isReady) return;
+            if (page <= 0 || !isReady)
+            {
+                return;
+            }
 
             panels[page].SetActive(false);
             panels[page -= 1].SetActive(true);
@@ -60,14 +67,17 @@ namespace LayerLab
         //Click_Next
         public void Click_Next()
         {
-            if (page >= panels.Count - 1) return;
+            if (page >= panels.Count - 1)
+            {
+                return;
+            }
 
             panels[page].SetActive(false);
             panels[page += 1].SetActive(true);
             CheckControl();
         }
 
-        void SetArrowActive()
+        private void SetArrowActive()
         {
             buttonPrev.gameObject.SetActive(page > 0);
             buttonNext.gameObject.SetActive(page < panels.Count - 1);

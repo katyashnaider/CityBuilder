@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Stone : MonoBehaviour
+namespace CityBuilder
 {
+    public class Stone : MonoBehaviour
+    {
+    }
 }

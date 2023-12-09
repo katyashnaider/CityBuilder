@@ -1,16 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Upgrades
+namespace CityBuilder.Upgrade
 {
     public class IncomeUpgrade : Upgrade
     {
         public event Action<int> ChangedIncome;
-
+        
         private void Start()
         {
             if (PlayerPrefs.HasKey("IncomeUpgrade"))
+            {
                 LoadProgress("IncomeUpgrade");
+            }
 
             UpgradeInfo();
         }

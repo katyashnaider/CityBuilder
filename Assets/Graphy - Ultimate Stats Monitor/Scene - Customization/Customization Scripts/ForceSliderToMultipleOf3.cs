@@ -16,22 +16,22 @@ using UnityEngine.UI;
 
 namespace Tayx.Graphy.CustomizationScene
 {
-	public class ForceSliderToMultipleOf3 : MonoBehaviour
-	{
+    public class ForceSliderToMultipleOf3 : MonoBehaviour
+    {
         #region Variables -> Serialized Private
 
-        [SerializeField] private Slider m_slider = null;
+        [SerializeField] private Slider m_slider;
 
 		#endregion
 
 		#region Methods -> Unity Callbacks
 
-		void Update()
+        private void Update()
         {
             int roundedValue = (int)m_slider.value;
 
             // Forces the value to be a multiple of 3, this way the audio graph is painted correctly
-            if ( roundedValue % 3 != 0 && roundedValue < 300 )
+            if (roundedValue % 3 != 0 && roundedValue < 300)
             {
                 roundedValue += 3 - roundedValue % 3;
             }

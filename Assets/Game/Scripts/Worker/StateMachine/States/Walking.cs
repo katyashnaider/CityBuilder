@@ -1,17 +1,18 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Workers.StateMachines.States
+namespace CityBuilder.Worker.StateMachine.States
 {
     public class Walking : IState
     {
         private readonly Worker _worker;
-        
-        private Vector3 _point;
-        private bool _isWalking = false;
+        private bool _isWalking;
 
-        public Walking(Worker worker) => 
+        private Vector3 _point;
+
+        public Walking(Worker worker)
+        {
             _worker = worker;
+        }
 
         public void OnEnter()
         {
@@ -21,8 +22,10 @@ namespace Workers.StateMachines.States
 
         public void Tick()
         {
-            if (_isWalking) 
+            if (_isWalking)
+            {
                 MoveOnPoint();
+            }
         }
 
         public void OnExit()
@@ -31,8 +34,10 @@ namespace Workers.StateMachines.States
             _worker.SwitchTarget();
         }
 
-        private void SetTarget() => 
+        private void SetTarget()
+        {
             _point = _worker.GetTarget();
+        }
 
         private void MoveOnPoint()
         {

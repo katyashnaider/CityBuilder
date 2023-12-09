@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts
+namespace CityBuilder
 {
     public abstract class RestartEntity : MonoBehaviour
     {

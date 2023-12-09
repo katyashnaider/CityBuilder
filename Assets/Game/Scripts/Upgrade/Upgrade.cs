@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Workers;
+﻿using CityBuilder.Worker;
+using UnityEngine;
 
-namespace Upgrades
+namespace CityBuilder.Upgrade
 {
     public abstract class Upgrade : MonoBehaviour
     {
@@ -10,69 +10,79 @@ namespace Upgrades
         [SerializeField] protected int _upgradeAmount = 1;
         [SerializeField] protected int _price = 10;
         [SerializeField] private int _maxLevel = 5;
-
+        
         private const int MultiplierPrice = 10;
         
-        private int _currentPrice = 0;
-        private int _currentLevel = 0;
-        private int _counter = 0;
-        
-        public int CurrentLevel => _currentLevel;
-        public int CurrentPrice => _currentPrice;
+        private int _counter;
+
+        public int CurrentLevel { get; private set; }
+        public int CurrentPrice { get; private set; }
 
         private void Awake()
         {
-            _currentPrice = _price;
+            CurrentPrice = _price;
             UpgradeInfo();
             UpdateButtonAvailability();
         }
 
-        private void Update() =>
+        private void Update()
+        {
             UpdateButtonAvailability();
+        }
 
         public virtual void ApplyUpgrade()
         {
             if (!CanIncreaseLevel())
+            {
                 return;
+            }
 
             IncreaseLevel();
-            _wallet.SubtractCoins(_currentPrice);
+            _wallet.SubtractCoins(CurrentPrice);
             IncreasePrice();
             UpgradeInfo();
 
             if (!CanIncreaseLevel())
-                _currentPrice = int.MaxValue;
+            {
+                CurrentPrice = int.MaxValue;
+            }
         }
 
-        public int GetValue() => 
-            _upgradeAmount * _currentLevel;
+        public int GetValue()
+        {
+            return _upgradeAmount * CurrentLevel;
+        }
 
         public void RestartLevel()
         {
-            _currentPrice = _price;
-            _currentLevel = 0;
+            CurrentPrice = _price;
+            CurrentLevel = 0;
 
-           SaveProgress("AddWorkerUpgrade");
-           SaveProgress("SpeedUpgrade");
-           SaveProgress("IncomeUpgrade");
+            SaveProgress("AddWorkerUpgrade");
+            SaveProgress("SpeedUpgrade");
+            SaveProgress("IncomeUpgrade");
         }
-        
+
         protected void UpgradeInfo()
         {
             if (CanIncreaseLevel())
-                _upgradeView.UpgradeDisplay(_currentLevel, _currentPrice);
+            {
+                _upgradeView.UpgradeDisplay(CurrentLevel, CurrentPrice);
+            }
             else
+            {
                 _upgradeView.SetMaxLevel();
+            }
         }
 
         protected void SaveProgress(string key)
         {
-            var progressHandler = new ProgressHandler();
+            ProgressHandler progressHandler = new ProgressHandler();
 
-            var saveData = new ProgressHandler.Save
+            ProgressHandler.Save saveData = new ProgressHandler.Save
             {
-                LevelUpgrade = _currentLevel,
-                Price = _currentPrice
+                LevelUpgrade = CurrentLevel,
+                Price = CurrentPrice
             };
 
             progressHandler.SaveProgress(key, saveData);
@@ -80,14 +90,17 @@ namespace Upgrades
 
         protected void LoadProgress(string key)
         {
-            var progressHandler = new ProgressHandler();
-            var loadedData = progressHandler.LoadProgress(key);
+            ProgressHandler progressHandler = new ProgressHandler();
+            ProgressHandler.Save loadedData = progressHandler.LoadProgress(key);
 
-            _currentLevel = loadedData.LevelUpgrade;
-            _currentPrice = loadedData.Price;
+            CurrentLevel = loadedData.LevelUpgrade;
+            CurrentPrice = loadedData.Price;
         }
 
-        private bool CanIncreaseLevel() => _currentLevel < _maxLevel;
+        private bool CanIncreaseLevel()
+        {
+            return CurrentLevel < _maxLevel;
+        }
 
         private void UpdateButtonAvailability()
         {
@@ -96,7 +109,9 @@ namespace Upgrades
                 _counter++;
 
                 if (_counter == 1)
+                {
                     _upgradeView.EnableOfButton();
+                }
             }
             else
             {
@@ -105,9 +120,14 @@ namespace Upgrades
             }
         }
 
-        private void IncreaseLevel() => _currentLevel++;
+        private void IncreaseLevel()
+        {
+            CurrentLevel++;
+        }
 
-        private void IncreasePrice() => _currentPrice += _currentPrice;
-
+        private void IncreasePrice()
+        {
+            CurrentPrice += CurrentPrice;
+        }
     }
 }

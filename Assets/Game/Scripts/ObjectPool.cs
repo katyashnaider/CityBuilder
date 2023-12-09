@@ -1,24 +1,27 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
+namespace CityBuilder
 {
-    private readonly Queue<T> _pool = new Queue<T>();
-
-    public T Get()
+    public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     {
-        T spawnedObject = _pool.Count == 0 ? CreateObject() : _pool.Dequeue();
+        private readonly Queue<T> _pool = new Queue<T>();
 
-        spawnedObject.gameObject.SetActive(true);
+        public T Get()
+        {
+            T spawnedObject = _pool.Count == 0 ? CreateObject() : _pool.Dequeue();
 
-        return spawnedObject;
+            spawnedObject.gameObject.SetActive(true);
+
+            return spawnedObject;
+        }
+
+        public void Put(T obj)
+        {
+            _pool.Enqueue(obj);
+            obj.gameObject.SetActive(false);
+        }
+
+        protected abstract T CreateObject();
     }
-
-    public void Put(T obj)
-    {
-        _pool.Enqueue(obj);
-        obj.gameObject.SetActive(false);
-    }
-
-    protected abstract T CreateObject();
 }

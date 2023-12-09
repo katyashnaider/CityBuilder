@@ -1,7 +1,6 @@
-﻿using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Scripts.Camera
+namespace CityBuilder.Camera
 {
     public class CameraZoom : MonoBehaviour
     {
@@ -10,11 +9,15 @@ namespace Scripts.Camera
 
         private UnityEngine.Camera _camera;
 
-        private void Awake() =>
+        private void Awake()
+        {
             _camera = GetComponent<UnityEngine.Camera>();
+        }
 
-        private void Start() =>
+        private void Start()
+        {
             SetCameraFOV();
+        }
 
         private void SetCameraFOV()
         {

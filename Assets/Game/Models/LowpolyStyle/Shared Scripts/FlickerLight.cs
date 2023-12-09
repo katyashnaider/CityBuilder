@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class FlickerLight : MonoBehaviour
 {
+    private const double Tolerance = 0.0001;
 
     public float MinLightIntensity = 0.5f;
     public float MaxLightIntensity = 2.3f;
 
     public float AccelerateTime = 0.15f;
-
-    private float _targetIntensity = 1.0f;
     private float _lastIntensity = 1.0f;
 
-    private float _timePassed = 0.0f;
-
     private Light _lt;
-    private const double Tolerance = 0.0001;
+
+    private float _targetIntensity = 1.0f;
+
+    private float _timePassed;
 
     private void Start()
     {

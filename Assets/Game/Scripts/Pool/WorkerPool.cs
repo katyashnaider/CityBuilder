@@ -1,13 +1,14 @@
-﻿using TMPro;
-using UnityEngine;
-using Workers;
+﻿using UnityEngine;
 
-namespace Pool
+namespace CityBuilder.Pool
 {
-    public class WorkerPool : ObjectPool<Worker>
+    public class WorkerPool : ObjectPool<Worker.Worker>
     {
-        [SerializeField] private Worker _prefab;
-        
-        protected override Worker CreateObject() => Instantiate(_prefab, transform);
+        [SerializeField] private Worker.Worker _prefab;
+
+        protected override Worker.Worker CreateObject()
+        {
+            return Instantiate(_prefab, transform);
+        }
     }
 }

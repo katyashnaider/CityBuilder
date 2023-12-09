@@ -1,14 +1,14 @@
-﻿using System;
-using UnityEngine;
-
-namespace Workers.StateMachines.States
+﻿namespace CityBuilder.Worker.StateMachine.States
 {
     public class TakingStone : IState
     {
         private readonly Worker _worker;
         private bool _isStoneVisible;
 
-        public TakingStone(Worker worker) => _worker = worker;
+        public TakingStone(Worker worker)
+        {
+            _worker = worker;
+        }
 
         public void OnEnter()
         {

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Scripts.Sounds
+namespace CityBuilder.Sounds
 {
     public class ToggleAudio : MonoBehaviour
     {
-        public void Toggle() => 
+        public void Toggle()
+        {
             SoundManager.Instance.ToggleMusic();
+        }
     }
 }

@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Scripts.Camera
+namespace CityBuilder.Camera
 {
     internal sealed class CameraController : MonoBehaviour
     {
         [SerializeField] private float _portraitFOV = 30f;
         [SerializeField] private float _landscapeFOV = 20f;
         
-        private CinemachineFreeLook _freeLookCamera;
         private const float Delay = 0.1f;
-        
-        private void Awake() => 
-            _freeLookCamera = GetComponent<CinemachineFreeLook>();
 
-        private void Start() =>
+        private CinemachineFreeLook _freeLookCamera;
+
+        private void Awake()
+        {
+            _freeLookCamera = GetComponent<CinemachineFreeLook>();
+        }
+
+        private void Start()
+        {
             StartCoroutine(CameraInputControl());
+        }
 
         private void SetCameraFOV()
         {

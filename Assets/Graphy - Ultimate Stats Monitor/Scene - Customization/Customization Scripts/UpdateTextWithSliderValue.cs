@@ -17,11 +17,11 @@ using UnityEngine.UI;
 namespace Tayx.Graphy.CustomizationScene
 {
     [RequireComponent(typeof(Text))]
-	public class UpdateTextWithSliderValue : MonoBehaviour
-	{
+    public class UpdateTextWithSliderValue : MonoBehaviour
+    {
         #region Variables -> Serialized Private
 
-        [SerializeField] private Slider m_slider = null;
+        [SerializeField] private Slider m_slider;
 
         #endregion
 
@@ -33,12 +33,12 @@ namespace Tayx.Graphy.CustomizationScene
 
         #region Methods -> Unity Callbacks
 
-        void Start()
-		{
-			m_text = GetComponent<Text>();
-		}
+        private void Start()
+        {
+            m_text = GetComponent<Text>();
+        }
 
-        void LateUpdate()
+        private void LateUpdate()
         {
             m_text.text = m_slider.value.ToString();
         }

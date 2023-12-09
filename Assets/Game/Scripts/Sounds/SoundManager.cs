@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Sounds
+namespace CityBuilder.Sounds
 {
     public class SoundManager : MonoBehaviour
     {
-        public static SoundManager Instance;
-
         [SerializeField] private AudioSource _musicSoundMainMenu;
         [SerializeField] private AudioSource _musicSoundGame;
         [SerializeField] private AudioSource _effectSource;
         
+        public static SoundManager Instance;
+
         private void Awake()
         {
             if (Instance == null)
@@ -23,20 +23,30 @@ namespace Scripts.Sounds
             }
         }
 
-        public void PlaySoundMainMenu() =>
+        public void PlaySoundMainMenu()
+        {
             _musicSoundMainMenu.Play();
-        
-        public void PlaySoundGame() => 
-            _musicSoundGame.Play();
-        
-        public void StopSoundMainMenu() => 
-            _musicSoundMainMenu.Stop();
-        
-        public void StopSoundGame() => 
-            _musicSoundGame.Stop();
+        }
 
-        public void PlaySoundEffect(AudioClip clip) => 
+        public void PlaySoundGame()
+        {
+            _musicSoundGame.Play();
+        }
+
+        public void StopSoundMainMenu()
+        {
+            _musicSoundMainMenu.Stop();
+        }
+
+        public void StopSoundGame()
+        {
+            _musicSoundGame.Stop();
+        }
+
+        public void PlaySoundEffect(AudioClip clip)
+        {
             _effectSource.PlayOneShot(clip);
+        }
 
         public void ToggleMusic()
         {

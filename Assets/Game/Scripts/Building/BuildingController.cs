@@ -1,39 +1,48 @@
 using System;
 using System.Linq;
-using Scripts.Building;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Scripts.Building
+namespace CityBuilder.Building
 {
     public sealed class BuildingController : RestartEntity
     {
         [Header("References")]
         [SerializeField] private BuildingPartSettings _partSettings;
         [SerializeField] private ParticleSystem _particleSystem;
-        [SerializeField] private Transform _canvasCoins;
+        [SerializeField] private ViewCoins _viewCoinsPrefab;
         [SerializeField] private AudioClip _clip;
 
         [Header("Building Parts")]
         [SerializeField] private BuildingPart[] _buildingsParts;
 
-        private int _currentIndex = 0;
         private Transform _createdCanvasCoins;
+
+        private int _currentIndex;
+
         public event Action DeliveredStone;
         public event Action ConstructedBuilding;
 
         private void Awake()
         {
             if (PlayerPrefs.HasKey("CurrentIndex"))
+            {
                 _currentIndex = LoadProgress("CurrentIndex");
+            }
 
             for (int i = 0; i < _currentIndex; i++)
+            {
                 _buildingsParts[i].gameObject.SetActive(true);
+            }
 
-            _createdCanvasCoins = Instantiate(_canvasCoins, transform);
+            _createdCanvasCoins = Instantiate(_viewCoinsPrefab.transform, transform);
 
-            foreach (var part in _buildingsParts)
-                part.Construct(_partSettings, _createdCanvasCoins, _createdCanvasCoins.GetComponent<CanvasGroup>(),
-                    _createdCanvasCoins.GetComponent<ViewCoins>(), _particleSystem, _clip);
+            CanvasGroup canvasGroup = _createdCanvasCoins.GetComponent<CanvasGroup>();
+
+            foreach (BuildingPart part in _buildingsParts)
+            {
+                part.Construct(_partSettings, _createdCanvasCoins, canvasGroup, _viewCoinsPrefab, _particleSystem, _clip);
+            }
         }
 
         public void GetStone()
@@ -45,7 +54,7 @@ namespace Scripts.Building
             else
             {
                 DeliveredStone?.Invoke();
-            
+
                 _buildingsParts[_currentIndex].Active();
                 _currentIndex++;
 
@@ -56,7 +65,9 @@ namespace Scripts.Building
         public void SetCurrentPrice(int price)
         {
             foreach (BuildingPart part in _buildingsParts)
+            {
                 part.InjectPrice(price);
+            }
         }
 
         public override void Restart()
@@ -64,15 +75,17 @@ namespace Scripts.Building
             _currentIndex = 0;
             SaveProgress("CurrentIndex");
 
-            foreach (var part in _buildingsParts) 
+            foreach (BuildingPart part in _buildingsParts)
+            {
                 part.gameObject.SetActive(false);
+            }
         }
 
         private void SaveProgress(string key)
         {
-            var progressHandler = new ProgressHandler();
+            ProgressHandler progressHandler = new ProgressHandler();
 
-            var saveData = new ProgressHandler.Save
+            ProgressHandler.Save saveData = new ProgressHandler.Save
             {
                 CurrentIndex = _currentIndex
             };
@@ -82,32 +95,43 @@ namespace Scripts.Building
 
         private int LoadProgress(string key)
         {
-            var progressHandler = new ProgressHandler();
-            var loadedData = progressHandler.LoadProgress(key);
+            ProgressHandler progressHandler = new ProgressHandler();
+            ProgressHandler.Save loadedData = progressHandler.LoadProgress(key);
 
             return _currentIndex = loadedData.CurrentIndex;
         }
 
         [ContextMenu("Order")]
-        private void OrderParts() =>
+        private void OrderParts()
+        {
             _buildingsParts = GetComponentsInChildren<BuildingPart>(true)
                 .OrderBy(x => x.transform.position.x).OrderBy(z => z.transform.position.z)
                 .OrderBy(y => y.transform.position.y).ToArray();
+        }
 
         [ContextMenu("RemoveDuplicate")]
         private void RemoveParts()
         {
-            var buildingsParts = GetComponentsInChildren<BuildingPart>().OrderBy(x => x.transform.position.y).ToArray();
+            BuildingPart[] buildingsParts = GetComponentsInChildren<BuildingPart>().OrderBy(x => x.transform.position.y).ToArray();
 
             for (int i = 0; i < buildingsParts.Length; i++)
             {
-                if (buildingsParts[i] == null) continue;
+                if (buildingsParts[i] is null)
+                {
+                    continue;
+                }
 
                 for (int j = 0; j < buildingsParts.Length; j++)
                 {
-                    if (i == j) continue;
+                    if (i == j)
+                    {
+                        continue;
+                    }
 
-                    if (buildingsParts[j] == null) continue;
+                    if (buildingsParts[j] is null)
+                    {
+                        continue;
+                    }
 
                     if (buildingsParts[i].transform.position == buildingsParts[j].transform.position)
                     {
@@ -120,10 +144,12 @@ namespace Scripts.Building
         [ContextMenu("OnObject")]
         private void OnObject()
         {
-            var parts = GetComponentsInChildren<BuildingPart>(true);
+            BuildingPart[] parts = GetComponentsInChildren<BuildingPart>(true);
 
-            foreach (var part in parts)
+            foreach (BuildingPart part in parts)
+            {
                 part.gameObject.SetActive(!part.gameObject.activeSelf);
+            }
         }
     }
 }
