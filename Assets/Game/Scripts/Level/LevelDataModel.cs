@@ -1,4 +1,6 @@
-﻿namespace CityBuilder.Level
+﻿using CityBuilder.Save;
+
+namespace CityBuilder.Level
 {
     internal sealed class LevelDataModel
     {

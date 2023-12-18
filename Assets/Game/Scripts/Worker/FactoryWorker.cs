@@ -15,7 +15,7 @@ namespace CityBuilder.Worker
         [SerializeField] private Transform[] _pathPointsA;
         [SerializeField] private Transform[] _pathPointsB;
         [SerializeField] private BuildingController _buildingController;
-        [SerializeField] private Wallet _wallet;
+        [SerializeField] private Wallet.Wallet _wallet;
         [SerializeField] private float _speed = 0.4f;
         [SerializeField] private int _price = 5;
         

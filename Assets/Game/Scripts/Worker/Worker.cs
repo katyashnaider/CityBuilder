@@ -1,4 +1,5 @@
-﻿using CityBuilder.Building;
+﻿using System.Collections;
+using CityBuilder.Building;
 using CityBuilder.Upgrade;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace CityBuilder.Worker
     public class Worker : RestartEntity
     {
         [SerializeField] private BuildingPart _heldStone;
-        
+
         private BuildingController _buildingController;
 
         private int _currentPath;
@@ -23,7 +24,11 @@ namespace CityBuilder.Worker
 
         private Transform _target;
         private Transform[] _targets;
-        private Wallet _wallet;
+        private Wallet.Wallet _wallet;
+
+        private float _factorSpeed = 2;
+        private float _durationModifySpeed = 3;
+        private bool _isActiveModifySpeed = false;
 
         public Vector3 StartPosition { get; private set; }
         public float Speed { get; private set; }
@@ -43,7 +48,7 @@ namespace CityBuilder.Worker
             _incomeUpgrade.ChangedIncome -= OnChangedIncome;
         }
 
-        public void Init(StateMachine.StateMachine stateMachine, SpeedUpgrade speedUpgrade, IncomeUpgrade incomeUpgrade, Transform[] targets, [CanBeNull] Transform[] pathPointsA, Transform[] pathPointsB, BuildingController buildingController, Wallet wallet)
+        public void Init(StateMachine.StateMachine stateMachine, SpeedUpgrade speedUpgrade, IncomeUpgrade incomeUpgrade, Transform[] targets, [CanBeNull] Transform[] pathPointsA, Transform[] pathPointsB, BuildingController buildingController, Wallet.Wallet wallet)
         {
             _speedUpgrade = speedUpgrade;
             _incomeUpgrade = incomeUpgrade;
@@ -113,6 +118,16 @@ namespace CityBuilder.Worker
             return Vector3.Distance(transform.position, _target.position) <= 0.5f;
         }
 
+        public void ApplySpeedModificator()
+        {
+            if (_isActiveModifySpeed)
+            {
+                return;
+            }
+
+            StartCoroutine(ModifySpeed(_factorSpeed, _durationModifySpeed));
+        }
+
         private void OnDeliveredStone()
         {
             _wallet.AddCoins(_currentPrice);
@@ -127,6 +142,19 @@ namespace CityBuilder.Worker
         private void OnChangedIncome(int upgradeAmount)
         {
             _currentPrice += upgradeAmount;
+        }
+
+        private IEnumerator ModifySpeed(float factor, float duration)
+        {
+            float originalSpeed = Speed;
+            print("++");
+            _isActiveModifySpeed = true;
+            Speed *= factor;
+
+            yield return new WaitForSeconds(duration);
+
+            Speed = originalSpeed;
+            _isActiveModifySpeed = false;
         }
     }
 }
