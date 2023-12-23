@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6027277009918828752
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 8647034880683770213, guid: e41ef9fa0b6981d4f98dd2480696891c, type: 3}
       propertyPath: m_Name
       value: HalfOreAzure
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647034880683770213, guid: e41ef9fa0b6981d4f98dd2480696891c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8647034880684072261, guid: e41ef9fa0b6981d4f98dd2480696891c, type: 3}
       propertyPath: m_RootOrder

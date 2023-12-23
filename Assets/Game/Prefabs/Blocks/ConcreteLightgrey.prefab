@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6204738803212132146
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1014542083293898, guid: 8a70d14daa8c56840abeebf7b56dd790, type: 3}
       propertyPath: m_Name
       value: Concrete_lightgrey
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014542083293898, guid: 8a70d14daa8c56840abeebf7b56dd790, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4888618199410962, guid: 8a70d14daa8c56840abeebf7b56dd790, type: 3}
       propertyPath: m_RootOrder

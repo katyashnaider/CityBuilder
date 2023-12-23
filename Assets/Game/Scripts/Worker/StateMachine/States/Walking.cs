@@ -42,7 +42,7 @@ namespace CityBuilder.Worker.StateMachine.States
         private void MoveOnPoint()
         {
             _worker.transform.position = Vector3.MoveTowards(_worker.transform.position, _point, _worker.Speed * Time.deltaTime);
-            //_animator.SetTrigger("Turn");
+            
             _worker.transform.LookAt(_point);
             _worker.ReachedPoint();
         }

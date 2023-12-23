@@ -147,7 +147,6 @@ namespace CityBuilder.Worker
         private IEnumerator ModifySpeed(float factor, float duration)
         {
             float originalSpeed = Speed;
-            print("++");
             _isActiveModifySpeed = true;
             Speed *= factor;
 

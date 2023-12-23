@@ -20,11 +20,9 @@ namespace CityBuilder.Upgrade
         public int CurrentLevel { get; private set; }
         public int CurrentPrice { get; private set; }
 
-        private void Awake()
+        private void Awake() //если поменять на Start, то не устанавливается текущий прайс у кнопок
         {
             CurrentPrice = _price;
-            UpgradeInfo();
-            UpdateButtonAvailability();
         }
 
         private void Update()

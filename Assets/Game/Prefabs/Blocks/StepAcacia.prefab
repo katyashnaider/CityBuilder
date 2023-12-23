@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4154866196393030128
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1837865699104794, guid: 212f18fa7acbac743aa4e920c907e876, type: 3}
       propertyPath: m_Name
       value: Step_acacia
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837865699104794, guid: 212f18fa7acbac743aa4e920c907e876, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4681645250100486, guid: 212f18fa7acbac743aa4e920c907e876, type: 3}
       propertyPath: m_RootOrder

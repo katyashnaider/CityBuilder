@@ -17,6 +17,7 @@ namespace CityBuilder.Car
         {
             _animator = GetComponent<Animator>();
         }
+        
         private void Start()
         {
             _startPosition = transform.position;

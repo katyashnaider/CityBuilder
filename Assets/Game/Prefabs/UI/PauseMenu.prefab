@@ -73,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bac800143817fd438b2f419d88d67b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clipGame: {fileID: 8300000, guid: 797fb27607afcc44ca38e0391b76069a, type: 3}
 --- !u!1 &7715495103584802074
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +201,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

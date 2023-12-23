@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2779364278887239442
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1660874185433080, guid: a9b2ead8f74e2e14d88c99eb2ef19bc5, type: 3}
       propertyPath: m_Name
       value: Ore_iron
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660874185433080, guid: a9b2ead8f74e2e14d88c99eb2ef19bc5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4617740849153438, guid: a9b2ead8f74e2e14d88c99eb2ef19bc5, type: 3}
       propertyPath: m_RootOrder

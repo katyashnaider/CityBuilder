@@ -22,7 +22,7 @@ namespace CityBuilder.Worker
         private int _currentPrice;
         private float _currentSpeed;
 
-        private void Awake()
+        private void Awake() //если что может быть баг
         {
             _currentSpeed = _speed;
             _currentPrice = _price;

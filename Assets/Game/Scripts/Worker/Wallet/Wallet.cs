@@ -1,4 +1,6 @@
-﻿using CityBuilder.Save;
+﻿using System;
+using CityBuilder.Building;
+using CityBuilder.Save;
 using UnityEngine;
 
 namespace CityBuilder.Worker.Wallet
@@ -6,6 +8,7 @@ namespace CityBuilder.Worker.Wallet
     public class Wallet : RestartEntity
     {
         [SerializeField] private ViewWallet _viewWallet;
+        [SerializeField] private BuildingController _building;
 
         private const int Bonus = 1000;
 
@@ -19,6 +22,24 @@ namespace CityBuilder.Worker.Wallet
             }
 
             _viewWallet.UpdatePrice(_coins);
+        }
+
+        private void OnEnable()
+        {
+            _building.ConstructedBuilding += OnConstructedBuilding;
+        }
+
+        private void OnDisable()
+        {
+            _building.ConstructedBuilding += OnConstructedBuilding;
+        }
+        
+        private void OnConstructedBuilding()
+        {
+            _coins = 0;
+            _coins += Bonus;
+            
+            SaveProgress();
         }
 
         public bool HasEnoughCoins(int amount)
@@ -41,10 +62,10 @@ namespace CityBuilder.Worker.Wallet
         }
         public override void Restart()
         {
-            _coins = 0;
-            _coins += Bonus;
+            // _coins = 0;
+            // _coins += Bonus;
 
-            SaveProgress();
+            // SaveProgress();
         }
 
         private void SaveProgress()

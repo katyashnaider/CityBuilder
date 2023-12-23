@@ -31,7 +31,7 @@ namespace CityBuilder.Level
 
             if (_levelNumber > MaxLevel)
             {
-                _levelNumber = 1;
+                _levelNumber = 2;
             }
 
             SaveProgress("LevelNumber");

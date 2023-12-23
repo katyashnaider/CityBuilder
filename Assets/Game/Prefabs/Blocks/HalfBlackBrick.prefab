@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5597224674837370640
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 119128133593983671, guid: 26bcd876b5982a64eb2329e096136906, type: 3}
       propertyPath: m_Name
       value: half_darkoak
+      objectReference: {fileID: 0}
+    - target: {fileID: 119128133593983671, guid: 26bcd876b5982a64eb2329e096136906, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 122360157755536027, guid: 26bcd876b5982a64eb2329e096136906, type: 3}
       propertyPath: m_RootOrder

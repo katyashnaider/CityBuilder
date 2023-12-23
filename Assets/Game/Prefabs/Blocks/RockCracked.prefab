@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5654026204810301917
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1467503792227544, guid: 567800b48a3c72c409725c7b860f4c29, type: 3}
       propertyPath: m_Name
       value: Rock_cracked
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467503792227544, guid: 567800b48a3c72c409725c7b860f4c29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4537306746363964, guid: 567800b48a3c72c409725c7b860f4c29, type: 3}
       propertyPath: m_RootOrder

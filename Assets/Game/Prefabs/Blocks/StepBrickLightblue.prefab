@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8395378881610926281
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 2877115176999885889, guid: 8c9290c1b0409714da59c5004f8b988e, type: 3}
       propertyPath: m_Name
       value: Step_brick_lightblue
+      objectReference: {fileID: 0}
+    - target: {fileID: 2877115176999885889, guid: 8c9290c1b0409714da59c5004f8b988e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2880116632310146715, guid: 8c9290c1b0409714da59c5004f8b988e, type: 3}
       propertyPath: m_RootOrder

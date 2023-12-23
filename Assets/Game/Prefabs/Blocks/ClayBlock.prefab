@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6553930590475356039
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1066968443062180, guid: c4ce102743f1f89459d55b9d713a1e85, type: 3}
       propertyPath: m_Name
       value: Clay_block
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066968443062180, guid: c4ce102743f1f89459d55b9d713a1e85, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4803734154581462, guid: c4ce102743f1f89459d55b9d713a1e85, type: 3}
       propertyPath: m_RootOrder

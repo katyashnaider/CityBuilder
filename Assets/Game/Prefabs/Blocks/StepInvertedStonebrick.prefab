@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1431774855237410085
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1870159820372724, guid: 40dc73a5271bcb648872b0b442dfcad9, type: 3}
       propertyPath: m_Name
       value: Step_inverted_stonebrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870159820372724, guid: 40dc73a5271bcb648872b0b442dfcad9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4899874942164814, guid: 40dc73a5271bcb648872b0b442dfcad9, type: 3}
       propertyPath: m_RootOrder

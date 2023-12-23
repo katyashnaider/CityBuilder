@@ -30,7 +30,7 @@ namespace CityBuilder.Upgrade
 
         public void EnableOfButton()
         {
-            _button.animator.SetTrigger("Enabled");
+            _button.animator.SetTrigger(HashAnimator.Enabled);
 
             _image.sprite = _enabledIcon;
             _imageIconCoin.sprite = _enabledIconCoin;

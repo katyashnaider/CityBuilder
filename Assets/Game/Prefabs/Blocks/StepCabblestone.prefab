@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7181267753710217879
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1227844219137094, guid: 8f4f6265f48926a46a86f8d3ace56df0, type: 3}
       propertyPath: m_Name
       value: Step_cabblestone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227844219137094, guid: 8f4f6265f48926a46a86f8d3ace56df0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4269473231895242, guid: 8f4f6265f48926a46a86f8d3ace56df0, type: 3}
       propertyPath: m_RootOrder

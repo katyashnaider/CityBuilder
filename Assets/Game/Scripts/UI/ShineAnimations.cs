@@ -18,7 +18,7 @@ namespace CityBuilder.UI
         {
             _radialShine.transform.eulerAngles = new Vector3(0, 0, 0);
             _radialShine.transform.DORotate(new Vector3(0, 0, -360), _rotationDuration, RotateMode.FastBeyond360)
-                .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart); // Непрерывное вращение вокруг оси Z
+                .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         }
     }
 }

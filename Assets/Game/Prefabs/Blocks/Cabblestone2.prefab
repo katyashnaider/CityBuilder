@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2984003181308259750
 Transform:
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1128347406559656, guid: 592aabc2a3844b542ab8c2fc84c42923, type: 3}
       propertyPath: m_Name
       value: Cabblestone2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128347406559656, guid: 592aabc2a3844b542ab8c2fc84c42923, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4920695251519046, guid: 592aabc2a3844b542ab8c2fc84c42923, type: 3}
       propertyPath: m_RootOrder

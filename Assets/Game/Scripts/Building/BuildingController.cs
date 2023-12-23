@@ -25,7 +25,7 @@ namespace CityBuilder.Building
         public event Action DeliveredStone;
         public event Action ConstructedBuilding;
 
-        private void Awake()
+        private void Start()
         {
             if (PlayerPrefs.HasKey("CurrentIndex"))
             {
