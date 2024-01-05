@@ -10,6 +10,8 @@ namespace CityBuilder.Worker
     public class Worker : RestartEntity
     {
         [SerializeField] private BuildingPart _heldStone;
+        [SerializeField] private TrailRenderer _trailEffect;
+
 
         private BuildingController _buildingController;
 
@@ -147,13 +149,16 @@ namespace CityBuilder.Worker
         private IEnumerator ModifySpeed(float factor, float duration)
         {
             float originalSpeed = Speed;
+            
             _isActiveModifySpeed = true;
+            _trailEffect.gameObject.SetActive(true);
             Speed *= factor;
 
             yield return new WaitForSeconds(duration);
 
             Speed = originalSpeed;
             _isActiveModifySpeed = false;
+            _trailEffect.gameObject.SetActive(false);
         }
     }
 }

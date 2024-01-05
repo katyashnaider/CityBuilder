@@ -5,7 +5,7 @@ namespace CityBuilder.UI
 {
     public class ToggleImage : MonoBehaviour
     {
-        [SerializeField] private Sprite[] _toggleSprites; // Массив спрайтов для переключения
+        [SerializeField] private Sprite[] _toggleSprites;
         
         private int _currentIndex;
         private Image _imageComponent;
@@ -13,6 +13,8 @@ namespace CityBuilder.UI
         private void Awake()
         {
             _imageComponent = GetComponent<Image>();
+
+            _currentIndex = PlayerPrefs.HasKey("SoundIcon") ? PlayerPrefs.GetInt("SoundIcon", _currentIndex) : 0;
         }
 
         private void Start()
@@ -32,6 +34,14 @@ namespace CityBuilder.UI
 
             _currentIndex = (_currentIndex + 1) % _toggleSprites.Length;
             _imageComponent.sprite = _toggleSprites[_currentIndex];
+
+            SaveIcon();
+        }
+
+        private void SaveIcon()
+        {
+            PlayerPrefs.SetInt("SoundIcon", _currentIndex);
+            PlayerPrefs.Save();
         }
     }
 }
