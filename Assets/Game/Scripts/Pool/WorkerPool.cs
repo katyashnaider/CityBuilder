@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using CityBuilder.Workers;
+using UnityEngine;
 
 namespace CityBuilder.Pool
 {
-    public class WorkerPool : ObjectPool<Worker.Worker>
+    public class WorkerPool : ObjectPool<Worker>
     {
-        [SerializeField] private Worker.Worker _prefab;
+        [SerializeField] private Worker[] _prefabs;
 
-        protected override Worker.Worker CreateObject()
+        private int _index = 0;
+
+        protected override Worker CreateObject()
         {
-            return Instantiate(_prefab, transform);
+            var worker = Instantiate(_prefabs[_index], transform);
+            _index = (_index + 1) % _prefabs.Length;
+            return worker;
         }
     }
 }

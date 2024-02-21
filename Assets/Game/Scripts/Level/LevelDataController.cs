@@ -1,7 +1,7 @@
 ﻿using CityBuilder.Building;
 using CityBuilder.Sounds;
-using CityBuilder.Worker;
-using CityBuilder.Worker.Wallet;
+using CityBuilder.Workers;
+using CityBuilder.Workers.Wallet;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,26 +10,26 @@ namespace CityBuilder.Level
 {
     public class LevelDataController : MonoBehaviour
     {
-        [Header("Controller")]
-        [SerializeField] private Gameplay _gameplay;
+        [Header("Controller")] [SerializeField]
+        private Gameplay _gameplay;
+
         [SerializeField] private BuildingController _building;
         [SerializeField] private Button _buttonX2Coins;
         [SerializeField] private Wallet _wallet;
-        
-        [Header("View")]
-        [SerializeField] private GameObject _levelCompletedScreen;
+
+        [Header("View")] [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private FactoryWorker _factoryWorker;
         [SerializeField] private GameObject _buttons;
         [SerializeField] private AudioClip _soundEffect;
-       
+
         private Coroutine _coroutine;
         private int _currentIndex;
-        
+
         private LevelDataView _levelDataView;
         private LevelDataModel _levelDataVModel;
 
         private int _levelNumber = 2;
-        
+
         private const int AmountOfDoubling = 1000;
 
         private void Awake()
@@ -68,20 +68,20 @@ namespace CityBuilder.Level
         {
             Time.timeScale = 0;
             SoundManager.Instance.StopSoundGame();
-        } 
-        
+        }
+
         private void OnRewardedCallback()
         {
             _wallet.AddCoins(AmountOfDoubling);
         }
-        
+
         private void OnCloseCallback()
         {
             Time.timeScale = 1;
             SoundManager.Instance.PlaySoundGame();
             _buttonX2Coins.interactable = false;
         }
-        
+
         private void OnCloseCallback(bool wasShown)
         {
             if (wasShown)
@@ -90,7 +90,7 @@ namespace CityBuilder.Level
                 SoundManager.Instance.PlaySoundGame();
             }
         }
-        
+
         private void OnConstructedBuilding()
         {
             _levelNumber = _levelDataVModel.AdvanceNextLevel();

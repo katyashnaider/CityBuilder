@@ -1,11 +1,12 @@
-﻿using DG.Tweening;
+﻿using CityBuilder.Upgrades;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CityBuilder
 {
     public class Gameplay : MonoBehaviour
     {
-        [SerializeField] private Upgrade.Upgrade[] _upgrades;
+        [SerializeField] private Upgrade[] _upgrades;
 
         private RestartEntity[] _restartEntities;
 
@@ -32,7 +33,7 @@ namespace CityBuilder
                 restartEntity.Restart();
             }
 
-            foreach (Upgrade.Upgrade upgrade in _upgrades)
+            foreach (Upgrade upgrade in _upgrades)
             {
                 upgrade.RestartLevel();
             }

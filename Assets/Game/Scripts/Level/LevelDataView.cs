@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using CityBuilder.Sounds;
-using CityBuilder.Worker;
+using CityBuilder.Workers;
 using UnityEngine;
 
 namespace CityBuilder.Level

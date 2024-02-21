@@ -6297,6 +6297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _portraitFOV: 44
   _landscapeFOV: 44
+  _zoomSpeed: 1
 --- !u!114 &332740869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41203,6 +41204,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 831781297}
     m_Modifications:
+    - target: {fileID: 9205076534999772216, guid: dda1d7d1ab6d633478412741b2eae71e, type: 3}
+      propertyPath: _prefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205076534999772216, guid: dda1d7d1ab6d633478412741b2eae71e, type: 3}
+      propertyPath: _prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 304543845937773322, guid: fc89ae3e2ae9a354d8d909ac24b3a237, type: 3}
+    - target: {fileID: 9205076534999772216, guid: dda1d7d1ab6d633478412741b2eae71e, type: 3}
+      propertyPath: _prefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7484220327571786907, guid: fe3b06085654b294fa99d1735bb81d00, type: 3}
     - target: {fileID: 9205076537029557882, guid: dda1d7d1ab6d633478412741b2eae71e, type: 3}
       propertyPath: _price
       value: 2

@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using CityBuilder.Workers;
 using UnityEngine;
 
 namespace CityBuilder.Camera
@@ -20,7 +21,7 @@ namespace CityBuilder.Camera
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    if (hit.collider.TryGetComponent(out Worker.Worker worker))
+                    if (hit.collider.TryGetComponent(out Worker worker))
                     {
                         worker.ApplySpeedModificator();
                     }

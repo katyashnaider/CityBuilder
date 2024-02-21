@@ -432,7 +432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b8b9812f144b8b69de732c72d7fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: -3355736274507839367, guid: 47c383ac2ae30f04f9c3ea1182565886, type: 3}
+  _prefabs:
+  - {fileID: 304543845937773322, guid: fc89ae3e2ae9a354d8d909ac24b3a237, type: 3}
+  - {fileID: 7484220327571786907, guid: fe3b06085654b294fa99d1735bb81d00, type: 3}
 --- !u!4 &21713240
 Transform:
   m_ObjectHideFlags: 0
@@ -441,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21713238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.86, y: 0.47, z: 36.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11420,7 +11422,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &707456785
 PrefabInstance:
@@ -33245,6 +33247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7088517349720442173, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
+      propertyPath: _price
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088517349720442173, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
       propertyPath: _wallet
       value: 
       objectReference: {fileID: 2050325742}
@@ -33563,7 +33569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185128169289181916, guid: 46f75c9f37cfde44495b4e48d749aaa8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7185128169289181916, guid: 46f75c9f37cfde44495b4e48d749aaa8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36601,6 +36607,10 @@ PrefabInstance:
     - target: {fileID: 7818254753735824221, guid: 302a49366b3ac5d4fb6006ad726bbd10, type: 3}
       propertyPath: m_Name
       value: Building
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818254753735824221, guid: 302a49366b3ac5d4fb6006ad726bbd10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7818254753735824222, guid: 302a49366b3ac5d4fb6006ad726bbd10, type: 3}
       propertyPath: _decoration
