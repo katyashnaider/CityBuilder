@@ -27,6 +27,8 @@ namespace CityBuilder.UI
 
         public void Toggle()
         {
+            _currentIndex = PlayerPrefs.HasKey("SoundIcon") ? PlayerPrefs.GetInt("SoundIcon", _currentIndex) : 0;
+            
             if (_toggleSprites.Length == 0)
             {
                 return;

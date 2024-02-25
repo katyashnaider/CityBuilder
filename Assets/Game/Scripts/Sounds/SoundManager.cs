@@ -22,7 +22,8 @@ namespace CityBuilder.Sounds
                 Destroy(gameObject);
             }
 
-            if (PlayerPrefs.HasKey("MuteSoundMainMenu") || PlayerPrefs.HasKey("MuteSoundGame") || PlayerPrefs.HasKey("MuteSoundEffect"))
+            if (PlayerPrefs.HasKey("MuteSoundMainMenu") || PlayerPrefs.HasKey("MuteSoundGame") ||
+                PlayerPrefs.HasKey("MuteSoundEffect"))
             {
                 LoadMuteSound();
             }
@@ -35,6 +36,18 @@ namespace CityBuilder.Sounds
         public void PlaySoundMainMenu()
         {
             _musicSoundMainMenu.Play();
+        } 
+        
+        public void MuteSound(bool mute)
+        {
+            LoadMuteSound();
+            
+            if (mute == false)
+                return;
+            
+            _musicSoundMainMenu.mute = mute;
+            _musicSoundGame.mute = mute;
+            _effectSource.mute = mute;
         }
 
         public void PlaySoundGame()
@@ -77,18 +90,16 @@ namespace CityBuilder.Sounds
 
         private void LoadMuteSound()
         {
-
             _musicSoundMainMenu.mute = PlayerPrefs.GetInt("MuteSoundMainMenu") == 1;
             _musicSoundGame.mute = PlayerPrefs.GetInt("MuteSoundGame") == 1;
             _effectSource.mute = PlayerPrefs.GetInt("MuteSoundEffect") == 1;
         }
-        
+
         private void SetDefaultMuteSound()
         {
-
-            _musicSoundMainMenu.mute = true;
-            _musicSoundGame.mute = true;
-            _effectSource.mute = true;
+            _musicSoundMainMenu.mute = false;
+            _musicSoundGame.mute = false;
+            _effectSource.mute = false;
         }
     }
 }

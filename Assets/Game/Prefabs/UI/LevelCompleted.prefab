@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 4881411496686358788}
   - component: {fileID: 4881411496686358790}
   - component: {fileID: 4881411496686358791}
+  - component: {fileID: 3696642811967219877}
   m_Layer: 5
   m_Name: TextLevelCompleted
   m_TagString: Untagged
@@ -906,7 +907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u043F\u0440\u043E\u0439\u0434\u0435\u043D!"
+  m_text: "N\xEDvel ConClu\xEDdo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
   m_sharedMaterial: {fileID: 4350932662026642537, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
@@ -975,6 +976,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3696642811967219877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4881411496686358789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: LevelCompletedText
+  FallbackText: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u043F\u0440\u043E\u0439\u0434\u0435\u043D!"
 --- !u!1 &4881411497394638180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1539,7 @@ GameObject:
   - component: {fileID: 8898495779929033921}
   - component: {fileID: 4781648816801268640}
   - component: {fileID: 3100035060741014867}
+  - component: {fileID: 8052726629133041186}
   m_Layer: 5
   m_Name: TextNextLevel
   m_TagString: Untagged
@@ -1579,7 +1595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "x2 \u043C\u043E\u043D\u0435\u0442"
+  m_text: x2 Moedas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
   m_sharedMaterial: {fileID: 4350932662026642537, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
@@ -1606,7 +1622,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.5
+  m_fontSize: 34.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1648,6 +1664,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8052726629133041186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673332331234753419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: x2CoinsText
+  FallbackText: "x2 \u043C\u043E\u043D\u0435\u0442"
 --- !u!1 &6703791282390538767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1689,7 @@ GameObject:
   - component: {fileID: 2456769280783941708}
   - component: {fileID: 7826620577266646412}
   - component: {fileID: 4671136944814384251}
+  - component: {fileID: 10085432209803093}
   m_Layer: 5
   m_Name: TextNextLevel
   m_TagString: Untagged
@@ -1714,7 +1745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u0430\u043B\u0435\u0435"
+  m_text: Proximo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
   m_sharedMaterial: {fileID: 4350932662026642537, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
@@ -1741,7 +1772,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.45
+  m_fontSize: 43.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1783,6 +1814,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &10085432209803093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703791282390538767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: NextText
+  FallbackText: "\u0414\u0430\u043B\u0435\u0435"
 --- !u!1 &8086035291960520580
 GameObject:
   m_ObjectHideFlags: 0
