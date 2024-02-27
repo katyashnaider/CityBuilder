@@ -3,7 +3,6 @@ using System.Linq;
 using CityBuilder.Save;
 using CityBuilder.UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CityBuilder.Building
 {
@@ -18,7 +17,7 @@ namespace CityBuilder.Building
         [Header("Building Parts")]
         [SerializeField] private BuildingPart[] _buildingsParts;
 
-        private Transform _createdCanvasCoins;
+        private Transform _createdCanvasCoinsRoot;
 
         private int _currentIndex;
 
@@ -37,13 +36,13 @@ namespace CityBuilder.Building
                 _buildingsParts[i].gameObject.SetActive(true);
             }
 
-            _createdCanvasCoins = Instantiate(_viewCoinsPrefab.transform, transform);
+            _createdCanvasCoinsRoot = Instantiate(_viewCoinsPrefab.transform, transform);
 
-            CanvasGroup canvasGroup = _createdCanvasCoins.GetComponent<CanvasGroup>();
+            CanvasGroup canvasGroup = _createdCanvasCoinsRoot.GetComponent<CanvasGroup>();
 
             foreach (BuildingPart part in _buildingsParts)
             {
-                part.Construct(_partSettings, _createdCanvasCoins, canvasGroup, _viewCoinsPrefab, _particleSystem, _clip);
+                part.Construct(_partSettings, _createdCanvasCoinsRoot, canvasGroup, _viewCoinsPrefab, _particleSystem, _clip);
             }
         }
 

@@ -9,23 +9,23 @@ namespace CityBuilder.Building
     public class BuildingPart : MonoBehaviour
     {
         private const float AnimationDelay = 2f;
-        
+
         private CanvasGroup _canvasGroup;
         private AudioClip _clip;
 
         private Coroutine _coroutine;
-        private Transform _createdCanvasCoins;
-        private Tweener _fadeOutAnimation;
 
-        private Tweener _moveAnimation;
+        private Transform _createdCanvasCoinsRoot;
         private ParticleSystem _particleSystem;
         private ParticleSystem _particleSystemInstance;
 
         private int _price;
         private BuildingPartSettings _settings;
         private ViewCoins _viewCoins;
+        private Tweener _moveTextTween;
 
-        public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup, ViewCoins viewCoins,
+        public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup,
+            ViewCoins viewCoins,
             ParticleSystem particleSystem, AudioClip clip)
         {
             _settings = settings;
@@ -33,7 +33,7 @@ namespace CityBuilder.Building
             _viewCoins = viewCoins;
             _canvasGroup = canvasGroup;
             _canvasGroup.alpha = 0;
-            _createdCanvasCoins = createdCanvasCoins;
+            _createdCanvasCoinsRoot = createdCanvasCoins;
             _clip = clip;
         }
 
@@ -48,10 +48,10 @@ namespace CityBuilder.Building
 
             PlayParticleSystemEffect();
 
-            if (_coroutine is not null)
-            {
-                StopCoroutine(_coroutine);
-            }
+            // if (_coroutine is not null)
+            // {
+            //     StopCoroutine(_coroutine);
+            // }
 
             _coroutine = StartCoroutine(LaunchAnimationParts());
         }
@@ -70,25 +70,33 @@ namespace CityBuilder.Building
 
         private void OffAnimation()
         {
-            _createdCanvasCoins.gameObject.SetActive(false);
+            _viewCoins.StopAnimation();
+
+            _createdCanvasCoinsRoot.gameObject.SetActive(false);
             _canvasGroup.alpha = 1;
 
             if (_particleSystemInstance is not null)
             {
-                Destroy(_particleSystemInstance.gameObject);
+                _particleSystemInstance.Stop();
+                //Destroy(_particleSystemInstance.gameObject);
             }
         }
 
         private IEnumerator LaunchAnimationParts()
         {
+            OffAnimation();
+            _particleSystemInstance.Play();
+
             WaitForSeconds launchAnimationParts = new WaitForSeconds(AnimationDelay);
 
             _viewCoins.UpdatePrice(_price);
-            _createdCanvasCoins.gameObject.SetActive(true);
+            _createdCanvasCoinsRoot.gameObject.SetActive(true);
+            Vector3 position = transform.position;
 
-            _viewCoins.SetPosition(transform, _createdCanvasCoins);
-            _viewCoins.CycleText(_canvasGroup, _settings).OnComplete(OffAnimation);
-            
+            _createdCanvasCoinsRoot.transform.SetParent(transform);
+            _createdCanvasCoinsRoot.transform.position = new Vector3(position.x, position.y + 2f, position.z);
+            _moveTextTween = _viewCoins.CycleText(_canvasGroup, _settings).OnComplete(OffAnimation);
+
             yield return launchAnimationParts;
         }
     }

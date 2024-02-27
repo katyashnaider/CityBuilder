@@ -21,17 +21,23 @@ namespace CityBuilder.UI
         {
             Vector3 position = transformPart.position;
 
-            createdCanvasCoins.transform.parent = transformPart;
+            createdCanvasCoins.transform.SetParent(transformPart);
             createdCanvasCoins.transform.position = new Vector3(position.x, position.y + 2f, position.z);
         }
         
         public Tweener CycleText(CanvasGroup canvas, BuildingPartSettings settings)
         {
+            //DOTween.Sequence().Join(0,);
             _moveAnimation = canvas.transform.DOMoveY(canvas.transform.position.y + settings.OffsetPosition, settings.Duration).SetEase(Ease.OutQuad);
             return _fadeOutAnimation = canvas.DOFade(0f, settings.Duration).SetEase(Ease.Linear);
         }
         
         public override void Restart()
+        {
+            StopAnimation();
+        }
+
+        public void StopAnimation()
         {
             _moveAnimation.Kill();
             _fadeOutAnimation.Kill();

@@ -36197,6 +36197,10 @@ PrefabInstance:
       propertyPath: _partSettings._duration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7818254753735824223, guid: 302a49366b3ac5d4fb6006ad726bbd10, type: 3}
+      propertyPath: _partSettings._offsetPosition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7818254754217752754, guid: 302a49366b3ac5d4fb6006ad726bbd10, type: 3}
       propertyPath: m_Name
       value: Centre
