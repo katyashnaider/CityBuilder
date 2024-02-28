@@ -42,7 +42,7 @@ namespace CityBuilder.Sounds
         {
             LoadMuteSound();
             
-            if (mute == false)
+            if (_musicSoundMainMenu.mute && _musicSoundGame.mute && _effectSource.mute)
                 return;
             
             _musicSoundMainMenu.mute = mute;

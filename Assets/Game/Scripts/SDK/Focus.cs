@@ -1,7 +1,6 @@
 ﻿using Agava.WebUtility;
 using CityBuilder.Sounds;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace CityBuilder.SDK
 {

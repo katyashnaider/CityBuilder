@@ -10,14 +10,15 @@ namespace CityBuilder.Level
 {
     public class LevelDataController : MonoBehaviour
     {
-        [Header("Controller")] [SerializeField]
-        private Gameplay _gameplay;
+        [Header("Controller")] 
+        [SerializeField] private Gameplay _gameplay;
 
         [SerializeField] private BuildingController _building;
         [SerializeField] private Button _buttonX2Coins;
         [SerializeField] private Wallet _wallet;
 
-        [Header("View")] [SerializeField] private GameObject _levelCompletedScreen;
+        [Header("View")] 
+        [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private FactoryWorker _factoryWorker;
         [SerializeField] private GameObject _buttons;
         [SerializeField] private AudioClip _soundEffect;
@@ -67,7 +68,7 @@ namespace CityBuilder.Level
         private void OnOpenCallback()
         {
             Time.timeScale = 0;
-            SoundManager.Instance.StopSoundGame();
+            SoundManager.Instance.MuteSound(true);
         }
 
         private void OnRewardedCallback()
@@ -78,7 +79,7 @@ namespace CityBuilder.Level
         private void OnCloseCallback()
         {
             Time.timeScale = 1;
-            SoundManager.Instance.PlaySoundGame();
+            SoundManager.Instance.MuteSound(false);
             _buttonX2Coins.interactable = false;
         }
 
@@ -87,7 +88,7 @@ namespace CityBuilder.Level
             if (wasShown)
             {
                 Time.timeScale = 1;
-                SoundManager.Instance.PlaySoundGame();
+                SoundManager.Instance.MuteSound(false);
             }
         }
 
