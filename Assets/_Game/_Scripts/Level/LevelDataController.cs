@@ -20,8 +20,8 @@ namespace CityBuilder.Level
         [Header("View")] 
         [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private FactoryWorker _factoryWorker;
-        [SerializeField] private GameObject _buttons;
         [SerializeField] private AudioClip _soundEffect;
+        [SerializeField] private GameObject[] _buttons;
 
         private Coroutine _coroutine;
         private int _currentIndex;

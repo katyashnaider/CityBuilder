@@ -2,6 +2,7 @@
 using CityBuilder.Sounds;
 using CityBuilder.Workers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CityBuilder.Level
 {
@@ -9,11 +10,11 @@ namespace CityBuilder.Level
     {
         private const float AnimationDelay = 5f;
         private const float ActionDelay = 0.4f;
-        private readonly GameObject _buttons;
+        private readonly GameObject[] _buttons;
         private readonly FactoryWorker _factoryWorker;
         private readonly GameObject _levelCompletedScreen;
 
-        public LevelDataView(GameObject levelCompletedScreen, GameObject buttons, FactoryWorker factoryWorker)
+        public LevelDataView(GameObject levelCompletedScreen, GameObject[] buttons, FactoryWorker factoryWorker)
         {
             _levelCompletedScreen = levelCompletedScreen;
             _buttons = buttons;
@@ -31,7 +32,11 @@ namespace CityBuilder.Level
             yield return new WaitForSeconds(AnimationDelay);
 
             _levelCompletedScreen.SetActive(isShown);
-            _buttons.SetActive(!isShown);
+            
+            foreach (var button in _buttons)
+            {
+                button.SetActive(!isShown);
+            }
         }
     }
 }
