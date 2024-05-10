@@ -32829,7 +32829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7088517349720442173, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
       propertyPath: _price
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7088517349720442173, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
       propertyPath: _wallet

@@ -37191,11 +37191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2969792658995892095, guid: 81e3bd2f9ab423146ad0663d961c303c, type: 3}
       propertyPath: entries.Array.data[0].Text
-      value: Rapidez
+      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 2969792659221348151, guid: 81e3bd2f9ab423146ad0663d961c303c, type: 3}
       propertyPath: entries.Array.data[0].Text
-      value: Trabalho
+      value: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439"
       objectReference: {fileID: 0}
     - target: {fileID: 4008555656582067145, guid: 81e3bd2f9ab423146ad0663d961c303c, type: 3}
       propertyPath: m_RootOrder
