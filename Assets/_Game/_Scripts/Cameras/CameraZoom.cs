@@ -1,7 +1,6 @@
-﻿using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CityBuilder.Camera
+namespace CityBuilder.Cameras
 {
     public class CameraZoom : MonoBehaviour
     {

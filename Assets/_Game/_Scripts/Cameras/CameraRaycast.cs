@@ -1,8 +1,7 @@
-﻿using Cinemachine;
-using CityBuilder.Workers;
+﻿using CityBuilder.Workers;
 using UnityEngine;
 
-namespace CityBuilder.Camera
+namespace CityBuilder.Cameras
 {
     public class CameraRaycast : MonoBehaviour
     {

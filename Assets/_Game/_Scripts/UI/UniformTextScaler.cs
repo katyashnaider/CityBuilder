@@ -10,7 +10,6 @@ namespace CityBuilder.UI
         void Start()
         {
             float minFontSize = FindMinFontSize();
-            Debug.Log("мин размер" + minFontSize);
 
             SetTextFontSize(minFontSize);
         }
@@ -36,8 +35,6 @@ namespace CityBuilder.UI
             {
                 textElement.fontSizeMin = fontSize;
                 textElement.fontSizeMax = fontSize;
-                //textElement.fontSize = fontSize;
-                Debug.Log("+");
             }
         }
     }

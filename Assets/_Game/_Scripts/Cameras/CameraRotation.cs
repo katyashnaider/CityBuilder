@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CityBuilder.Camera
+namespace CityBuilder.Cameras
 {
     internal sealed class CameraRotation : MonoBehaviour
     {

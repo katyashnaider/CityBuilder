@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace CityBuilder.Camera
+namespace CityBuilder.Cameras
 {
     internal sealed class CameraControl : MonoBehaviour
     {

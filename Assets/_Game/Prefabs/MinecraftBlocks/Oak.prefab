@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4704673384410624}
   - component: {fileID: 23740290200571400}
   - component: {fileID: 33247109023385232}
-  - component: {fileID: 1941823352537455442}
   m_Layer: 0
   m_Name: Oak
   m_TagString: Untagged
@@ -84,15 +83,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003935088823730}
   m_Mesh: {fileID: 4300000, guid: 799d1553e777b064da196b6922de22d7, type: 3}
---- !u!114 &1941823352537455442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003935088823730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54544dd8a335a88458567ad9198a7e2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
