@@ -51,7 +51,7 @@ MonoBehaviour:
     _duration: 2
     _offsetPosition: 3
   _particleSystem: {fileID: 19855650, guid: fe394d041df1a0547990f49cf653249f, type: 3}
-  _canvasCoins: {fileID: 7650156698651356438, guid: ea72b8d3a4679274db53cfb2f20facb6, type: 3}
+  _viewCoinsPrefab: {fileID: 410151253685794199, guid: ea72b8d3a4679274db53cfb2f20facb6, type: 3}
   _clip: {fileID: 8300000, guid: 915da56a32953c44e9628e760cacc6c0, type: 3}
   _buildingsParts:
   - {fileID: 7722219398181507840}

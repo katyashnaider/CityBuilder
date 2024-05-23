@@ -9,6 +9,7 @@ namespace CityBuilder.Save
         {
             string json = JsonUtility.ToJson(saveData);
             PlayerPrefs.SetString(key, json);
+            PlayerPrefs.Save();
         }
 
         public Save LoadProgress(string key)

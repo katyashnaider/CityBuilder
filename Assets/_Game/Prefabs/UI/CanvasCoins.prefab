@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7650156698651356438}
   - component: {fileID: 8892210570965399923}
-  - component: {fileID: 201592657475315430}
   - component: {fileID: 8237187685149964182}
   - component: {fileID: 4765133050879519351}
-  - component: {fileID: 2734013122935668764}
+  - component: {fileID: 3397149755800506767}
   m_Layer: 5
   m_Name: CanvasCoins
   m_TagString: Untagged
@@ -64,29 +63,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &201592657475315430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363269728275100634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!114 &8237187685149964182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +92,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2734013122935668764
+--- !u!114 &3397149755800506767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2d51904c9b42148205a899d8cdbb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: {fileID: 2474808061016122347}
+  _priceText: {fileID: 2474808061016122347}
 --- !u!1 &1796905079552577779
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}
   m_sharedMaterial: {fileID: 4350932662026642537, guid: be735e86986ebd344b9c108e6d4aa7bb, type: 2}

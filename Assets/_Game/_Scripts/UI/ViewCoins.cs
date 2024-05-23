@@ -7,14 +7,17 @@ namespace CityBuilder.UI
 {
     public class ViewCoins : RestartEntity
     {
-        [SerializeField] private TMP_Text _price;
+        [SerializeField] private TMP_Text _priceText;
 
         private Tweener _moveAnimation;
         private Tweener _fadeOutAnimation;
         
         public void UpdatePrice(int price)
         {
-            _price.text = price.ToString();
+            Debug.Log("До " + price + _priceText.transform.GetFullPath(), _priceText.transform.parent);
+            _priceText.text = price.ToString();
+            Debug.Log("После " + price);
+            Debug.Log("Текст " + _priceText.text);
         }
         
         public void SetPosition(Transform transformPart, Transform createdCanvasCoins)

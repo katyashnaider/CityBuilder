@@ -9,7 +9,6 @@ namespace CityBuilder
 {
     public class Tutorial : MonoBehaviour
     {
-        [SerializeField] private CinemachineFreeLook _virtualCamera;
         [SerializeField] private CanvasGroup _popup1;
         [SerializeField] private CanvasGroup _popup2;
         [SerializeField] private Vector3 _targetScale = new(2f, 2f, 2f);
@@ -21,10 +20,8 @@ namespace CityBuilder
         private Camera _camera;
         private Tween _scaleTween;
         private bool _isCompletedTutorial = false;
-        private int _currentIndexTutorialText = 0;
         private Quaternion _lastCameraRotation;
         private Vector2 _startPosition;
-        private Tween _popupTween;
         private Coroutine _coroutine;
 
         private void Awake()
@@ -36,7 +33,7 @@ namespace CityBuilder
         {
             _isCompletedTutorial = PlayerPrefs.GetInt("IsCompletedTutorial", 0) == 1;
             gameObject.SetActive(!_isCompletedTutorial);
-            
+
             if (_isCompletedTutorial == false)
             {
                 StartScaleAnimation(_popup1);
@@ -49,7 +46,7 @@ namespace CityBuilder
             {
                 return;
             }
-            
+
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -67,14 +64,14 @@ namespace CityBuilder
         private void StartAnimation(CanvasGroup popup, Action onCompleteAction)
         {
             _scaleTween.Kill();
-            
+
             popup.gameObject.transform
                 .DOMoveY(popup.transform.position.y + _offsetPosition, _durationOffset)
                 .SetEase(Ease.OutQuad);
             popup.DOFade(0f, _durationOffset).SetEase(Ease.Linear)
                 .OnComplete(() => onCompleteAction());
         }
-        
+
         private void StartScaleAnimation(CanvasGroup popup)
         {
             popup.transform.localScale = Vector3.one;
@@ -83,7 +80,7 @@ namespace CityBuilder
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() =>
                 {
-                    _popupTween = popup.transform.DOScale(Vector3.one, _durationScale)
+                    popup.transform.DOScale(Vector3.one, _durationScale)
                         .SetEase(Ease.OutQuad)
                         .OnComplete(() => StartScaleAnimation(popup));
                 });
@@ -93,24 +90,24 @@ namespace CityBuilder
         {
             _coroutine = StartCoroutine(ShowPopup());
         }
-        
+
         private void CompleteTutorial()
         {
             _isCompletedTutorial = true;
             StopCoroutine(_coroutine);
             gameObject.SetActive(false);
-            
+
             PlayerPrefs.SetInt("IsCompletedTutorial", _isCompletedTutorial ? 1 : 0);
             PlayerPrefs.Save();
         }
-        
+
         private IEnumerator ShowPopup()
         {
             _popup2.alpha = 1;
             StartScaleAnimation(_popup2);
 
             yield return new WaitForSeconds(_secondsEnd);
-            
+
             StartAnimation(_popup2, CompleteTutorial);
         }
     }

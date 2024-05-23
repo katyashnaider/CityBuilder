@@ -8,14 +8,15 @@ namespace CityBuilder.Building
 {
     public sealed class BuildingController : RestartEntity
     {
-        [Header("References")]
-        [SerializeField] private BuildingPartSettings _partSettings;
+        [Header("References")] [SerializeField]
+        private BuildingPartSettings _partSettings;
+
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private ViewCoins _viewCoinsPrefab;
         [SerializeField] private AudioClip _clip;
 
-        [Header("Building Parts")]
-        [SerializeField] private BuildingPart[] _buildingsParts;
+        [Header("Building Parts")] [SerializeField]
+        private BuildingPart[] _buildingsParts;
 
         private Transform _createdCanvasCoinsRoot;
 
@@ -37,12 +38,14 @@ namespace CityBuilder.Building
             }
 
             _createdCanvasCoinsRoot = Instantiate(_viewCoinsPrefab.transform, transform);
+            var coinInstance = _createdCanvasCoinsRoot.GetComponentInChildren<ViewCoins>();
 
             CanvasGroup canvasGroup = _createdCanvasCoinsRoot.GetComponent<CanvasGroup>();
 
             foreach (BuildingPart part in _buildingsParts)
             {
-                part.Construct(_partSettings, _createdCanvasCoinsRoot, canvasGroup, _viewCoinsPrefab, _particleSystem, _clip);
+                part.Construct(_partSettings, _createdCanvasCoinsRoot, canvasGroup, coinInstance, _particleSystem,
+                    _clip);
             }
         }
 
@@ -113,7 +116,8 @@ namespace CityBuilder.Building
         [ContextMenu("RemoveDuplicate")]
         private void RemoveParts()
         {
-            BuildingPart[] buildingsParts = GetComponentsInChildren<BuildingPart>().OrderBy(x => x.transform.position.y).ToArray();
+            BuildingPart[] buildingsParts =
+                GetComponentsInChildren<BuildingPart>().OrderBy(x => x.transform.position.y).ToArray();
 
             for (int i = 0; i < buildingsParts.Length; i++)
             {

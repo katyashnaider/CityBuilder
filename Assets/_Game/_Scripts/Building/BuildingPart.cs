@@ -25,8 +25,7 @@ namespace CityBuilder.Building
         private Tweener _moveTextTween;
 
         public void Construct(BuildingPartSettings settings, Transform createdCanvasCoins, CanvasGroup canvasGroup,
-            ViewCoins viewCoins,
-            ParticleSystem particleSystem, AudioClip clip)
+            ViewCoins viewCoins, ParticleSystem particleSystem, AudioClip clip)
         {
             _settings = settings;
             _particleSystem = particleSystem;
@@ -78,17 +77,18 @@ namespace CityBuilder.Building
             if (_particleSystemInstance is not null)
             {
                 _particleSystemInstance.Stop();
-                //Destroy(_particleSystemInstance.gameObject);
+                Destroy(_particleSystemInstance.gameObject);
             }
         }
 
         private IEnumerator LaunchAnimationParts()
         {
-            OffAnimation();
+          //  OffAnimation();
             _particleSystemInstance.Play();
 
             WaitForSeconds launchAnimationParts = new WaitForSeconds(AnimationDelay);
 
+            Debug.Log("обновление текста ", this);
             _viewCoins.UpdatePrice(_price);
             _createdCanvasCoinsRoot.gameObject.SetActive(true);
             Vector3 position = transform.position;

@@ -38078,9 +38078,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4227611175786258034, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227611176097038144, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
+      propertyPath: _viewCoinsPrefab
+      value: 
+      objectReference: {fileID: 3397149755800506767, guid: ea72b8d3a4679274db53cfb2f20facb6, type: 3}
     - target: {fileID: 4227611176097038149, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
       propertyPath: m_Name
       value: Building4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227611176097038149, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4227611176097038150, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
       propertyPath: m_RootOrder
@@ -38134,6 +38146,10 @@ PrefabInstance:
       propertyPath: _smokeEffect
       value: 
       objectReference: {fileID: 644433188}
+    - target: {fileID: 4227611176559362964, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5632065156552431949, guid: e6bee6e5f9b604b43b25604a2c5b2aec, type: 3}
       propertyPath: m_IsActive
       value: 0
