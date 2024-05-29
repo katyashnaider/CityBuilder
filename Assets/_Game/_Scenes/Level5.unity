@@ -20455,6 +20455,10 @@ PrefabInstance:
       propertyPath: _wallet
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2529638986987831014, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
+      propertyPath: _upgradeAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3699711077492838255, guid: 51b2ad3eff7237a4caaf05c4bb9da833, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

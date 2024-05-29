@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2270989724007824481
 Transform:
@@ -812,7 +812,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6550470809884981810
 Transform:
@@ -822,7 +822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6550470809884981809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: -6.866879, z: 35.66}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -848,7 +848,7 @@ MonoBehaviour:
     _duration: 1
     _offsetPosition: 3
   _particleSystem: {fileID: 19855650, guid: fe394d041df1a0547990f49cf653249f, type: 3}
-  _canvasCoins: {fileID: 7650156698651356438, guid: ea72b8d3a4679274db53cfb2f20facb6, type: 3}
+  _viewCoinsPrefab: {fileID: 0}
   _clip: {fileID: 8300000, guid: 915da56a32953c44e9628e760cacc6c0, type: 3}
   _buildingsParts:
   - {fileID: 586920597020626707}
@@ -1589,7 +1589,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1239503404390839454
 Transform:
@@ -1670,7 +1670,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2000025342379883302
 Transform:
@@ -3013,6 +3013,10 @@ PrefabInstance:
     - target: {fileID: 1771655423886604298, guid: a5c6e7794cb0c514ea7a59df168f57bc, type: 3}
       propertyPath: m_Name
       value: SmokeExplosionWhite
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771655423886604298, guid: a5c6e7794cb0c514ea7a59df168f57bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c6e7794cb0c514ea7a59df168f57bc, type: 3}
@@ -68028,6 +68032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 7031007200450080508, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7031007200450080511, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -68071,6 +68079,14 @@ PrefabInstance:
     - target: {fileID: 7031007200450080511, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322128117645354407, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591949029786631319, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4983a2d12c79a7f44a9b13bdd5813a0c, type: 3}
