@@ -1,54 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1825331920733585509
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8137989702633916706}
-  - component: {fileID: 6842691771104603633}
-  m_Layer: 0
-  m_Name: Portuguese
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8137989702633916706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825331920733585509}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6842691771104603633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825331920733585509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225ec97158446a94d9cb40a9f742a8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationCode: pt
-  cultures:
-  - pt
-  - pt-BR
-  - pt-PT
 --- !u!1 &4638507991448537606
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1491250043271314251
 MonoBehaviour:
@@ -139,7 +90,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5109663327181846651
 MonoBehaviour:
@@ -155,9 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 0
   entries:
-  - Language: Portuguese
-    Text: "A publicidade come\xE7a em"
-    Object: {fileID: 0}
   - Language: Russian
     Text: "\u0420\u0435\u043A\u043B\u0430\u043C\u0430 \u043D\u0430\u0447\u043D\u0435\u0442\u0441\u044F
       \u0447\u0435\u0440\u0435\u0437"
@@ -195,7 +143,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5106409030412596474
 MonoBehaviour:
@@ -243,7 +191,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8137989702889060888
 MonoBehaviour:
@@ -259,9 +207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 0
   entries:
-  - Language: Portuguese
-    Text: Jogar
-    Object: {fileID: 0}
   - Language: Russian
     Text: "\u0418\u0433\u0440\u0430\u0442\u044C"
     Object: {fileID: 0}
@@ -298,7 +243,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8137989703500743824
 MonoBehaviour:
@@ -314,12 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 2
   entries:
-  - Language: Portuguese
-    Text: 
-    Object: {fileID: 21300000, guid: f8fbf55b84b2e194e9aedd6aadea2c1b, type: 3}
   - Language: Russian
     Text: 
-    Object: {fileID: 21300000, guid: 2668804513ed7c6459438d8d3efd8d61, type: 3}
+    Object: {fileID: 21300000, guid: 609a8c734de924c4fbc52a8edf0c82b6, type: 3}
   - Language: English
     Text: 
     Object: {fileID: 21300000, guid: 3e6dc33c70ab5da4b836bf268b2bb055, type: 3}
@@ -353,7 +295,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8137989703893127397
 MonoBehaviour:
@@ -369,12 +311,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 2
   entries:
-  - Language: Portuguese
-    Text: 
-    Object: {fileID: 21300000, guid: f4c6c74c7bf91e048a91fe6ddd4597bd, type: 3}
   - Language: Russian
     Text: 
-    Object: {fileID: 21300000, guid: 97133ded899dc7c4fa24e93816184f17, type: 3}
+    Object: {fileID: 21300000, guid: 058474a90bdf7ef4bb8956eb2d7982bc, type: 3}
   - Language: English
     Text: 
     Object: {fileID: 21300000, guid: 4e136ce5a1ce7d34a8475b3b5f42326e, type: 3}
@@ -407,7 +346,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8137989702633916706}
   - {fileID: 8137989702737656594}
   - {fileID: 8137989704057141490}
   - {fileID: 8137989702889060889}
@@ -465,7 +403,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8137989703907471841}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8137989704673245506
 MonoBehaviour:
@@ -481,9 +419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 0
   entries:
-  - Language: Portuguese
-    Text: Carregamento
-    Object: {fileID: 0}
   - Language: Russian
     Text: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430"
     Object: {fileID: 0}
