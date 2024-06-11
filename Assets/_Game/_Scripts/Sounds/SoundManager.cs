@@ -40,6 +40,8 @@ namespace CityBuilder.Sounds
         
         public void MuteSound(bool mute)
         {
+            Debug.Log("MuteSound called with mute: " + mute);
+            
             LoadMuteSound();
             
             if (_musicSoundMainMenu.mute && _musicSoundGame.mute && _effectSource.mute)
@@ -48,6 +50,8 @@ namespace CityBuilder.Sounds
             _musicSoundMainMenu.mute = mute;
             _musicSoundGame.mute = mute;
             _effectSource.mute = mute;
+            
+            Debug.Log("Audio sources muted: " + mute);
         }
 
         public void PlaySoundGame()

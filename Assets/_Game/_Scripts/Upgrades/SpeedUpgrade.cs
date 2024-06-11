@@ -6,7 +6,8 @@ namespace CityBuilder.Upgrades
     public class SpeedUpgrade : Upgrade
     {
         public event Action<float> ChangedSpeed;
-
+        
+        
         private void Start()
         {
             if (PlayerPrefs.HasKey("SpeedUpgrade"))

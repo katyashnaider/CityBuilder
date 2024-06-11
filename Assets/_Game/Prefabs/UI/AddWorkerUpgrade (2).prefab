@@ -707,7 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradeView: {fileID: 5838771122878135414}
   _wallet: {fileID: 0}
-  _upgradeAmount: 1
+  _upgradeAmount: 2
   _price: 3
   _maxLevel: 5
   _spawnPoint: {fileID: 0}

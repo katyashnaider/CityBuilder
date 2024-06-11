@@ -17,7 +17,7 @@ namespace CityBuilder.Upgrades
         private int _counter;
 
         public int CurrentLevel { get; private set; }
-        public int CurrentPrice { get; private set; }
+        public int CurrentPrice;
 
         private void Awake()
         {
@@ -56,10 +56,9 @@ namespace CityBuilder.Upgrades
         {
             CurrentPrice = _price;
             CurrentLevel = 0;
-
-            SaveProgress("AddWorkerUpgrade");
-            SaveProgress("SpeedUpgrade");
-            SaveProgress("IncomeUpgrade");
+            PlayerPrefs.DeleteKey("AddWorkerUpgrade");
+            PlayerPrefs.DeleteKey("SpeedUpgrade");
+            PlayerPrefs.DeleteKey("IncomeUpgrade");
         }
 
         protected void UpgradeInfo()

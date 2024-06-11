@@ -88,7 +88,6 @@ namespace CityBuilder.Building
 
             WaitForSeconds launchAnimationParts = new WaitForSeconds(AnimationDelay);
 
-            Debug.Log("обновление текста ", this);
             _viewCoins.UpdatePrice(_price);
             _createdCanvasCoinsRoot.gameObject.SetActive(true);
             Vector3 position = transform.position;

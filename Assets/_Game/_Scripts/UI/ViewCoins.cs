@@ -14,10 +14,7 @@ namespace CityBuilder.UI
         
         public void UpdatePrice(int price)
         {
-            Debug.Log("До " + price + _priceText.transform.GetFullPath(), _priceText.transform.parent);
             _priceText.text = price.ToString();
-            Debug.Log("После " + price);
-            Debug.Log("Текст " + _priceText.text);
         }
         
         public void SetPosition(Transform transformPart, Transform createdCanvasCoins)

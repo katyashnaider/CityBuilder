@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 2969792657739316021}
   - component: {fileID: 2969792657739316020}
   m_Layer: 0
-  m_Name: x2CoinsText
+  m_Name: x2DiamondsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,10 +99,10 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Russian
-    Text: "x2 \u043C\u043E\u043D\u0435\u0442"
+    Text: "x2 \u0430\u043B\u043C\u0430\u0437\u043E\u0432"
     Object: {fileID: 0}
   - Language: English
-    Text: x2 coins
+    Text: x2 diamonds
     Object: {fileID: 0}
 --- !u!1 &2969792657962427727
 GameObject:
@@ -419,9 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: Russian
+  currentLanguage: English
   detectLanguage: 1
-  defaultLanguage: Russian
+  defaultLanguage: English
   saveLoad: 1
   prefabs: []
 --- !u!1 &7262077155628897518

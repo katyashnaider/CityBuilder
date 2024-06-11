@@ -4,7 +4,7 @@ namespace CityBuilder.Level
 {
     internal sealed class LevelDataModel
     {
-        private const int MaxLevel = 5;
+        private const int MaxLevel = 6;
         
         private int _levelNumber;
 

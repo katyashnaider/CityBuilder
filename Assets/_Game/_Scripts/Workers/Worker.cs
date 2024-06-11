@@ -10,7 +10,7 @@ namespace CityBuilder.Workers
     {
         [SerializeField] private BuildingPart _heldStone;
         [SerializeField] private TrailRenderer _trailEffect;
-        [SerializeField] private Animator _animator;
+       // [SerializeField] private Animator _animator;
 
         private BuildingController _buildingController;
 
