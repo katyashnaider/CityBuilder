@@ -8,7 +8,7 @@ namespace CityBuilder.Cameras
     {
         [SerializeField] private float _portraitFOV = 30f;
         [SerializeField] private float _landscapeFOV = 20f;
-        [SerializeField] private float _zoomSpeed = 1.0f;
+       // [SerializeField] private float _zoomSpeed = 1.0f;
         
         private const float Delay = 0.1f;
 

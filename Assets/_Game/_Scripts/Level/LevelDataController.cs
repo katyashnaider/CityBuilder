@@ -85,11 +85,11 @@ namespace CityBuilder.Level
 
         private void OnCloseCallback(bool wasShown)
         {
-            if (wasShown)
-            {
+            // if (wasShown)
+            // {
                 Time.timeScale = 1;
                 SoundManager.Instance.MuteSound(false);
-            }
+            // }
         }
 
         private void OnConstructedBuilding()

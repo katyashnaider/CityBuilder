@@ -85,7 +85,7 @@ namespace CityBuilder.SDK
 
         private void OnCloseCallback(bool wasShown)
         {
-            if (wasShown)
+            //if (wasShown)
             {
                 Time.timeScale = 1;
                 SoundManager.Instance.MuteSound(false);
