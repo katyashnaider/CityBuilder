@@ -1,5 +1,3 @@
-using System;
-using Agava.YandexGames;
 using CityBuilder.Save;
 using CityBuilder.Sounds;
 using UnityEngine;
@@ -15,13 +13,10 @@ namespace CityBuilder.UI
         private bool _isOpen;
         private int _levelNumber;
 
-        private void Awake()
-        {
-           // YandexGamesSdk.GameReady();
-        }
-
         private void Start()
         {
+            Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback);
+            
             _levelNumber = PlayerPrefs.HasKey("LevelNumber") ? LoadProgress("LevelNumber") : 2;
 
             if (_levelNumber <= _buildings.Length)
@@ -55,6 +50,18 @@ namespace CityBuilder.UI
             ProgressHandler.Save loadedData = progressHandler.LoadProgress(key);
 
             return _levelNumber = loadedData.LevelNumber;
+        }
+        
+        private void OnOpenCallback()
+        {
+            Time.timeScale = 0;
+            SoundManager.Instance.MuteSound(true);
+        }
+
+        private void OnCloseCallback(bool wasShown)
+        {
+            Time.timeScale = 1;
+            SoundManager.Instance.MuteSound(false);
         }
     }
 }
