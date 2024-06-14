@@ -9,11 +9,12 @@ namespace CityBuilder.SDK
         [SerializeField] private TMP_Text _timerText;
         [SerializeField] private GameObject _advertisementObject;
 
+        public static bool CountdownStarted = false;
+        
         private const float AdInterval = 180f; //180
 
         private float _lastAdDisplayTime;
         private float _countdownTime = 3f;
-        private bool _countdownStarted = false;
 
         private void Awake()
         {
@@ -31,7 +32,7 @@ namespace CityBuilder.SDK
 
             if (timeSinceLastAd >= AdInterval)
             {
-                if (!_countdownStarted)
+                if (!CountdownStarted)
                 {
                     StartCountdown();
                 }
@@ -39,7 +40,7 @@ namespace CityBuilder.SDK
                 {
                     ShowAdvertisement();
                     _lastAdDisplayTime = Time.time;
-                    _countdownStarted = false;
+                    CountdownStarted = false;
                 }
             }
             else
@@ -47,7 +48,7 @@ namespace CityBuilder.SDK
                 ResetCountdown();
             }
 
-            if (_countdownStarted)
+            if (CountdownStarted)
             {
                 UpdateCountdown();
             }
@@ -55,7 +56,7 @@ namespace CityBuilder.SDK
 
         private void StartCountdown()
         {
-            _countdownStarted = true;
+            CountdownStarted = true;
             _countdownTime = 3f;
             _advertisementObject.SetActive(true);
             Time.timeScale = 0; // Pause the game
@@ -64,7 +65,7 @@ namespace CityBuilder.SDK
 
         private void ResetCountdown()
         {
-            _countdownStarted = false;
+            CountdownStarted = false;
         }
 
         private void UpdateCountdown()
