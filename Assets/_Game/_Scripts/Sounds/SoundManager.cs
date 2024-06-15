@@ -10,6 +10,9 @@ namespace CityBuilder.Sounds
 
         public static SoundManager Instance;
 
+        private bool _userMuted;
+        private bool _adMuted;
+
         private void Awake()
         {
             if (Instance == null)
@@ -31,18 +34,29 @@ namespace CityBuilder.Sounds
             {
                 SetDefaultMuteSound();
             }
+
+            // Initialize userMuted with current mute state
+            _userMuted = _musicSoundMainMenu.mute;
+            _adMuted = false;
         }
 
         public void PlaySoundMainMenu()
         {
             _musicSoundMainMenu.Play();
-        } 
-        
+        }
+
         public void MuteSound(bool mute)
         {
-            _musicSoundMainMenu.mute = mute;
-            _musicSoundGame.mute = mute;
-            _effectSource.mute = mute;
+            _adMuted = mute;
+            ApplyMuteState();
+        }
+
+        private void ApplyMuteState()
+        {
+            bool finalMuteState = _userMuted || _adMuted;
+            _musicSoundMainMenu.mute = finalMuteState;
+            _musicSoundGame.mute = finalMuteState;
+            _effectSource.mute = finalMuteState;
         }
 
         public void PlaySoundGame()
@@ -67,19 +81,16 @@ namespace CityBuilder.Sounds
 
         public void ToggleMusic()
         {
-            _musicSoundMainMenu.mute = !_musicSoundMainMenu.mute;
-            _musicSoundGame.mute = !_musicSoundGame.mute;
-            _effectSource.mute = !_effectSource.mute;
-
+            _userMuted = !_userMuted;
+            ApplyMuteState();
             SaveMuteSound();
         }
 
         private void SaveMuteSound()
         {
-            PlayerPrefs.SetInt("MuteSoundMainMenu", _musicSoundMainMenu.mute ? 1 : 0);
-            PlayerPrefs.SetInt("MuteSoundGame", _musicSoundGame.mute ? 1 : 0);
-            PlayerPrefs.SetInt("MuteSoundEffect", _effectSource.mute ? 1 : 0);
-
+            PlayerPrefs.SetInt("MuteSoundMainMenu", _userMuted ? 1 : 0);
+            PlayerPrefs.SetInt("MuteSoundGame", _userMuted ? 1 : 0);
+            PlayerPrefs.SetInt("MuteSoundEffect", _userMuted ? 1 : 0);
             PlayerPrefs.Save();
         }
 
@@ -88,6 +99,8 @@ namespace CityBuilder.Sounds
             _musicSoundMainMenu.mute = PlayerPrefs.GetInt("MuteSoundMainMenu") == 1;
             _musicSoundGame.mute = PlayerPrefs.GetInt("MuteSoundGame") == 1;
             _effectSource.mute = PlayerPrefs.GetInt("MuteSoundEffect") == 1;
+
+            _userMuted = _musicSoundMainMenu.mute;
         }
 
         private void SetDefaultMuteSound()
@@ -95,6 +108,8 @@ namespace CityBuilder.Sounds
             _musicSoundMainMenu.mute = false;
             _musicSoundGame.mute = false;
             _effectSource.mute = false;
+
+            _userMuted = false;
         }
     }
 }
