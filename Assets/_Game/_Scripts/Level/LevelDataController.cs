@@ -17,8 +17,7 @@ namespace CityBuilder.Level
         [SerializeField] private Button _buttonX2Coins;
         [SerializeField] private Wallet _wallet;
 
-        [Header("View")] 
-        [SerializeField] private GameObject _levelCompletedScreen;
+        [Header("View")] [SerializeField] private GameObject _levelCompletedScreen;
         [SerializeField] private FactoryWorker _factoryWorker;
         [SerializeField] private AudioClip _soundEffect;
         [SerializeField] private GameObject[] _buttons;
@@ -30,9 +29,7 @@ namespace CityBuilder.Level
         private LevelDataModel _levelDataVModel;
 
         private int _levelNumber = 2;
-
-        private const int AmountOfDoubling = 1000;
-
+        
         private void Awake()
         {
             _levelDataVModel = new LevelDataModel(_levelNumber);
@@ -44,52 +41,17 @@ namespace CityBuilder.Level
         private void OnEnable()
         {
             _building.ConstructedBuilding += OnConstructedBuilding;
-            _buttonX2Coins.onClick.AddListener(OnX2Coins);
         }
 
         private void OnDisable()
         {
             _building.ConstructedBuilding -= OnConstructedBuilding;
-            _buttonX2Coins.onClick.AddListener(OnX2Coins);
         }
 
         public void OnClickNextLevel()
         {
-            Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback);
             _gameplay.RestartGame();
             SceneManager.LoadScene(_levelNumber);
-        }
-
-        private void OnX2Coins()
-        {
-            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback);
-        }
-
-        private void OnOpenCallback()
-        {
-            Time.timeScale = 0;
-            SoundManager.Instance.MuteSound(true);
-        }
-
-        private void OnRewardedCallback()
-        {
-            _wallet.AddCoins(AmountOfDoubling);
-        }
-
-        private void OnCloseCallback()
-        {
-            Time.timeScale = 1;
-            SoundManager.Instance.MuteSound(false);
-            _buttonX2Coins.interactable = false;
-        }
-
-        private void OnCloseCallback(bool wasShown)
-        {
-            // if (wasShown)
-            // {
-                Time.timeScale = 1;
-                SoundManager.Instance.MuteSound(false);
-            // }
         }
 
         private void OnConstructedBuilding()

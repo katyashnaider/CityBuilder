@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Cinemachine;
-using CityBuilder.SDK;
 using UnityEngine;
 
 namespace CityBuilder.Cameras
@@ -55,7 +54,7 @@ namespace CityBuilder.Cameras
 
             while (true)
             {
-                _freeLookCamera.enabled = Input.GetMouseButton(0) && !CameraRaycast.IsWorkerClicked && !Advertisement.CountdownStarted;
+                _freeLookCamera.enabled = Input.GetMouseButton(0) && !CameraRaycast.IsWorkerClicked;
                 yield return null;
             }
         }
